@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@t3-oss/env-nextjs": "^0.12.0",
+    "@tailwindcss/vite": "^4.1.18",
     "husky": "^9.1.7",
     "next": "^15.2.3",
     "react": "^19.0.0",
@@ -37,7 +38,7 @@
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
-    "tailwindcss": "^4.0.15",
+    "tailwindcss": "^4.1.18",
     "typescript": "^5.8.2",
     "typescript-eslint": "^8.27.0"
   },
