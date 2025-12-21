@@ -66,7 +66,7 @@ export default function HomePage() {
             className="mb:2 mt-2 h-[50%] md:h-[60%]"
           ></img>
         </div>
-        <button className="relative top-[-1.25rem] flex animate-[wiggle_2.5s_ease-in-out_infinite] items-center justify-center overflow-hidden rounded-full border-3 border-black bg-[#6b1f1f] px-4 py-2 tracking-widest text-[#fff2cc] text-[0.125rem] shadow-lg hover:scale-105 lg:px-10 lg:py-4">
+        <button className="relative top-[-1.25rem] flex animate-[wiggle_2.5s_ease-in-out_infinite] items-center justify-center overflow-hidden rounded-full border-3 border-black bg-[#6b1f1f] px-4 py-2 text-[0.125rem] tracking-widest text-[#fff2cc] shadow-lg hover:scale-105 lg:px-10 lg:py-4">
           {/* LEFT END DESIGN */}
           <div>
             <img
