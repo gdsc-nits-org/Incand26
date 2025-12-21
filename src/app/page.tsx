@@ -1,36 +1,81 @@
-import Link from "next/link";
+"use client";
+
+import { useEffect, useState } from "react";
 
 export default function HomePage() {
+  const [animate, setAnimate] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => {
+      setAnimate(true);
+    }, 500);
+
+    return () => clearTimeout(t);
+  }, []);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-        <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-          Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
+    <main className="relative h-screen w-screen overflow-hidden bg-black">
+      {/* BACKGROUND IMAGE (SCALE ANIMATION) */}
+      <div
+        className={`absolute inset-0 z-10 transition-transform duration-1200 ease-in-out ${animate ? "scale-100" : "scale-[1.5]"} `}
+      >
+        <img src="/Frame.png" alt="Tapestry" className="h-full w-full" />
+      </div>
+
+      {/* CENTER T-SHIRT */}
+      <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center">
+        <img
+          src="/Tshirt.png"
+          alt="T-shirt"
+          className={`w-[220px] transition-opacity duration-700 ease-in-out lg:w-[420px] ${animate ? "opacity-0" : "opacity-100"} `}
+        />
+      </div>
+      {/* CENTER TEXT */}
+      <div
+        className={`absolute inset-0 z-30 flex flex-col items-center justify-center text-center transition-all delay-300 duration-700 ease-in-out ${animate ? "visible scale-100 opacity-100" : "invisible scale-105 opacity-0"} `}
+      >
+        <h1 className="font-hitchcut text-2xl font-bold text-[#A50001] lg:text-8xl">
+          FEEL THE
         </h1>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/usage/first-steps"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">First Steps →</h3>
-            <div className="text-lg">
-              Just the basics - Everything you need to know to set up your
-              database and authentication.
-            </div>
-          </Link>
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/introduction"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">Documentation →</h3>
-            <div className="text-lg">
-              Learn more about Create T3 App, the libraries it uses, and how to
-              deploy it.
-            </div>
-          </Link>
+
+        <h1 className="font-hitchcut text-2xl font-bold text-[#008080] lg:text-8xl">
+          TAPESTRY
+        </h1>
+
+        <h2 className="font-hitchcut mt-4 text-xl text-[#751313] lg:text-5xl">
+          INCAND 26’
+        </h2>
+
+        <h2 className="font-hitchcut text-lg text-[#751313] lg:text-5xl">
+          OFFICIAL MERCH
+        </h2>
+        <div>
+          <img src="/Vector.png" className="mb:2 mt-2 h-[50%] md:h-[60%]"></img>
         </div>
+        <button className="relative top-[-20px] flex animate-[wiggle_2.5s_ease-in-out_infinite] items-center justify-center overflow-hidden rounded-full border-3 border-black bg-[#6b1f1f] px-4 py-2 text-[2px] tracking-widest text-[#fff2cc] shadow-lg hover:scale-105 lg:px-10 lg:py-4">
+          {/* LEFT END DESIGN */}
+          <div>
+            <img
+              src="/design.png"
+              alt=""
+              className="absolute top-[-4px] left-[2px] h-full rotate-180 opacity-90"
+            />
+          </div>
+
+          {/* TEXT */}
+          <span className="tracking-0.18em relative z-70 w-full text-lg">
+            GET IT NOW
+          </span>
+
+          {/* RIGHT END DESIGN */}
+          <div>
+            <img
+              src="/design.png"
+              alt=""
+              className="absolute top-[5px] right-[-2px] h-full"
+            />
+          </div>
+        </button>
       </div>
     </main>
   );
