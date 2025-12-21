@@ -10,8 +10,9 @@ export const metadata: Metadata = {
 };
 
 const hitchcut = localfont({
-  src:"../fonts/hitchcut-Regular.otf",variable:"--font-hitchcut",
-  display:"swap",
+  src: "../fonts/hitchcut-Regular.otf",
+  variable: "--font-hitchcut",
+  display: "swap",
 });
 
 export default function RootLayout({
