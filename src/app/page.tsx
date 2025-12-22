@@ -1,6 +1,18 @@
+"use client";
+
+import {useState } from "react";
 import Link from "next/link";
+import Loader from "~/components/Loader";
+
 
 export default function HomePage() {
+  const [isLoading, setIsLoading] = useState(true);
+
+   if (isLoading) {
+    return <Loader onComplete={() => setIsLoading(false)} />;
+  }
+  
+  
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
       <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
