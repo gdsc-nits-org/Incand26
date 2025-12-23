@@ -1,4 +1,3 @@
-
 // "use client";
 
 // import { useState } from "react";
@@ -6,7 +5,6 @@
 // import Loader from "~/components/Loader";
 
 // import HomeMerch from "~/components/Home/Merch";
-
 
 // export default function HomePage() {
 //   const [isLoading, setIsLoading] = useState(true);
@@ -37,8 +35,9 @@ export default function HomePage() {
   return (
     <>
       <main
-        className={`h-screen w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth bg-neutral-900 text-neutral-100 ${revealHome ? "opacity-100 z-0" : "opacity-0"
-          }`}
+        className={`h-screen w-full snap-y snap-mandatory overflow-y-scroll scroll-smooth bg-neutral-900 text-neutral-100 ${
+          revealHome ? "z-0 opacity-100" : "opacity-0"
+        }`}
       >
         {/* ---EVENTS --- */}
         <section

@@ -19,9 +19,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={hitchcut.variable}>
-      <body className="relative">
-        {children}
-      </body>
+      <body className="relative">{children}</body>
     </html>
   );
 }

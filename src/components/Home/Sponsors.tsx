@@ -19,8 +19,7 @@ export default function Sponsors() {
             "url('https://res.cloudinary.com/dgechlqls/image/upload/v1766212699/BACKUP_SPONSORS_osnbmg.png')",
         }}
       >
-        <div className="mx-auto h-full max-w-8xl font-hitchcut lg:px-10 py-12 md:py-0 flex flex-col justify-center">
-          
+        <div className="max-w-8xl font-hitchcut mx-auto flex h-full flex-col justify-center py-12 md:py-0 lg:px-10">
           {/* DESKTOP LAYOUT */}
           <div className="hidden h-full grid-cols-2 items-center gap-12 md:grid">
             {/* TEXT */}
@@ -29,7 +28,8 @@ export default function Sponsors() {
                 PREVIOUS SPONSORS
               </h1>
               <p className="text-3xl leading-relaxed font-medium text-[#000000]">
-                NIT Silchar&apos;s cultural extravaganza invites you into a vibrant{" "}
+                NIT Silchar&apos;s cultural extravaganza invites you into a
+                vibrant{" "}
                 <span className="font-bold text-[#008080]">
                   Tribal Tapestry
                 </span>
@@ -51,12 +51,13 @@ export default function Sponsors() {
           </div>
 
           {/* MOBILE LAYOUT */}
-          <div className="flex flex-col gap-8 py-12 px-4 pb-32 md:hidden">
+          <div className="flex flex-col gap-8 px-4 py-12 pb-32 md:hidden">
             <h1 className="text-center text-5xl font-black text-[#520000]">
               PREVIOUS SPONSORS
             </h1>
             <p className="px-4 text-center text-xl text-[#000000]">
-              NIT Silchar&apos;s cultural extravaganza invites you into a vibrant{" "}
+              NIT Silchar&apos;s cultural extravaganza invites you into a
+              vibrant{" "}
               <span className="font-bold text-[#008080]">Tribal Tapestry</span>
               —a journey woven with ancient rhythms, timeless traditions, and
               stories passed through generations.

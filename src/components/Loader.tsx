@@ -48,7 +48,7 @@ interface LoaderProps {
   onComplete?: () => void;
   onTilesStart?: () => void;
 }
-const Loader: React.FC<LoaderProps> = ({ onComplete,onTilesStart }) => {
+const Loader: React.FC<LoaderProps> = ({ onComplete, onTilesStart }) => {
   const [showCandle, setShowCandle] = useState(false);
   const [showGlow, setShowGlow] = useState(false);
   const [animateGlow, setAnimateGlow] = useState(false); // glow animation starts
@@ -151,17 +151,14 @@ const Loader: React.FC<LoaderProps> = ({ onComplete,onTilesStart }) => {
       {/* ================= LAPTOP VIEW ================= */}
       {isLap && (
         <div
-          className={`fixed inset-0 overflow-hidden transition-all duration-200
-          ${
+          className={`fixed inset-0 overflow-hidden transition-all duration-200 ${
             phase === "tiles"
-            ?"bg-transparent z-50 pointer-events-none"
-            : " z-50 pointer-events-auto"
-          }
-          `}
+              ? "pointer-events-none z-50 bg-transparent"
+              : "pointer-events-auto z-50"
+          } `}
         >
-
           <div
-            className="absolute inset-0 z-10 grid h-screen w-screen brightness-150 "
+            className="absolute inset-0 z-10 grid h-screen w-screen brightness-150"
             style={{
               gridTemplateColumns: "0.67fr repeat(8,1fr) 0.6fr",
             }}
@@ -173,12 +170,12 @@ const Loader: React.FC<LoaderProps> = ({ onComplete,onTilesStart }) => {
               return (
                 <div
                   key={i}
-                  className={`h-full w-full overflow-hidden  transition-transform duration-2500 ease-in-out ${phase === "tiles" ? moveClass : "translate-y-0"} `}
+                  className={`h-full w-full overflow-hidden transition-transform duration-2500 ease-in-out ${phase === "tiles" ? moveClass : "translate-y-0"} `}
                 >
                   <img
                     src={src}
                     alt={src[i]}
-                    className="h-full w-full object-cover scale-x-[1.07]"
+                    className="h-full w-full scale-x-[1.07] object-cover"
                     draggable={false}
                   />
                 </div>
@@ -241,13 +238,13 @@ const Loader: React.FC<LoaderProps> = ({ onComplete,onTilesStart }) => {
 
       {/* ================= IPAD VIEW ================= */}
       {isIpad && (
-        <div className={`fixed inset-0 overflow-hidden transition-all duration-200
-        ${
+        <div
+          className={`fixed inset-0 overflow-hidden transition-all duration-200 ${
             phase === "tiles"
-            ?"bg-transparent z-50 pointer-events-none"
-            : "bg-black z-50 pointer-events-auto"
-        }
-      `}>
+              ? "pointer-events-none z-50 bg-transparent"
+              : "pointer-events-auto z-50 bg-black"
+          } `}
+        >
           {/* MOBILE TILE GRID (SAME PATTERN AS DESKTOP) */}
           <div
             className="absolute inset-0 z-10 grid h-screen w-screen brightness-125"
@@ -331,13 +328,13 @@ const Loader: React.FC<LoaderProps> = ({ onComplete,onTilesStart }) => {
 
       {/* ================= MOBILE VIEW ================= */}
       {isPhone && (
-        <div className={`fixed inset-0 overflow-hidden transition-all duration-200
-        ${
+        <div
+          className={`fixed inset-0 overflow-hidden transition-all duration-200 ${
             phase === "tiles"
-            ?"bg-transparent z-50 pointer-events-none"
-            : "bg-black z-50 pointer-events-auto"
-        }
-      `}>
+              ? "pointer-events-none z-50 bg-transparent"
+              : "pointer-events-auto z-50 bg-black"
+          } `}
+        >
           {/*  MOBILE TILE GRID (SAME PATTERN AS DESKTOP) */}
           <div
             className="absolute inset-0 z-10 grid h-screen w-screen brightness-125"
