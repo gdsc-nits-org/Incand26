@@ -1,11 +1,23 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Hitchcut-Regular";
+  src: url("/fonts/Hitchcut-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
   --font-sans:
     var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-hitchcut: 'Hitchcut-Regular', sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 
 @font-face {
   font-family: "Hitchcut";
