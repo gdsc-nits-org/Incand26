@@ -1,2 +1,2 @@
 #!/bin/sh
-pnpm check && pnpm format:check && pnpm build
+pnpm check && pnpm format:write && pnpm format:check && pnpm build
