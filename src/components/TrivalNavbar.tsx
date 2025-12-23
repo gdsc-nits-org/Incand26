@@ -8,10 +8,10 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  {
-    id: "home",
-    icon: "https://res.cloudinary.com/dgechlqls/image/upload/v1766226889/Group_qp18l8.png",
-    label: "Home",
+   {
+    id: "contact",
+    icon: "https://res.cloudinary.com/dgechlqls/image/upload/v1766226912/Group_3_centwg.png",
+    label: "Contact",
   },
   {
     id: "events",
@@ -23,10 +23,10 @@ const navItems: NavItem[] = [
     icon: "https://res.cloudinary.com/dgechlqls/image/upload/v1766226904/Group_2_ur19lj.png",
     label: "Sponsors",
   },
-  {
-    id: "contact",
-    icon: "https://res.cloudinary.com/dgechlqls/image/upload/v1766226912/Group_3_centwg.png",
-    label: "Contact",
+   {
+    id: "merch",
+    icon: "https://res.cloudinary.com/dgechlqls/image/upload/v1766226889/Group_qp18l8.png",
+    label: "merch",
   },
 ];
 
@@ -76,7 +76,7 @@ const TribalTrackbar: React.FC = () => {
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className="group relative z-10 flex flex-col items-center justify-center focus:outline-none"
+              className="group relative z-10 flex flex-col items-center justify-center focus:outline-none cursor-pointer"
               aria-label={item.label}
               aria-current={isActive ? "page" : undefined}
             >

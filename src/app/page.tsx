@@ -1,37 +1,78 @@
+
+// "use client";
+
+// import { useState } from "react";
+// import Link from "next/link";
+// import Loader from "~/components/Loader";
+
+// import HomeMerch from "~/components/Home/Merch";
+
+
+// export default function HomePage() {
+//   const [isLoading, setIsLoading] = useState(true);
+
+//   if (isLoading) {
+//     return <Loader onComplete={() => setIsLoading(false)} />;
+//   }
+
+//   return (
+//     <main>
+//       <HomeMerch />
+//     </main>
+//   );
+// }
+
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
+import Loader from "~/components/Loader";
+import HomeMerch from "~/components/Home/Merch";
+import Sponsors from "~/components/Home/Sponsors";
+import TribalTrackbar from "~/components/TrivalNavbar";
 
 export default function HomePage() {
+  const [loading, setLoading] = useState(true);
+  const [revealHome, setRevealHome] = useState(false);
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-        <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-          Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-        </h1>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/usage/first-steps"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">First Steps →</h3>
-            <div className="text-lg">
-              Just the basics - Everything you need to know to set up your
-              database and authentication.
-            </div>
-          </Link>
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/introduction"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">Documentation →</h3>
-            <div className="text-lg">
-              Learn more about Create T3 App, the libraries it uses, and how to
-              deploy it.
-            </div>
-          </Link>
-        </div>
-      </div>
-    </main>
+    <>
+      <main
+        className={`h-screen w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth bg-neutral-900 text-neutral-100 ${revealHome ? "opacity-100 z-0" : "opacity-0"
+          }`}
+      >
+        {/* ---EVENTS --- */}
+        <section
+          id="events"
+          className="flex h-screen w-full snap-start flex-col items-center justify-center bg-[#e8dfc5] px-4 text-center"
+        >
+          <h1 className="font-hitchcut text-5xl font-black text-[#520000] drop-shadow-lg sm:text-6xl md:text-7xl lg:text-8xl">
+            EVENTS
+          </h1>
+        </section>
+        <Sponsors />
+        {/* --- HOME --- */}
+        <section id="merch" className="h-screen w-full snap-start">
+          <HomeMerch />
+        </section>
+
+        {/* --- CONTACT --- */}
+        <section
+          id="contact"
+          className="flex h-screen w-full snap-start flex-col items-center justify-center bg-[#d4c59a] px-4 text-center"
+        >
+          <h1 className="font-hitchcut text-5xl font-black text-[#361E1E] drop-shadow-lg sm:text-6xl md:text-7xl lg:text-8xl">
+            CONTACT
+          </h1>
+        </section>
+
+        {!loading && <TribalTrackbar />}
+      </main>
+      {loading && (
+        <Loader
+          onTilesStart={() => setRevealHome(true)}
+          onComplete={() => setLoading(false)}
+        />
+      )}
+    </>
   );
 }

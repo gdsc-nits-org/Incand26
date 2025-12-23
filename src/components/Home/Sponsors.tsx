@@ -1,38 +1,15 @@
-"use client";
+﻿"use client";
 import React from "react";
 import InfiniteScroller from "~/components/InfiniteScroller";
 import GlobalScrollStyles from "~/components/GlobalScrollStyles_Sponsers";
 import { sponsorsData } from "~/data/sponsors";
-import TribalTrackbar from "~/components/TrivalNavbar"; 
 
-export default function HomePage() {
+export default function Sponsors() {
   const data = sponsorsData;
 
   return (
-    <main className="h-screen w-full overflow-y-scroll snap-y snap-mandatory scroll-smooth bg-neutral-900 text-neutral-100">
+    <>
       <GlobalScrollStyles />
-
-      {/* --- HOME --- */}
-      <section
-        id="home"
-        className="flex h-screen w-full snap-start flex-col items-center justify-center bg-gradient-to-b from-[#fdfcf0] to-[#f4e4bc] px-4 text-center"
-      >
-        <h1 className="font-hitchcut text-6xl font-black text-amber-900 drop-shadow-xl sm:text-7xl md:text-8xl lg:text-9xl">
-          INCANDESCENCE 2025
-        </h1>
-      </section>
-
-      {/* ---EVENTS --- */}
-      <section
-        id="events"
-        className="flex h-screen w-full snap-start flex-col items-center justify-center bg-[#e8dfc5] px-4 text-center"
-      >
-        <h1 className="font-hitchcut text-5xl font-black text-[#520000] drop-shadow-lg sm:text-6xl md:text-7xl lg:text-8xl">
-          EVENTS
-        </h1>
-       
-      </section>
-
       {/* ---  SPONSORS --- */}
       <section
         id="sponsors"
@@ -91,19 +68,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* --- CONTACT --- */}
-      <section
-        id="contact"
-        className="flex h-screen w-full snap-start flex-col items-center justify-center bg-[#d4c59a] px-4 text-center"
-      >
-        <h1 className="font-hitchcut text-5xl font-black text-[#361E1E] drop-shadow-lg sm:text-6xl md:text-7xl lg:text-8xl">
-          CONTACT
-        </h1>
-       
-      </section>
-      <TribalTrackbar />
-      
-    </main>
+    </>
   );
 }

@@ -14,65 +14,65 @@ export const sponsorsData: SponsorDataStructure = {
   column1: [
     {
       name: "ASUS GAMING",
-      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766218737/image_2_1_ibm2vj.png",
+      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766218737/image_2_1_ibm2vj.webp",
     },
     {
       name: "CLOVIA",
-      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766236823/Group_1171279518_yyxyzn.png",
+      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766236823/Group_1171279518_yyxyzn.webp",
     },
     {
       name: "COCA COLA",
-      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766236343/Frame_1000006207_aeplge.png",
+      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766236343/Frame_1000006207_aeplge.webp",
     },
     {
       name: "UNSTOP",
-      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766236343/Group_1171279524_ohjpvl.png",
+      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766236343/Group_1171279524_ohjpvl.webp",
     },
     {
       name: "AMUL",
-      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766236344/Group_1171279529_gs7prq.png",
+      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766236344/Group_1171279529_gs7prq.webp",
     },
     {
       name: "ZEBRONICS",
-      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766236344/Group_1171279528_vejbsf.png",
+      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766236344/Group_1171279528_vejbsf.webp",
     },
     {
       name: "WINKIES",
-      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766236345/Group_1171279530_pszytp.png",
+      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766236345/Group_1171279530_pszytp.webp",
     },
     {
       name: "GPLUS",
-      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766236343/Group_1171279522_pvhsuj.png",
+      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766236343/Group_1171279522_pvhsuj.webp",
     },
   ],
   column2: [
     {
       name: "UNIBIC",
-      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766236344/Group_1171279527_u0x0ab.png",
+      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766236344/Group_1171279527_u0x0ab.webp",
     },
     {
       name: "BAULI",
-      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766236343/Group_1171279525_yasiiq.png",
+      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766236343/Group_1171279525_yasiiq.webp",
     },
     {
       name: "BORAIL VIEW REGENCY",
-      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766236343/Group_1171279521_ul0lus.png",
+      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766236343/Group_1171279521_ul0lus.webp",
     },
     {
       name: "STATE BANK OF INDIA",
-      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766236344/Group_1171279526_k76gfz.png",
+      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766236344/Group_1171279526_k76gfz.webp",
     },
     {
       name: "THE SOUL STORE",
-      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766236343/Group_1171279519_dcmol7.png",
+      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766236343/Group_1171279519_dcmol7.webp",
     },
     {
       name: "THE LONDON SHAKES",
-      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766236343/Group_1171279520_qq2t2d.png",
+      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766236343/Group_1171279520_qq2t2d.webp",
     },
     {
       name: "CAMPUS TIMES PUNE",
-      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766236343/Group_1171279523_qsrjpn.png",
+      logo: "https://res.cloudinary.com/dgechlqls/image/upload/v1766236343/Group_1171279523_qsrjpn.webp",
     },
   ],
 };

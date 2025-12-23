@@ -1,7 +1,6 @@
 import "~/styles/globals.css";
 import { type Metadata } from "next";
-import { Geist } from "next/font/google";
-import TribalTrackbar from "~/components/TrivalNavbar";
+import localfont from "next/font/local";
 
 export const metadata: Metadata = {
   title: "Tribal Fest",
@@ -9,19 +8,19 @@ export const metadata: Metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-const geist = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist-sans",
+const hitchcut = localfont({
+  src: "../fonts/Hitchcut-Regular.otf",
+  variable: "--font-hitchcut",
+  display: "swap",
 });
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${geist.variable}`}>
+    <html lang="en" className={hitchcut.variable}>
       <body className="relative">
         {children}
-        <TribalTrackbar/>
       </body>
     </html>
   );
