@@ -3,21 +3,21 @@
 import { useEffect, useState, useLayoutEffect } from "react";
 
 //------------------------------tilesphotos-----------------------------------
-const strips = Array.from({ length: 10 }, (_, i) => `/tiles/tile${i + 1}.svg`);
+const strips = Array.from({ length: 10 }, (_, i) => `/tiles/tile${i + 1}.webp`);
 const mobileStrips = [
-  "/tiles/tile4.svg",
-  "/tiles/tile5.svg",
-  "/tiles/tile6.svg",
-  "/tiles/tile7.svg",
+  "/tiles/tile4.webp",
+  "/tiles/tile5.webp",
+  "/tiles/tile6.webp",
+  "/tiles/tile7.webp",
 ];
 
 const ipadStrips = [
-  "/tiles/tile3.svg",
-  "/tiles/tile4.svg",
-  "/tiles/tile5.svg",
-  "/tiles/tile6.svg",
-  "/tiles/tile7.svg",
-  "/tiles/tile8.svg",
+  "/tiles/tile3.webp",
+  "/tiles/tile4.webp",
+  "/tiles/tile5.webp",
+  "/tiles/tile6.webp",
+  "/tiles/tile7.webp",
+  "/tiles/tile8.webp",
 ];
 
 //----------------------------------------------------------------------------
@@ -178,7 +178,7 @@ const Loader: React.FC<LoaderProps> = ({ onComplete,onTilesStart }) => {
                   <img
                     src={src}
                     alt={src[i]}
-                    className="h-full w-full object-cover scale-x-[1.07]"
+                    className="h-full w-full object-cover scale-x-[1.09]"
                     draggable={false}
                   />
                 </div>
@@ -211,7 +211,7 @@ const Loader: React.FC<LoaderProps> = ({ onComplete,onTilesStart }) => {
                       className="absolute -top-[18vh] h-[33vh]"
                     />
                     <img
-                      src="/stick.svg"
+                      src="/stick.webp"
                       className="relative top-[15vh] h-[35vh]"
                     />
                   </div>
@@ -300,7 +300,7 @@ const Loader: React.FC<LoaderProps> = ({ onComplete,onTilesStart }) => {
                       className="absolute -top-[14vh] h-[28vh]"
                     />
                     <img
-                      src="/stick.svg"
+                      src="/stick.webp"
                       className="relative top-[15vh] h-[28vh]"
                     />
                   </div>
@@ -392,7 +392,7 @@ const Loader: React.FC<LoaderProps> = ({ onComplete,onTilesStart }) => {
                       className="absolute -top-[13vh] h-[25vh]"
                     />
                     <img
-                      src="/stick.svg"
+                      src="/stick.webp"
                       className="relative top-[12vh] h-[26vh]"
                     />
                   </div>
