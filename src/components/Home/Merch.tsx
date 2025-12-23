@@ -1,20 +1,35 @@
 "use client";
+
 import { NoiseFilter } from "../NoiseFilter";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 export default function HomeMerch() {
   const [animate, setAnimate] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  
 
   useEffect(() => {
-    const t = setTimeout(() => {
-      setAnimate(true);
-    }, 500);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]!.isIntersecting) {
+          setAnimate(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 },
+    );
 
-    return () => clearTimeout(t);
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <main className="relative h-screen w-screen overflow-hidden bg-black">
+    <>
+    
+    <div ref={sectionRef} className="relative h-full w-full overflow-hidden bg-black">
       <NoiseFilter />
       {/* BACKGROUND IMAGE (SCALE ANIMATION) */}
       <div
@@ -61,10 +76,11 @@ export default function HomeMerch() {
         <div>
           <img
             src="https://res.cloudinary.com/dsaaxuphe/image/upload/v1766329702/Vector_lak8vr.webp"
-            className="mb:2 mt-2 h-[50%] md:h-[60%]"
-          ></img>
+            alt=""
+            className="mb-2 mt-2 h-[50%] md:h-[60%]"
+          />
         </div>
-        <button className="relative top-[-1.25rem] flex animate-[wiggle_2.5s_ease-in-out_infinite] items-center justify-center overflow-hidden rounded-full border-3 border-black bg-[#6b1f1f] px-4 py-2 text-[0.125rem] tracking-widest text-[#fff2cc] shadow-lg hover:scale-105 lg:px-10 lg:py-4">
+        <button className="relative top-[-1.25rem] flex animate-[wiggle_2.5s_ease-in-out_infinite] items-center justify-center overflow-hidden rounded-full border-3 border-black bg-[#6b1f1f] px-4 py-2 text-[0.125rem] tracking-widest text-[#fff2cc] shadow-lg hover:scale-105 lg:px-10 lg:py-4 cursor-pointer">
           {/* LEFT END DESIGN */}
           <div>
             <img
@@ -89,6 +105,7 @@ export default function HomeMerch() {
           </div>
         </button>
       </div>
-    </main>
+    </div>
+    </>
   );
 }
