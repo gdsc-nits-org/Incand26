@@ -5,6 +5,138 @@
     var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
+
+
+@font-face {
+  font-family: "Hitchcut";
+  src: url("/fonts/Hitchcut-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ================= TORCH GLOW ================= */
+
+.glow-wrapper {
+  transform: translate(-50%, -50%);
+}
+
+html,
+body {
+  background-color: black;
+}
+
+@media (min-width: 1201px) {
+  .torch-brightness {
+      position:relative;
+      top:-35vh;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background-color: rgba(255,200,100,0.35); /* warm yellow core */
+      pointer-events:none;
+
+      box-shadow:
+        0 0 60px 30px rgba(230, 157, 22, 0.45), 
+        0 0 160px 120px rgba(235, 164, 34, 0.65), 
+        0 0 180px 140px rgb(246, 175, 44,0.8);  
+      animation: none;
+      transition: none;
+      transform: scale(1);
+      transform-origin: center;
+      will-change: transform;
+  }
+}
+@media (max-width: 758px) {
+  .torch-brightness {
+    position:relative;
+      top:-30vh;
+      width: 0vw;
+      height: 0vh;
+      border-radius: 50%;
+      background-color: rgba(255,200,100,0.55); /* warm yellow core */
+      pointer-events:none;
+
+      box-shadow:
+        0 0 60px 30px rgba(255, 200, 100, 0.55), /* inner bright yellow */
+        0 0 180px 120px rgba(252, 167, 9, 0.75), /* middle fire yellow */
+        0 0 180px 100px rgb(246, 175, 44,1);  /* outer orange fire */
+      animation: none;
+      transition: none;
+      transform: scale(1);
+      transform-origin: center;
+      will-change: transform;
+  
+  }
+}
+@media (min-width: 759px) and (max-width: 1200px) {
+    .torch-brightness {
+    position:relative;
+      top:-31vh;
+      width: 0vw;
+      height: 0vh;
+      border-radius: 50%;
+      background-color: rgba(255,200,100,0.25); /* warm yellow core */
+      pointer-events:none;
+
+      box-shadow:
+        0 0 60px 30px rgba(255, 200, 100, 0.25), /* inner bright yellow */
+        0 0 150px 100px rgba(252, 167, 9, 0.45), /* middle fire yellow */
+        0 0 250px 200px rgb(246, 175, 44,0.8);  /* outer orange fire */
+      animation: none;
+      transition: none;
+      transform: scale(1);
+      transform-origin: center;
+      will-change: transform;
+  
+  }
+}
+.glow-lap {
+  animation: glowGrow 0.2s ease-out forwards;
+}
+
+.glow-mobile {
+  animation: glowGrow-mobile 0.2s ease-out forwards;
+}
+
+.glow-ipad {
+  animation: glowGrow-ipad 0.2s ease-out forwards;
+}
+
+@keyframes glowGrow {
+  0% { visibility: visible;
+    transform: scale(0.9); }
+
+
+  25% {transform:scale(1)}
+  
+
+  100% { transform: scale(1.2); }
+}
+
+
+@keyframes glowGrow-mobile {
+  0% { visibility: visible;
+    transform: scale(0.7); }
+
+
+  25% {transform:scale(0.9)}
+  
+
+  100% { transform: scale(1); }
+}
+
+@keyframes glowGrow-ipad {
+  0% { visibility: visible;
+    transform: scale(0.9); }
+
+
+  25% {transform:scale(1)}
+  
+
+  100% { transform: scale(1.2); }
+}
+
 :root {
   --font-hitchcut: "Hitchcut";
 }
@@ -32,3 +164,4 @@ body {
     transform: rotate(1deg);
   }
 }
+

@@ -1,9 +1,11 @@
 "use client";
+
 import { NoiseFilter } from "../NoiseFilter";
 import { useEffect, useState } from "react";
 
 export default function HomeMerch() {
   const [animate, setAnimate] = useState(false);
+  
 
   useEffect(() => {
     const t = setTimeout(() => {
@@ -14,6 +16,8 @@ export default function HomeMerch() {
   }, []);
 
   return (
+    <>
+    
     <main className="relative h-screen w-screen overflow-hidden bg-black">
       <NoiseFilter />
       {/* BACKGROUND IMAGE (SCALE ANIMATION) */}
@@ -90,5 +94,6 @@ export default function HomeMerch() {
         </button>
       </div>
     </main>
+    </>
   );
 }
