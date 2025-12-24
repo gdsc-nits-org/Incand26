@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 "use client";
 
 import { AnimatePresence, motion, type Variants } from "framer-motion";
