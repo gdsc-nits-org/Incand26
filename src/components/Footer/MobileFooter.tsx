@@ -3,6 +3,16 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+const getCloudAnimation = (index: number) => {
+  const animations = [
+    "animate-float-mobile-subtle",
+    "animate-float-mobile-slow",
+    "animate-float-mobile-horizontal",
+    "animate-float-mobile-diagonal",
+  ];
+  return animations[index % animations.length];
+};
+
 const socialIcons = [
   {
     src: "/footer-assets/mobile/social-icons-3.svg",
@@ -210,7 +220,7 @@ export const MobileFooter = (): React.JSX.Element => {
           transform: `scale(${scale.x}, ${scale.y})`,
         }}
       >
-        <div className="absolute top-0 left-0.5 h-[917px] w-[410px] overflow-hidden [background:radial-gradient(50%_50%_at_50%_31%,rgba(255,255,255,1)_0%,rgba(252,209,166,1)_100%)]">
+        <div className="absolute top-0 h-[917px] w-full overflow-hidden [background:radial-gradient(50%_50%_at_50%_31%,rgba(255,255,255,1)_0%,rgba(252,209,166,1)_100%)]">
           <div className="absolute top-[calc(50.00%_-_258px)] left-[calc(50.00%_-_83px)] h-[164px] w-[164px] rounded-[1000px] bg-white" />
 
           {/* Top Birds */}
@@ -307,7 +317,7 @@ export const MobileFooter = (): React.JSX.Element => {
           {rightSideGroups.map((img, index) => (
             <img
               key={`right-group-${index}`}
-              className={`absolute ${img.className}`}
+              className={`absolute ${img.className} ${getCloudAnimation(index + 2)}`}
               alt={img.alt}
               src={img.src}
             />
@@ -320,7 +330,7 @@ export const MobileFooter = (): React.JSX.Element => {
           />
 
           <nav
-            className="absolute top-[589px] left-[calc(50.00%_-_89px)] flex h-[17px] w-[170px] items-center justify-between gap-[34.1px]"
+            className="absolute top-[589px] left-[calc(50.00%_-_89px)] z-10 flex h-[17px] w-[170px] items-center justify-between gap-[34.1px]"
             aria-label="Social media links"
           >
             {socialIcons.map(({ src, alt, href }, index) => (
@@ -339,7 +349,7 @@ export const MobileFooter = (): React.JSX.Element => {
         </div>
 
         <img
-          className="absolute top-[89.34%] left-[40.79%] h-[6.43%] w-[27.07%]"
+          className="animate-float-mobile-subtle absolute top-[89.34%] left-[40.79%] h-[6.43%] w-[27.07%]"
           alt="Group"
           src="/footer-assets/mobile/group.png"
         />
@@ -362,7 +372,7 @@ export const MobileFooter = (): React.JSX.Element => {
         {bottomGroups.map((img, index) => (
           <img
             key={`bottom-${index}`}
-            className={`absolute ${img.className} pointer-events-none`}
+            className={`absolute ${img.className} pointer-events-none ${getCloudAnimation(index)}`}
             alt={img.alt}
             src={img.src}
           />
@@ -374,6 +384,11 @@ export const MobileFooter = (): React.JSX.Element => {
             <span className="font-semibold">
               WITH <span className="font-extrabold">GDG NIT SILCHAR</span>
             </span>
+            <img
+              className="h-[50px] w-auto mix-blend-multiply object-center"
+              alt="GDG NIT SILCHAR Logo"
+              src="/footer-assets/laptop/images/gdg-logo.gif"
+            />
           </div>
         </footer>
       </div>

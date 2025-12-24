@@ -284,7 +284,7 @@ const getCloudAnimation = (index: number) => {
 
 export const LaptopFooter = (): React.JSX.Element => {
   return (
-    <footer className="relative h-screen w-screen overflow-hidden select-none [background:radial-gradient(50%_50%_at_50%_31%,rgba(255,255,255,1)_0%,rgba(252,209,166,1)_100%)]">
+    <footer className="relative h-screen overflow-hidden select-none [background:radial-gradient(50%_50%_at_50%_31%,rgba(255,255,255,1)_0%,rgba(252,209,166,1)_100%)]">
       <div className="absolute top-0 left-0 h-full w-full">
         <div className="absolute top-[calc(50.00%_-_33.80%)] left-[calc(50.00%_-_12.083%)] h-[42.96%] w-[24.167%] rounded-[92.59%] bg-white" />
 
@@ -393,8 +393,8 @@ export const LaptopFooter = (): React.JSX.Element => {
           <Brochure className="origin-top-left scale-[0.8] 2xl:scale-100" />
         </div>
 
-        <div className="absolute top-[91.48%] left-[calc(50.00%_+_26%)] flex h-[11.02%] w-auto items-center justify-center gap-0 select-none">
-          <div className="flex flex-col items-center justify-center text-center [font-family:'Inter',Helvetica] text-[15px] leading-[15px] text-black">
+        <div className="absolute right-2 bottom-2 flex h-[11.02%] w-auto items-center justify-center gap-0 select-none xl:right-3 xl:bottom-3">
+          <div className="flex flex-col items-center justify-center text-center [font-family:'Inter',Helvetica] text-[15px] leading-[15px] text-black min-[2000px]:text-[30px] min-[2000px]:leading-[30px]">
             <span className="font-semibold">MADE IN COLLABORATION</span>
             <span className="font-semibold">
               WITH <span className="font-extrabold">GDG NIT SILCHAR</span>
@@ -403,7 +403,7 @@ export const LaptopFooter = (): React.JSX.Element => {
           <img
             src="/footer-assets/laptop/images/gdg-logo.gif"
             alt="GDG Logo"
-            className="-ml-4 h-[75px] w-auto mix-blend-multiply"
+            className="mt-4 -ml-6 h-[75px] w-auto object-center mix-blend-multiply min-[2000px]:mt-6 min-[2000px]:-ml-12 min-[2000px]:h-[150px]"
             draggable={false}
           />
         </div>
