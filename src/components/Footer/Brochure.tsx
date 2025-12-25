@@ -10,11 +10,12 @@ export const Brochure = React.forwardRef<
   return (
     <a
       ref={ref}
-      href="#"
+      href="https://drive.google.com/file/d/1_YyluMmgFQFs9SShdlpAEvIHRfD1Nnx_/view?usp=sharing"
       className={cn(
         "group relative block h-[5.42vw] w-[21vw] cursor-pointer transition-transform duration-700 ease-in-out select-none hover:-rotate-3",
         className,
       )}
+      target="_blank"
       style={style}
       {...props}
     >
@@ -25,8 +26,7 @@ export const Brochure = React.forwardRef<
       <div className="absolute top-0 left-0 z-10 h-[5.36vw] w-[20.94vw] overflow-hidden rounded-[3.7vw] border-[0.16vw] border-black bg-[#751313] transition-all duration-300 ease-out group-hover:-top-[2.4vw] group-hover:-left-[0.21vw] group-hover:h-[8.8vw] group-hover:w-[26.82vw] group-hover:rounded-[4.64vw]">
         {/* Text */}
         <span
-          className="absolute top-[1.25vw] left-[3.49vw] z-20 font-sans text-[2.29vw] leading-[1.2] tracking-wider whitespace-nowrap text-[#FCDBBB] transition-all duration-300 ease-out select-none group-hover:top-[1.93vw] group-hover:left-[4.53vw] group-hover:text-[2.86vw] group-hover:text-white"
-          style={{ fontFamily: "'Russo One', sans-serif" }}
+          className="absolute font-hitchcut top-[1.25vw] left-[3.49vw] z-20  text-[2.1vw] leading-[1.2] tracking-wider whitespace-nowrap text-[#FCDBBB] transition-all duration-300 ease-out select-none group-hover:top-[1.8vw] group-hover:left-[4.53vw] group-hover:text-[2.7vw] group-hover:text-white"
         >
           BROCHURE
         </span>
