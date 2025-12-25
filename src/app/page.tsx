@@ -1,4 +1,3 @@
-
 // "use client";
 
 // import { useState } from "react";
@@ -39,8 +38,9 @@ export default function HomePage() {
   return (
     <>
       <main
-        className={`h-screen w-full snap-y snap-mandatory overflow-y-scroll scroll-smooth bg-neutral-900 text-neutral-100 ${revealHome ? "z-0 opacity-100" : "opacity-0"
-          }`}
+        className={`h-screen w-full snap-y snap-mandatory overflow-y-scroll scroll-smooth bg-neutral-900 text-neutral-100 ${
+          revealHome ? "z-0 opacity-100" : "opacity-0"
+        }`}
       >
         {/* --- LANDING / HERO SECTION --- */}
         <section id="home" className="h-screen w-full snap-start">

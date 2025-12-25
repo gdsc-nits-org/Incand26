@@ -9,29 +9,29 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   {
+    id: "landing",
+    icon: "https://res.cloudinary.com/dgechlqls/image/upload/v1766226912/Group_3_centwg.png",
+    label: "Landing",
+  },
+  {
+    id: "about",
+    icon: "https://res.cloudinary.com/dgechlqls/image/upload/v1766226904/Group_2_ur19lj.png",
+    label: "About",
+  },
+  {
     id: "events",
     icon: "https://res.cloudinary.com/dgechlqls/image/upload/v1766226895/Group_1_g5roxz.png",
     label: "Events",
   },
   {
-    id: "sponsors",
-    icon: "https://res.cloudinary.com/dgechlqls/image/upload/v1766226904/Group_2_ur19lj.png",
-    label: "Sponsors",
-  },
-  {
     id: "merch",
     icon: "https://res.cloudinary.com/dgechlqls/image/upload/v1766226889/Group_qp18l8.png",
-    label: "merch",
-  },
-   {
-    id: "footer",
-    icon: "https://res.cloudinary.com/dgechlqls/image/upload/v1766226912/Group_3_centwg.png",
-    label: "Footer",
+    label: "Merch",
   },
 ];
 
 const TribalTrackbar: React.FC = () => {
-  const [activeSection, setActiveSection] = useState("home");
+  const [activeSection, setActiveSection] = useState("landing");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
