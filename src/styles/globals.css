@@ -321,3 +321,30 @@ body {
 .animate-float-mobile-diagonal {
   animation: float-mobile-diagonal 10s ease-in-out infinite;
 }
+
+
+@keyframes cloud-infinite-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes cloud-infinite-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-cloud-infinite-left {
+  animation: cloud-infinite-left 40s linear infinite;
+}
+
+.animate-cloud-infinite-right {
+  animation: cloud-infinite-right 40s linear infinite;
+}
