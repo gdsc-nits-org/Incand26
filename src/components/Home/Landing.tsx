@@ -54,7 +54,7 @@ export default function Landing() {
         // Only spawn a trail if we've moved at least 15 pixels from the last trail spot
         const distSinceLastTrail = Math.hypot(
           currentPos.current.x - lastTrailPos.current.x,
-          currentPos.current.y - lastTrailPos.current.y
+          currentPos.current.y - lastTrailPos.current.y,
         );
 
         if (distSinceLastTrail > 15) {
@@ -109,7 +109,7 @@ export default function Landing() {
 
   return (
     <main
-    id="landing"
+      id="landing"
       className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-cover bg-center"
       style={{ backgroundImage: `url('${bgImage}')` }}
     >
@@ -118,7 +118,7 @@ export default function Landing() {
         loop
         muted
         playsInline
-        className="absolute inset-0 z-10 h-full w-full object-cover opacity-90 mix-blend-screen pointer-events-none"
+        className="pointer-events-none absolute inset-0 z-10 h-full w-full object-cover opacity-90 mix-blend-screen"
       >
         <source src={ripple} type="video/mp4" />
       </video>
@@ -127,7 +127,7 @@ export default function Landing() {
       {trail.map((t, index) => (
         <div
           key={t.id}
-          className="absolute pointer-events-none z-40 animate-wake-fade"
+          className="animate-wake-fade pointer-events-none absolute z-40"
           style={{
             left: t.x,
             top: t.y,
@@ -137,11 +137,11 @@ export default function Landing() {
           }}
         >
           {/* This is the "Blurry Portion" */}
-          <div className="w-16 h-8 bg-white/20 blur-xl rounded-full translate-x-12" />
+          <div className="h-8 w-16 translate-x-12 rounded-full bg-white/20 blur-xl" />
         </div>
       ))}
 
-      <div className="absolute inset-0 flex flex-col h-[200%] w-full pointer-events-none animate-wave-rise opacity-45 z-20">
+      <div className="animate-wave-rise pointer-events-none absolute inset-0 z-20 flex h-[200%] w-full flex-col opacity-45">
         <div
           className="h-1/2 w-full bg-repeat"
           style={{
@@ -158,24 +158,24 @@ export default function Landing() {
         />
       </div>
 
-      <div className="relative z-30 flex flex-col items-center justify-center w-full max-w-7xl">
-        <div className="relative w-full flex justify-center items-center">
+      <div className="relative z-30 flex w-full max-w-7xl flex-col items-center justify-center">
+        <div className="relative flex w-full items-center justify-center">
           <img
             src={incand}
             alt="Incandescence"
-            className="w-[95%] md:w-[85%] lg:w-[80%] opacity-100"
+            className="w-[95%] opacity-100 md:w-[85%] lg:w-[80%]"
           />
           <img
             src={comingSoon}
             alt="Coming Soon"
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[85%] md:w-[75%] lg:w-[70%] animate-float-slow"
+            className="animate-float-slow absolute top-1/2 left-1/2 w-[85%] -translate-x-1/2 -translate-y-1/2 md:w-[75%] lg:w-[70%]"
           />
         </div>
       </div>
 
       <div
         ref={boatRef}
-        className="absolute pointer-events-none z-50"
+        className="pointer-events-none absolute z-50"
         style={{
           left: "50%",
           top: "50%",
@@ -183,11 +183,11 @@ export default function Landing() {
           willChange: "left, top, transform",
         }}
       >
-        <div className="w-32 md:w-72 lg:w-56 max-w-none flex-none">
+        <div className="w-32 max-w-none flex-none md:w-72 lg:w-56">
           <img
             src={boat}
             alt="Sailing Boat"
-            className="w-full h-auto animate-boat-rock object-left"
+            className="animate-boat-rock h-auto w-full object-left"
           />
         </div>
       </div>
