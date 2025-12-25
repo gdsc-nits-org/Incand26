@@ -1,4 +1,5 @@
 import "~/styles/globals.css";
+import "~/styles/landing.css";
 import { type Metadata } from "next";
 import localfont from "next/font/local";
 

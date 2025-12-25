@@ -7,22 +7,22 @@ import Link from "next/link";
 // Social Icons
 const socialIcons = [
   {
-    src: "/footer-assets/laptop/images/social-icons-3.svg",
+    src: "/footer-assets/laptop/images/social-icons-3.webp",
     alt: "Instagram",
     href: "https://www.instagram.com/incandescence_nits",
   },
   {
-    src: "/footer-assets/laptop/images/social-icons.svg",
+    src: "/footer-assets/laptop/images/social-icons.webp",
     alt: "LinkedIn",
     href: "https://www.linkedin.com/company/incandescence23/",
   },
   {
-    src: "/footer-assets/laptop/images/social-icons-2.svg",
+    src: "/footer-assets/laptop/images/social-icons-2.webp",
     alt: "Facebook",
     href: "https://www.facebook.com/incandescence.nits/",
   },
   {
-    src: "/footer-assets/laptop/images/social-icons-1.svg",
+    src: "/footer-assets/laptop/images/social-icons-1.webp",
     alt: "Twitter",
     href: "https://x.com/Incandescence23",
   },
@@ -30,92 +30,92 @@ const socialIcons = [
 
 const decorativeImages = [
   {
-    src: "/footer-assets/laptop/images/group.png",
+    src: "/footer-assets/laptop/images/group.webp",
     className: "absolute w-[17.99%] h-[12.44%] top-[66.93%] left-[32.78%]",
     alt: "Decorative group",
   },
   {
-    src: "/footer-assets/laptop/images/group-1.png",
+    src: "/footer-assets/laptop/images/group-1.webp",
     className: "absolute w-[17.99%] h-[12.44%] top-[67.12%] left-[52.67%]",
     alt: "Decorative group",
   },
   {
-    src: "/footer-assets/laptop/images/group-15.png",
+    src: "/footer-assets/laptop/images/group-15.webp",
     className: "absolute top-[71.02%] left-[28.958%] w-[11.302%] h-[9.82%]",
     alt: "Decorative group",
   },
   {
-    src: "/footer-assets/laptop/images/group-16.png",
+    src: "/footer-assets/laptop/images/group-16.webp",
     className: "absolute top-[76.94%] left-[58.438%] w-[11.302%] h-[9.82%]",
     alt: "Decorative group",
   },
   {
-    src: "/footer-assets/laptop/images/group-2.png",
+    src: "/footer-assets/laptop/images/group-2.webp",
     className: "absolute w-[26.02%] h-[18.00%] top-[72.87%] left-[37.41%]",
     alt: "Decorative group",
   },
   {
-    src: "/footer-assets/laptop/images/group-13.png",
+    src: "/footer-assets/laptop/images/group-13.webp",
     className: "absolute top-[82.68%] left-[54.479%] w-[16.146%] h-[13.98%]",
     alt: "Decorative group",
   },
   {
-    src: "/footer-assets/laptop/images/group-14.png",
+    src: "/footer-assets/laptop/images/group-14.webp",
     className: "absolute top-[73.52%] left-[31.667%] w-[19.792%] h-[17.13%]",
     alt: "Decorative group",
   },
   // Mountain Right (Group 3) Individual Vectors
   {
-    src: "/mountain-right-vector-5.svg",
+    src: "/mountain-right-vector-5.webp",
     className: "absolute w-[23.65%] h-[73.88%]",
     style: { top: "16.11%", left: "68.28%" },
     alt: "Mountain Element",
     group: "right",
   },
   {
-    src: "/mountain-right-vector-4.svg",
+    src: "/mountain-right-vector-4.webp",
     className: "absolute w-[35.78%] h-[76.66%]",
     style: { top: "26.99%", left: "60.78%" },
     alt: "Mountain Element",
     group: "right",
   },
   {
-    src: "/mountain-right-vector-1.svg",
+    src: "/mountain-right-vector-1.webp",
     className: "absolute w-[26.67%] h-[75.64%]",
     style: { top: "34.45%", left: "60.73%" },
     alt: "Mountain Element",
     group: "right",
   },
   {
-    src: "/mountain-right-vector-8.svg",
+    src: "/mountain-right-vector-8.webp",
     className: "absolute w-[26.2%] h-[75.00%]",
     style: { top: "14.63%", left: "81.72%" },
     alt: "Mountain Element",
     group: "right",
   },
   {
-    src: "/mountain-right-vector-2.svg",
+    src: "/mountain-right-vector-2.webp",
     className: "absolute w-[26.2%] h-[75.00%]",
     style: { top: "47.41%", left: "66.35%" },
     alt: "Mountain Element",
     group: "right",
   },
   {
-    src: "/mountain-right-vector-7.svg",
+    src: "/mountain-right-vector-7.webp",
     className: "absolute w-[26.2%] h-[60.78%]",
     style: { top: "27.50%", left: "84.17%" },
     alt: "Mountain Element",
     group: "right",
   },
   {
-    src: "/mountain-right-vector-6.svg",
+    src: "/mountain-right-vector-6.webp",
     className: "absolute w-[26.67%] h-[75.64%]",
     style: { top: "47.82%", left: "75.31%" },
     alt: "Mountain Element",
     group: "right",
   },
   {
-    src: "/mountain-right-vector-3.svg",
+    src: "/mountain-right-vector-3.webp",
     className: "absolute w-[26.67%] h-[75.64%]",
     style: { top: "53.62%", left: "75.94%" },
     alt: "Mountain Element",
@@ -124,118 +124,118 @@ const decorativeImages = [
 
   // Mountain Left (Group 4) Individual Vectors
   {
-    src: "/mountain-left-vector-5.svg",
+    src: "/mountain-left-vector-5.webp",
     className: "absolute w-[23.65%] h-[73.88%]",
     style: { top: "14.26%", left: "3.75%" },
     alt: "Mountain Element",
     group: "left",
   },
   {
-    src: "/mountain-left-vector-4.svg",
+    src: "/mountain-left-vector-4.webp",
     className: "absolute w-[35.78%] h-[76.66%]",
     style: { top: "25.14%", left: "-1.77%" },
     alt: "Mountain Element",
     group: "left",
   },
   {
-    src: "/mountain-left-vector-1.svg",
+    src: "/mountain-left-vector-1.webp",
     className: "absolute w-[26.67%] h-[75.64%]",
     style: { top: "32.59%", left: "8.44%" },
     alt: "Mountain Element",
     group: "left",
   },
   {
-    src: "/mountain-left-vector-8.svg",
+    src: "/mountain-left-vector-8.webp",
     className: "absolute w-[26.2%] h-[75.00%]",
     style: { top: "12.78%", left: "-8.13%" },
     alt: "Mountain Element",
     group: "left",
   },
   {
-    src: "/mountain-left-vector-2.svg",
+    src: "/mountain-left-vector-2.webp",
     className: "absolute w-[26.2%] h-[75.00%]",
     style: { top: "45.56%", left: "5.68%" },
     alt: "Mountain Element",
     group: "left",
   },
   {
-    src: "/mountain-left-vector-7.svg",
+    src: "/mountain-left-vector-7.webp",
     className: "absolute w-[26.2%] h-[60.78%]",
     style: { top: "25.65%", left: "-12.55%" },
     alt: "Mountain Element",
     group: "left",
   },
   {
-    src: "/mountain-left-vector-6.svg",
+    src: "/mountain-left-vector-6.webp",
     className: "absolute w-[26.67%] h-[75.64%]",
     style: { top: "45.97%", left: "-6.15%" },
     alt: "Mountain Element",
     group: "left",
   },
   {
-    src: "/mountain-left-vector-3.svg",
+    src: "/mountain-left-vector-3.webp",
     className: "absolute w-[26.67%] h-[75.64%]",
     style: { top: "51.75%", left: "-6.77%" },
     alt: "Mountain Element",
     group: "left",
   },
   {
-    src: "/footer-assets/laptop/mountains/vector-9.svg",
+    src: "/footer-assets/laptop/mountains/vector-9.webp",
     className: "absolute top-[57.78%] left-[-3.75%] w-[33.646%] h-[73.15%]",
     alt: "Foreground Mountain",
   },
   {
-    src: "/footer-assets/laptop/mountains/vector-12.svg",
+    src: "/footer-assets/laptop/mountains/vector-12.webp",
     className: "absolute top-[67.32%] left-[59.583%] w-[43.229%] h-[73.15%]",
     alt: "Foreground Mountain",
   },
   {
-    src: "/footer-assets/laptop/mountains/vector-11.svg",
+    src: "/footer-assets/laptop/mountains/vector-11.webp",
     className: "absolute top-[65.37%] left-[-2.604%] w-[39.688%] h-[73.24%]",
     alt: "Foreground Mountain",
   },
   {
-    src: "/footer-assets/laptop/mountains/vector-13.svg",
+    src: "/footer-assets/laptop/mountains/vector-13.webp",
     className: "absolute top-[80.56%] left-[51.927%] w-[48.906%] h-[78.98%]",
     alt: "Foreground Mountain",
   },
   {
-    src: "/footer-assets/laptop/mountains/vector-10.svg",
+    src: "/footer-assets/laptop/mountains/vector-10.webp",
     className: "absolute top-[72.41%] left-[-1.198%] w-[26.615%] h-[71.57%]",
     alt: "Foreground Mountain",
   },
   {
-    src: "/footer-assets/laptop/images/group-5.png",
+    src: "/footer-assets/laptop/images/group-5.webp",
     className: "absolute w-[26.02%] h-[18.00%] top-[87.78%] left-[41.47%]",
     alt: "White cloud decoration",
   },
   {
-    src: "/footer-assets/laptop/images/group-6.png",
+    src: "/footer-assets/laptop/images/group-6.webp",
     className: "absolute w-[26.02%] h-[18.00%] top-[85.37%] left-[72.98%]",
     alt: "White cloud decoration",
   },
   {
-    src: "/footer-assets/laptop/images/group-7.png",
+    src: "/footer-assets/laptop/images/group-7.webp",
     className: "absolute w-[27.85%] h-[36.09%] top-[77.41%] left-[87.40%]",
     alt: "White cloud decoration",
   },
   {
-    src: "/footer-assets/laptop/images/group-8.png",
+    src: "/footer-assets/laptop/images/group-8.webp",
     className: "absolute w-[26.02%] h-[18.00%] top-[82.50%] left-[24.39%]",
     alt: "White cloud decoration",
   },
   {
-    src: "/footer-assets/laptop/images/group-9.png",
+    src: "/footer-assets/laptop/images/group-9.webp",
     className: "absolute w-[26.02%] h-[18.00%] top-[85.93%] left-0",
     alt: "White cloud decoration",
   },
   {
-    src: "/footer-assets/laptop/images/group-10.png",
+    src: "/footer-assets/laptop/images/group-10.webp",
     className: "absolute w-[26.02%] h-[18.00%] top-[90.19%] left-[11.97%]",
     alt: "White cloud decoration",
   },
   {
-    src: "/footer-assets/laptop/images/group-17.png",
+    src: "/footer-assets/laptop/images/group-17.webp",
     className: "absolute top-[89.26%] left-[66.146%] w-[16.927%] h-[10.74%]",
     alt: "Decorative group",
   },
@@ -243,27 +243,27 @@ const decorativeImages = [
 
 const smallVectors = [
   {
-    src: "/footer-assets/laptop/images/vector-1.svg",
+    src: "/footer-assets/laptop/images/vector-1.webp",
     className: "absolute w-[2.65%] h-[3.61%] top-[56.48%] left-[70.73%]",
     alt: "Star decoration",
   },
   {
-    src: "/footer-assets/laptop/images/vector-5.svg",
+    src: "/footer-assets/laptop/images/vector-5.webp",
     className: "absolute w-[3.72%] h-[5.07%] top-[51.67%] left-[75.31%]",
     alt: "Star decoration",
   },
   {
-    src: "/footer-assets/laptop/images/vector.svg",
+    src: "/footer-assets/laptop/images/vector.webp",
     className: "absolute w-[1.98%] h-[3.81%] top-[19.35%] left-[27.81%]",
     alt: "Bird decoration",
   },
   {
-    src: "/footer-assets/laptop/images/vector-4.svg",
+    src: "/footer-assets/laptop/images/vector-4.webp",
     className: "absolute w-[1.25%] h-[1.62%] top-[22.51%] left-[23.59%]",
     alt: "Bird decoration",
   },
   {
-    src: "/footer-assets/laptop/images/vector-2.svg",
+    src: "/footer-assets/laptop/images/vector-2.webp",
     className: "absolute w-[2.12%] h-[2.68%] top-[18.89%] left-[25.16%]",
     alt: "Bird decoration",
   },
@@ -293,14 +293,14 @@ export const LaptopFooter = (): React.JSX.Element => {
             className="absolute top-0 left-0 h-[100%] w-[80.42%] select-none"
             alt="INCANDESCENCE"
             draggable={false}
-            src="/footer-assets/laptop/images/incand-text.svg"
+            src="/footer-assets/laptop/images/incand-text.webp"
           />
 
           <img
             className="absolute top-[9.02%] left-[82.14%] h-[87.14%] w-[17.86%] select-none"
             alt="Toucan logo"
             draggable={false}
-            src="/footer-assets/laptop/images/toucan-logo.svg"
+            src="/footer-assets/laptop/images/toucan-logo.webp"
           />
         </section>
 
@@ -352,14 +352,14 @@ export const LaptopFooter = (): React.JSX.Element => {
           className="absolute top-[10.74%] left-[65.365%] h-[15.46%] w-[12.708%] select-none"
           alt="Top right decoration"
           draggable={false}
-          src="/footer-assets/laptop/images/group-48096173.png"
+          src="/footer-assets/laptop/images/group-48096173.webp"
         />
 
         <img
           className="absolute top-[55.37%] left-[calc(50.00%_-_15.313%)] h-[7.41%] w-[30.625%] select-none"
           alt="Tribal tapestry text"
           draggable={false}
-          src="/footer-assets/laptop/images/vector-3.svg"
+          src="/footer-assets/laptop/images/vector-3.webp"
         />
 
         <div className="font-hitchcut absolute top-[66.20%] left-1/2 flex h-[3.52%] -translate-x-1/2 items-center justify-center text-center text-[2.96vh] leading-[normal] font-normal tracking-[0] whitespace-nowrap text-[#482727] select-none">

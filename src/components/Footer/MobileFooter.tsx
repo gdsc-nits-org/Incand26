@@ -15,22 +15,22 @@ const getCloudAnimation = (index: number) => {
 
 const socialIcons = [
   {
-    src: "/footer-assets/mobile/social-icons-3.svg",
+    src: "/footer-assets/mobile/social-icons-3.webp",
     alt: "Instagram",
     href: "https://www.instagram.com/incandescence_nits",
   },
   {
-    src: "/footer-assets/mobile/social-icons-2.svg",
+    src: "/footer-assets/mobile/social-icons-2.webp",
     alt: "LinkedIn",
     href: "https://www.linkedin.com/company/incandescence23/",
   },
   {
-    src: "/footer-assets/mobile/social-icons.svg",
+    src: "/footer-assets/mobile/social-icons.webp",
     alt: "Facebook",
     href: "https://www.facebook.com/incandescence.nits/",
   },
   {
-    src: "/footer-assets/mobile/social-icons-1.svg",
+    src: "/footer-assets/mobile/social-icons-1.webp",
     alt: "Twitter",
     href: "https://x.com/Incandescence23",
   },
@@ -38,27 +38,27 @@ const socialIcons = [
 
 const decorativeImages = [
   {
-    src: "/footer-assets/mobile/vector-6.svg",
+    src: "/footer-assets/mobile/vector-6.webp",
     className: "w-[5.98%] h-[2.89%] top-[19.87%] left-[24.26%]",
     alt: "Vector",
   },
   {
-    src: "/footer-assets/mobile/vector-5.svg",
+    src: "/footer-assets/mobile/vector-5.webp",
     className: "w-[3.78%] h-0 top-[22.26%] left-[12.43%]",
     alt: "Vector",
   },
   {
-    src: "/footer-assets/mobile/vector-1.svg",
+    src: "/footer-assets/mobile/vector-1.webp",
     className: "w-[6.40%] h-[2.04%] top-[19.52%] left-[17.15%]",
     alt: "Vector",
   },
   {
-    src: "/footer-assets/mobile/vector-9.svg",
+    src: "/footer-assets/mobile/vector-9.webp",
     className: "w-[4.36%] h-0 top-[46.05%] left-[75.12%]",
     alt: "Vector",
   },
   {
-    src: "/footer-assets/mobile/vector.svg",
+    src: "/footer-assets/mobile/vector.webp",
     className: "w-[6.11%] h-[2.10%] top-[44.06%] left-[82.67%]",
     alt: "Vector",
   },
@@ -66,57 +66,57 @@ const decorativeImages = [
 
 const leftSideImages = [
   {
-    src: "/footer-assets/mobile/vector-3.svg",
+    src: "/footer-assets/mobile/vector-3.webp",
     className: "top-[534px] left-[29px] w-[142px] h-[232px]",
     alt: "Vector",
   },
   {
-    src: "/footer-assets/mobile/vector-6-1.svg",
+    src: "/footer-assets/mobile/vector-6-1.webp",
     className: "top-[567px] -left-px w-[212px] h-[237px]",
     alt: "Vector",
   },
   {
-    src: "/footer-assets/mobile/vector-7.svg",
+    src: "/footer-assets/mobile/vector-7.webp",
     className: "top-[590px] left-[55px] w-[157px] h-[241px]",
     alt: "Vector",
   },
   {
-    src: "/footer-assets/mobile/vector-2.svg",
+    src: "/footer-assets/mobile/vector-2.webp",
     className: "top-[529px] left-[-35px] w-[142px] h-[232px]",
     alt: "Vector",
   },
   {
-    src: "/footer-assets/mobile/vector-8.svg",
+    src: "/footer-assets/mobile/vector-8.webp",
     className: "top-[630px] left-10 w-[142px] h-[232px]",
     alt: "Vector",
   },
   {
-    src: "/footer-assets/mobile/vector-1-1.svg",
+    src: "/footer-assets/mobile/vector-1-1.webp",
     className: "top-[569px] left-[-59px] w-36 h-[188px]",
     alt: "Vector",
   },
   {
-    src: "/footer-assets/mobile/vector-4.svg",
+    src: "/footer-assets/mobile/vector-4.webp",
     className: "top-[632px] -left-6 w-[157px] h-[241px]",
     alt: "Vector",
   },
   {
-    src: "/footer-assets/mobile/vector-5-1.svg",
+    src: "/footer-assets/mobile/vector-5-1.webp",
     className: "top-[649px] -left-7 w-[157px] h-[241px]",
     alt: "Vector",
   },
   {
-    src: "/footer-assets/mobile/vector-14-2.svg",
+    src: "/footer-assets/mobile/vector-14-2.webp",
     className: "top-[715px] left-[-54px] w-[271px] h-[331px]",
     alt: "Vector",
   },
   {
-    src: "/footer-assets/mobile/vector-11.svg",
+    src: "/footer-assets/mobile/vector-11.webp",
     className: "top-[756px] left-[-31px] w-[237px] h-[249px]",
     alt: "Vector",
   },
   {
-    src: "/footer-assets/mobile/vector-14.svg",
+    src: "/footer-assets/mobile/vector-14.webp",
     className: "top-[802px] left-[-18px] w-[147px] h-[223px]",
     alt: "Vector",
   },
@@ -124,52 +124,52 @@ const leftSideImages = [
 
 const bottomGroups = [
   {
-    src: "/footer-assets/mobile/group-1.png",
+    src: "/footer-assets/mobile/group-1.webp",
     className: "w-[32.77%] h-[7.52%] top-[93.57%] left-0",
     alt: "Group",
   },
   {
-    src: "/footer-assets/mobile/group-2.png",
+    src: "/footer-assets/mobile/group-2.webp",
     className: "w-[32.77%] h-[7.52%] top-[94.87%] left-0",
     alt: "Group",
   },
   {
-    src: "/footer-assets/mobile/group-3.png",
+    src: "/footer-assets/mobile/group-3.webp",
     className: "w-[32.77%] h-[7.52%] top-[91.28%] left-[20.59%]",
     alt: "Group",
   },
   {
-    src: "/footer-assets/mobile/group-4.png",
+    src: "/footer-assets/mobile/group-4.webp",
     className: "w-[32.77%] h-[7.52%] top-[93.46%] left-[75.20%]",
     alt: "Group",
   },
   {
-    src: "/footer-assets/mobile/group-5.png",
+    src: "/footer-assets/mobile/group-5.webp",
     className: "w-[32.77%] h-[7.52%] top-[94.00%] left-[12.82%]",
     alt: "Group",
   },
   {
-    src: "/footer-assets/mobile/group-6.png",
+    src: "/footer-assets/mobile/group-6.webp",
     className: "w-[27.12%] h-[11.47%] top-[95.25%] left-[37.67%]",
     alt: "Group",
   },
   {
-    src: "/footer-assets/mobile/group-7.png",
+    src: "/footer-assets/mobile/group-7.webp",
     className: "w-[29.72%] h-[9.16%] top-[89.86%] left-[7.28%]",
     alt: "Group",
   },
   {
-    src: "/footer-assets/mobile/group-8.png",
+    src: "/footer-assets/mobile/group-8.webp",
     className: "w-[35.19%] h-[10.12%] top-[85.61%] left-[23.30%]",
     alt: "Group",
   },
   {
-    src: "/footer-assets/mobile/group-9.png",
+    src: "/footer-assets/mobile/group-9.webp",
     className: "w-[47.36%] h-[6.76%] top-[92.07%] left-[61.24%]",
     alt: "Group",
   },
   {
-    src: "/footer-assets/mobile/group-10.png",
+    src: "/footer-assets/mobile/group-10.webp",
     className: "w-[34.57%] h-[10.25%] top-[91.94%] left-[51.70%]",
     alt: "Group",
   },
@@ -177,17 +177,17 @@ const bottomGroups = [
 
 const rightSideGroups = [
   {
-    src: "/footer-assets/mobile/group-11.png",
+    src: "/footer-assets/mobile/group-11.webp",
     className: "w-[59.71%] h-[10.47%] top-[91.17%] left-[69.90%]",
     alt: "Group",
   },
   {
-    src: "/footer-assets/mobile/group-12.png",
+    src: "/footer-assets/mobile/group-12.webp",
     className: "w-[32.79%] h-[7.49%] top-[87.46%] left-[5.56%]",
     alt: "Group",
   },
   {
-    src: "/footer-assets/mobile/group-13.png",
+    src: "/footer-assets/mobile/group-13.webp",
     className: "w-[32.93%] h-[7.52%] top-[87.24%] left-[44.20%]",
     alt: "Group",
   },
@@ -227,17 +227,17 @@ export const MobileFooter = (): React.JSX.Element => {
           <img
             className="absolute top-[182.22px] left-[99.46px] h-[26.51px] w-[24.54px]"
             alt="Vector"
-            src="/footer-assets/mobile/top-bird-1.svg"
+            src="/footer-assets/mobile/top-bird-1.webp"
           />
           <img
             className="absolute top-[204.15px] left-[50.98px] h-[11.29px] w-[15.48px]"
             alt="Vector"
-            src="/footer-assets/mobile/top-bird-2.svg"
+            src="/footer-assets/mobile/top-bird-2.webp"
           />
           <img
             className="absolute top-[179px] left-[70.3px] h-[18.66px] w-[26.24px]"
             alt="Vector"
-            src="/footer-assets/mobile/top-bird-3.svg"
+            src="/footer-assets/mobile/top-bird-3.webp"
           />
 
           {decorativeImages.map((img, index) => (
@@ -252,31 +252,31 @@ export const MobileFooter = (): React.JSX.Element => {
           <img
             className="absolute top-[242px] left-[54px] h-[90px] w-[302px]"
             alt="INCAND ESCENCE"
-            src="/footer-assets/mobile/title-group.svg"
+            src="/footer-assets/mobile/title-group.webp"
           />
 
           <img
             className="absolute top-[348px] left-[84px] h-[41px] w-[239px]"
             alt="Tribal Tapestry"
-            src="/footer-assets/mobile/tribal-tapestry.svg"
+            src="/footer-assets/mobile/tribal-tapestry.webp"
           />
 
           <img
             className="absolute top-[422px] left-[308px] h-[14px] w-[18px]"
             alt="Vector"
-            src="/footer-assets/mobile/bottom-bird.svg"
+            src="/footer-assets/mobile/bottom-bird.webp"
           />
 
           <img
             className="absolute top-44 left-[285px] h-[63px] w-20"
             alt="Group"
-            src="/footer-assets/mobile/group-48096173.png"
+            src="/footer-assets/mobile/group-48096173.webp"
           />
 
           <img
             className="absolute top-[37.95%] left-[calc(50.00%_-_121px)] h-[4.47%] w-[239px]"
             alt="Vector"
-            src="/footer-assets/mobile/vector-10.svg"
+            src="/footer-assets/mobile/vector-10.webp"
           />
 
           <button
@@ -286,32 +286,32 @@ export const MobileFooter = (): React.JSX.Element => {
             <img
               className="h-full w-full"
               alt="Brochure"
-              src="/footer-assets/mobile/brochure-group.svg"
+              src="/footer-assets/mobile/brochure-group.webp"
             />
           </button>
 
           <img
             className="absolute top-[784px] left-[287px] h-[183px] w-[191px]"
             alt="Vector"
-            src="/footer-assets/mobile/vector-12-1.svg"
+            src="/footer-assets/mobile/vector-12-1.webp"
           />
 
           <img
             className="absolute top-[757px] left-[301px] h-40 w-[191px]"
             alt="Vector"
-            src="/footer-assets/mobile/vector-13.svg"
+            src="/footer-assets/mobile/vector-13.webp"
           />
 
           <img
             className="absolute top-[527px] left-[236px] h-[364px] w-[209px]"
             alt="Group"
-            src="/footer-assets/mobile/group-3-1.png"
+            src="/footer-assets/mobile/group-3-1.webp"
           />
 
           <img
             className="absolute top-[771px] left-[292px] h-[182px] w-[190px]"
             alt="Vector"
-            src="/footer-assets/mobile/vector-12.svg"
+            src="/footer-assets/mobile/vector-12.webp"
           />
 
           {rightSideGroups.map((img, index) => (
@@ -326,7 +326,7 @@ export const MobileFooter = (): React.JSX.Element => {
           <img
             className="absolute top-[543px] left-[calc(50.00%_-_44px)] h-[11px] w-[88px]"
             alt="Contact Us"
-            src="/footer-assets/mobile/contact-us.svg"
+            src="/footer-assets/mobile/contact-us.webp"
           />
 
           <nav
@@ -351,7 +351,7 @@ export const MobileFooter = (): React.JSX.Element => {
         <img
           className="animate-float-mobile-subtle absolute top-[89.34%] left-[40.79%] h-[6.43%] w-[27.07%]"
           alt="Group"
-          src="/footer-assets/mobile/group.png"
+          src="/footer-assets/mobile/group.webp"
         />
 
         {leftSideImages.map((img, index) => (
@@ -366,7 +366,7 @@ export const MobileFooter = (): React.JSX.Element => {
         <img
           className="pointer-events-none absolute top-[821px] left-[182px] h-[216px] w-[238px]"
           alt="Vector"
-          src="/footer-assets/mobile/vector-14-1.svg"
+          src="/footer-assets/mobile/vector-14-1.webp"
         />
 
         {bottomGroups.map((img, index) => (

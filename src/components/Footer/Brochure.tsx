@@ -33,7 +33,7 @@ export const Brochure = React.forwardRef<
 
         {/* Image 1 (Left) */}
         <img
-          src="/footer-assets/laptop/brochure/brochure-icon-1.svg"
+          src="/footer-assets/laptop/brochure/brochure-icon-1.webp"
           alt=""
           draggable={false}
           className="pointer-events-none absolute -top-[2.5vw] -left-[2.55vw] z-30 h-[11.41vw] w-[6.93vw] max-w-none transition-all duration-300 ease-out select-none group-hover:-top-[1.51vw] group-hover:-left-[3.44vw] group-hover:h-[15vw] group-hover:w-[9.84vw]"
@@ -41,7 +41,7 @@ export const Brochure = React.forwardRef<
 
         {/* Image 2 (Right) */}
         <img
-          src="/footer-assets/laptop/brochure/brochure-icon-2.svg"
+          src="/footer-assets/laptop/brochure/brochure-icon-2.webp"
           alt=""
           draggable={false}
           className="pointer-events-none absolute -top-[2.6vw] left-[16.56vw] z-30 h-[11.41vw] w-[6.93vw] max-w-none transition-all duration-300 ease-out select-none group-hover:-top-[3.54vw] group-hover:left-[20.57vw] group-hover:h-[15vw] group-hover:w-[9.84vw]"

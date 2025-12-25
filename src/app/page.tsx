@@ -30,6 +30,7 @@ import HomeMerch from "~/components/Home/Merch";
 import Sponsors from "~/components/Home/Sponsors";
 import TribalTrackbar from "~/components/TrivalNavbar";
 import { Footer } from "~/components/Footer";
+import Landing from "~/components/Home/Landing";
 
 export default function HomePage() {
   const [loading, setLoading] = useState(true);
@@ -40,6 +41,10 @@ export default function HomePage() {
         className={`h-screen w-full snap-y snap-mandatory overflow-y-scroll scroll-smooth bg-neutral-900 text-neutral-100 ${revealHome ? "z-0 opacity-100" : "opacity-0"
           }`}
       >
+        {/* --- LANDING / HERO SECTION --- */}
+        <section id="home" className="h-screen w-full snap-start">
+          <Landing />
+        </section>
         {/* ---EVENTS --- */}
         <section
           id="events"
