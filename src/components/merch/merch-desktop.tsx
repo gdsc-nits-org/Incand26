@@ -101,7 +101,7 @@ export function MerchDesktop({
           {/* --- TOP LEFT ARROW (Desktop Position) - ANIMATED --- */}
           <div className="absolute top-0 left-12 z-[60] min-[2200px]:top-24 min-[2200px]:left-24 min-[2200px]:scale-[3.8] lg:left-16 xl:left-24 2xl:scale-[2.36]">
             <AnimatePresence mode="wait">
-              <motion.div
+                <motion.div
                 key={`arrow-${theme.id}`}
                 variants={popVariants}
                 initial="hidden"

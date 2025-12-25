@@ -385,7 +385,7 @@ export const MobileFooter = (): React.JSX.Element => {
               WITH <span className="font-extrabold">GDG NIT SILCHAR</span>
             </span>
             <img
-              className="h-[50px] w-auto mix-blend-multiply object-center"
+              className="h-[50px] w-auto object-center mix-blend-multiply"
               alt="GDG NIT SILCHAR Logo"
               src="/footer-assets/laptop/images/gdg-logo.gif"
             />
