@@ -1,0 +1,233 @@
+/* =====================================================
+   FONT
+===================================================== */
+@font-face {
+  font-family: "Hitchcut";
+  src: url("/fonts/Hitchcut-typeface/Hitchcut-Regular.otf") format("opentype");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* =====================================================
+   BASE
+===================================================== */
+.about-container {
+  position: relative;
+  min-height: 100vh;
+  background-color: #f6f1df;
+  overflow: hidden;
+}
+
+/* =====================================================
+   BACKGROUND
+===================================================== */
+.bg-pattern {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background-image: url("/about/pattern.svg");
+  background-repeat: repeat;
+  background-size: 220px 220px;
+  opacity: 0.05;
+}
+
+.color-overlay {
+  position: absolute;
+  inset: 0;
+  background: #f0decf;
+  z-index: 1;
+  pointer-events: none;
+}
+/* =====================================================
+   TRIANGLES — LOCKED & STABLE (UNCHANGED)
+===================================================== */
+.triangles {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.triangle {
+  position: absolute;
+  bottom: 0;
+  width: clamp(2400px, 170vw, 4400px);
+  transform-origin: bottom center;
+  will-change: transform;
+}
+
+.left-triangle {
+  left: -36vw;
+  z-index: 3;
+}
+
+.right-triangle {
+  right: -36vw;
+  z-index: 2;
+}
+
+/* =====================================================
+   TOP CONTROLS (ICONS + BROCHURE)
+===================================================== */
+.top-controls {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+/* ICON ROW */
+.top-icons {
+  display: flex;
+  gap: 50px;
+  will-change: transform, opacity;
+}
+
+.top-icons img {
+  width: 100px;
+  height: auto;
+}
+
+/* BROCHURE BUTTON — FIXED */
+.brochure-btn {
+  position: relative;
+  will-change: transform;
+  align-self: center;
+  z-index: 10;
+  perspective: 900px;
+  will-change: transform;
+}
+
+.brochure-svg {
+  transform-origin: left center;
+  transform-style: perserve-3d;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+
+.brochure-btn:hover {
+  z-index: 20;
+}
+
+/* HIDE BROCHURE ON MOBILE */
+@media (max-width: 768px) {
+  .brochure-btn {
+    display: none;
+  }
+}
+
+/* =====================================================
+   CONTENT
+===================================================== */
+.content-wrapper {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 16vh;
+}
+
+.content-inner {
+  max-width: 1000px;
+  text-align: center;
+  opacity: 0;
+  transform: translateX(-140px);
+  will-change: transform, opacity;
+}
+
+/* =====================================================
+   TEXT
+===================================================== */
+.main-title {
+  font-family: "Hitchcut";
+  font-size: clamp(80px, 10vw, 180px);
+  color: #8b0000;
+  line-height: 0.9;
+  margin-bottom: 3px;
+}
+
+.us-highlight {
+  color: #532802;
+}
+
+.description {
+  font-family: "Hitchcut";
+  font-size: clamp(22px, 1.2vw, 50px);
+  line-height: 1.5;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.highlight {
+  color: #c35b01;
+}
+
+.icon-strip {
+  margin-top: 20px;
+  opacity: 1;
+  transform: translateY(40px);
+}
+
+.icon-strip img {
+  height: 64px;
+}
+
+/* =====================================================
+   TABLET TRIANGLE ADJUSTMENT (SAFE FIX)
+===================================================== */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .triangle {
+    bottom: -35vh;
+  }
+}
+
+/* =====================================================
+   MOBILE TRIANGLE SAFETY (UNCHANGED)
+===================================================== */
+@media (max-width: 768px) {
+  .triangle {
+    bottom: -4vh;
+    width: clamp(1400px, 170vw, 2000px);
+  }
+
+  .left-triangle {
+    left: -120vw;
+  }
+
+  .right-triangle {
+    right: -120vw;
+  }
+
+  .content-wrapper {
+    padding-top: 1.2vw;
+  }
+
+  .main-title {
+    font-size: 56px;
+  }
+
+  .description {
+    font-size: 22px;
+  }
+}
+.icon-strip {
+  margin-top: 10px;
+  opacity: 1;
+}
+/* =====================================================
+   PERFORMANCE
+===================================================== */
+.triangle,
+.bg-pattern,
+.brochure-svg {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
