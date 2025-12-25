@@ -109,6 +109,7 @@ export default function Landing() {
 
   return (
     <main
+      id="landing"
       className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-cover bg-center"
       style={{ backgroundImage: `url('${bgImage}')` }}
     >
