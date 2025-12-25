@@ -177,7 +177,9 @@ const Loader: React.FC<LoaderProps> = ({ onComplete, onTilesStart }) => {
                   <img
                     src={src}
                     alt={src[i]}
-                    className="h-full w-full scale-x-[1.09] object-cover"
+
+                    className="h-full w-full object-cover scale-x-[1.09]"
+
                     draggable={false}
                   />
                 </div>
