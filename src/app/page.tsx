@@ -1,4 +1,3 @@
-
 // "use client";
 
 // import { useState } from "react";
@@ -31,6 +30,7 @@ import Sponsors from "~/components/Home/Sponsors";
 import TribalTrackbar from "~/components/TrivalNavbar";
 import { Footer } from "~/components/Footer";
 import Landing from "~/components/Home/Landing";
+import AboutNITSilchar from "~/components/Home/AboutNITSilchar";
 
 export default function HomePage() {
   const [loading, setLoading] = useState(true);
@@ -38,13 +38,23 @@ export default function HomePage() {
   return (
     <>
       <main
-        className={`h-screen w-full snap-y snap-mandatory overflow-y-scroll scroll-smooth bg-neutral-900 text-neutral-100 ${revealHome ? "z-0 opacity-100" : "opacity-0"
-          }`}
+        className={`h-screen w-full snap-y snap-mandatory overflow-y-scroll scroll-smooth bg-neutral-900 text-neutral-100 ${
+          revealHome ? "z-0 opacity-100" : "opacity-0"
+        }`}
       >
         {/* --- LANDING / HERO SECTION --- */}
         <section id="home" className="h-screen w-full snap-start">
           <Landing />
         </section>
+
+        {/* --- ABOUT NIT SILCHAR SECTION --- */}
+        <section id="about" className="h-screen w-full snap-start">
+          <AboutNITSilchar />
+        </section>
+
+        {/* --- SPONSORS --- */}
+        <Sponsors />
+
         {/* ---EVENTS --- */}
         <section
           id="events"
@@ -54,7 +64,6 @@ export default function HomePage() {
             EVENTS
           </h1>
         </section>
-        <Sponsors />
         {/* --- HOME --- */}
         <section id="merch" className="h-screen w-full snap-start">
           <HomeMerch />
