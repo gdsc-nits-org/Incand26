@@ -19,9 +19,9 @@ const navItems: NavItem[] = [
     label: "About",
   },
   {
-    id: "events",
+    id: "sponsors",
     icon: "https://res.cloudinary.com/dgechlqls/image/upload/v1766226895/Group_1_g5roxz.png",
-    label: "Events",
+    label: "Sponsors",
   },
   {
     id: "merch",

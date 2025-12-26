@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import AboutIncand from "./AboutIncand";
-import AboutIncandMobile from "./AboutIncandMobile";
+import AboutIncand from "../About/AboutIncand";
+import AboutIncandMobile from "../About/AboutIncandMobile";
 
 export default function AboutIncandResponsive() {
   const [isMobileView, setIsMobileView] = useState(false);

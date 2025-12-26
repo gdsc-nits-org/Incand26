@@ -1,7 +1,7 @@
 "use client";
 
 import { MountainVector } from "./MountainVector";
-import { Brochure } from "./Brochure";
+// import { Brochure } from "./Brochure";
 import Link from "next/link";
 
 // Social Icons
@@ -389,9 +389,9 @@ export const LaptopFooter = (): React.JSX.Element => {
           ))}
         </nav>
 
-        <div className="absolute top-[5.05vw] left-[4.27vw]">
+        {/* <div className="absolute top-[5.05vw] left-[4.27vw]">
           <Brochure className="origin-top-left scale-[0.7] lg:scale-[0.8] xl:scale-[0.9] 2xl:scale-100" />
-        </div>
+        </div> */}
 
         <div className="absolute right-2 bottom-2 flex h-[11.02%] w-auto items-center justify-center gap-0 select-none xl:right-3 xl:bottom-3">
           <div className="flex flex-col items-center justify-center text-center [font-family:'Inter',Helvetica] text-[15px] leading-[15px] text-black min-[2000px]:text-[30px] min-[2000px]:leading-[30px]">

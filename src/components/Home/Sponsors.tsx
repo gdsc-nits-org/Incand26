@@ -19,7 +19,7 @@ export default function Sponsors() {
             "url('https://res.cloudinary.com/dgechlqls/image/upload/v1766212699/BACKUP_SPONSORS_osnbmg.png')",
         }}
       >
-        <div className="max-w-8xl font-hitchcut mx-auto flex h-full flex-col justify-center py-12 md:py-0 lg:px-10">
+        <div className="max-w-8xl font-hitchcut mx-auto flex h-full flex-col justify-center py-2 md:py-0 lg:px-10">
           {/* DESKTOP LAYOUT */}
           <div className="hidden h-full grid-cols-2 items-center gap-12 md:grid">
             {/* TEXT */}

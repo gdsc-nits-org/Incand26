@@ -279,7 +279,7 @@ export const MobileFooter = (): React.JSX.Element => {
             src="/footer-assets/mobile/vector-10.webp"
           />
 
-          <button
+          {/* <button
             className="absolute top-[54px] left-[20px] h-[42px] w-[148px] transition-opacity hover:opacity-90"
             aria-label="Brochure"
           >
@@ -288,7 +288,7 @@ export const MobileFooter = (): React.JSX.Element => {
               alt="Brochure"
               src="/footer-assets/mobile/brochure-group.webp"
             />
-          </button>
+          </button> */}
 
           <img
             className="absolute top-[784px] left-[287px] h-[183px] w-[191px]"

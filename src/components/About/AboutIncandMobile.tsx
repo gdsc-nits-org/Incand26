@@ -97,7 +97,7 @@ export default function AboutIncandMobile() {
               href="https://drive.google.com/file/d/1_YyluMmgFQFs9SShdlpAEvIHRfD1Nnx_/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
-              className="relative z-10 flex items-center gap-0 overflow-hidden rounded-full border-[0.2vw] bg-[#751313] shadow-black transition-all duration-500 ease-out"
+              className="relative z-10 flex items-center gap-0 overflow-hidden rounded-full border-black border-[0.2vw] bg-[#751313] shadow-black transition-all duration-500 ease-out"
               style={{
                 boxShadow: "none",
               }}
@@ -115,8 +115,7 @@ export default function AboutIncandMobile() {
               {/* Button Text Background */}
               <div className="flex items-center justify-center px-1 py-2">
                 <span
-                  className="text-[2.5vh] font-bold tracking-wider text-[#f5e6c8]"
-                  style={{ fontFamily: "Hitchcut-Regular, sans-serif" }}
+                  className="font-hitchcut text-[2.5vh] font-bold tracking-wider text-[#f5e6c8]"
                 >
                   BROCHURE
                 </span>

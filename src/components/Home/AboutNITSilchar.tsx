@@ -67,7 +67,7 @@ export default function AboutNITSilchar() {
         ))}
       </div>
 
-      <div className="relative z-20 flex w-full max-w-7xl flex-col items-center gap-8 px-6 md:flex-row md:items-center md:justify-between md:gap-12 lg:px-12">
+      <div className="relative z-20 flex w-full max-w-7xl flex-col items-center gap-6 px-6 md:flex-row md:items-center md:justify-between md:gap-12 lg:px-12">
         <h1 className="font-hitchcut text-center text-6xl leading-tight font-black text-[#520000] drop-shadow-lg sm:text-6xl md:text-left md:text-6xl lg:text-7xl xl:text-8xl">
           <span className="block text-[#8B4513]">About</span>
           <span className="block">NIT</span>

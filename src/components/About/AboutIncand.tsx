@@ -119,7 +119,7 @@ export default function AboutIncand() {
               href="https://drive.google.com/file/d/1_YyluMmgFQFs9SShdlpAEvIHRfD1Nnx_/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
-              className={`relative my-[1.5vh] flex items-center gap-0 overflow-hidden rounded-full border-[0.2vw] bg-[#751313] shadow-black transition-all duration-500 ease-out hover:scale-[1.3] hover:-rotate-6`}
+              className={`relative my-[1.5vh] border-black flex items-center gap-0 overflow-hidden rounded-full border-[0.2vw] bg-[#751313] shadow-black transition-all duration-500 ease-out hover:scale-[1.3] hover:-rotate-6`}
               style={{
                 boxShadow: "none",
               }}
@@ -144,8 +144,7 @@ export default function AboutIncand() {
               {/* Button Text Background */}
               <div className="my-[1.5vh] flex items-center justify-center">
                 <span
-                  className="text-[1.75vw] font-bold tracking-wider text-[#f5e6c8]"
-                  style={{ fontFamily: "Hitchcut-Regular, sans-serif" }}
+                  className="text-[1.75vw] font-bold tracking-wider text-[#f5e6c8] font-hitchcut"
                 >
                   BROCHURE
                 </span>
