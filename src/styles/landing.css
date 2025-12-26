@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@theme {
+  --animate-wave-rise: wave-rise 10s linear infinite;
+  --animate-float-slow: float-slow 13s ease-in-out infinite;
+  --animate-boat-rock: boat-sway 3.5s ease-in-out infinite;
+  /* Add the wake fade animation */
+  --animate-wake-fade: wake-fade 2s ease-out forwards;
+
+  @keyframes wave-rise {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-50%);
+    }
+  }
+
+  @keyframes float-slow {
+    0%,
+    100% {
+      transform: translateY(15px);
+    }
+    50% {
+      transform: translateY(-7px);
+    }
+  }
+
+  @keyframes boat-sway {
+    0%,
+    100% {
+      transform: translateY(-3px);
+    }
+    50% {
+      transform: translateY(3px);
+    }
+  }
+
+  /* Fade and expand the trail slightly */
+  @keyframes wake-fade {
+    0% {
+      opacity: 0.4;
+      transform: scale(0.8) translate(40px, -50%);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.5) translate(60px, -50%);
+    }
+  }
+}
+
+body {
+  background: #001a2c;
+  margin: 0;
+  overflow: hidden;
+  height: 100dvh;
+}
