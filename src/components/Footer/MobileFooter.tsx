@@ -329,7 +329,7 @@ export const MobileFooter = (): React.JSX.Element => {
           </div>
 
           <nav
-            className="absolute top-[32rem] z-10 flex h-[17px] w-[100vw] translate-x-4 items-center justify-center gap-[34.1px]"
+            className="absolute top-[32rem] z-10 flex w-screen translate-x-4 items-center justify-center gap-8"
             aria-label="Social media links"
           >
             {socialIcons.map(({ src, alt, href }, index) => (
@@ -338,7 +338,7 @@ export const MobileFooter = (): React.JSX.Element => {
                 target="_blank"
                 rel="noopener noreferrer"
                 key={`social-${index}`}
-                className="flex h-[17px] w-[17px] items-center justify-center transition-opacity hover:opacity-70"
+                className="flex translate-x-2 h-[1.8rem] w-[1.8rem] items-center justify-center transition-opacity hover:opacity-70"
                 aria-label={alt}
               >
                 <img src={src} alt={alt} className="h-full w-full" />

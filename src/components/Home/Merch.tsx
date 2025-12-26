@@ -11,12 +11,11 @@ export default function HomeMerch() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0]!.isIntersecting) {
-          setAnimate(true);
-          observer.disconnect();
+        if (entries[0]) {
+          setAnimate(entries[0].isIntersecting);
         }
       },
-      { threshold: 0.3 },
+      { threshold: 0.5 },
     );
 
     if (sectionRef.current) {
