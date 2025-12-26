@@ -28,14 +28,7 @@ export default function Sponsors() {
                 PREVIOUS SPONSORS
               </h1>
               <p className="text-3xl leading-relaxed font-medium text-[#000000]">
-                NIT Silchar&apos;s cultural extravaganza invites you into a
-                vibrant{" "}
-                <span className="font-bold text-[#008080]">
-                  Tribal Tapestry
-                </span>
-                —a journey woven with ancient rhythms, timeless traditions, and
-                stories passed through generations, where heritage comes alive
-                and brilliance shines from the roots.
+                We are proud to have been supported by renowned brands and organizations that have helped us scale new heights. Their partnership has been instrumental in making Incandescence a grand success year after year.
               </p>
             </div>
 
@@ -56,11 +49,7 @@ export default function Sponsors() {
               PREVIOUS SPONSORS
             </h1>
             <p className="px-4 text-center text-xl text-[#000000]">
-              NIT Silchar&apos;s cultural extravaganza invites you into a
-              vibrant{" "}
-              <span className="font-bold text-[#008080]">Tribal Tapestry</span>
-              —a journey woven with ancient rhythms, timeless traditions, and
-              stories passed through generations.
+              We are proud to have been supported by renowned brands and organizations that have helped us scale new heights. Their partnership has been instrumental in making Incandescence a grand success year after year.
             </p>
             <div className="flex flex-col gap-6">
               <InfiniteScroller direction="left" sponsors={data.column1} />
