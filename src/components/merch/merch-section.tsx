@@ -66,6 +66,9 @@ const popVariants: Variants = {
 export function MerchSection() {
   const [activeTheme, setActiveTheme] = useState<"light" | "dark">("light");
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
   const theme = THEMES[activeTheme];
   const isLight = activeTheme === "light";
 
@@ -79,6 +82,20 @@ export function MerchSection() {
     [activeTheme, isAnimating],
   );
 
+  // Handle Resize Logic to Determine Desktop vs Mobile
+  useEffect(() => {
+    setMounted(true);
+    const checkScreenSize = () => {
+      // 1024px is the standard Tailwind 'lg' breakpoint
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+
+    checkScreenSize(); // Initial check
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
+  // Handle Scroll Logic for Theme Switch
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
       if (isAnimating) return;
@@ -90,6 +107,9 @@ export function MerchSection() {
     return () => window.removeEventListener("wheel", handleWheel);
   }, [activeTheme, isAnimating, handleThemeSwitch]);
 
+  // Prevent Hydration Mismatch
+  if (!mounted) return null;
+
   return (
     <section
       className={`font-hitchcut fixed inset-0 z-50 h-full w-full overflow-hidden transition-colors duration-700 ease-in-out`}
@@ -100,27 +120,29 @@ export function MerchSection() {
         backgroundPosition: "center",
       }}
     >
-      {/* --- MOBILE & TABLET VIEW (Visible < lg) --- */}
-      <div className="relative z-10 block h-full w-full lg:hidden">
-        <MerchMobile
-          theme={theme}
-          isLight={isLight}
-          handleThemeSwitch={handleThemeSwitch}
-          springTransition={springTransition}
-          popVariants={popVariants}
-        />
-      </div>
-
-      {/* --- DESKTOP VIEW (Visible >= lg) --- */}
-      <div className="relative z-10 hidden h-full w-full items-center justify-center lg:flex">
-        <MerchDesktop
-          theme={theme}
-          isLight={isLight}
-          handleThemeSwitch={handleThemeSwitch}
-          springTransition={springTransition}
-          popVariants={popVariants}
-        />
-      </div>
+      {isDesktop ? (
+        /* --- DESKTOP VIEW (Visible >= lg) --- */
+        <div className="relative z-10 flex h-full w-full items-center justify-center">
+          <MerchDesktop
+            theme={theme}
+            isLight={isLight}
+            handleThemeSwitch={handleThemeSwitch}
+            springTransition={springTransition}
+            popVariants={popVariants}
+          />
+        </div>
+      ) : (
+        /* --- MOBILE & TABLET VIEW (Visible < lg) --- */
+        <div className="relative z-10 block h-full w-full">
+          <MerchMobile
+            theme={theme}
+            isLight={isLight}
+            handleThemeSwitch={handleThemeSwitch}
+            springTransition={springTransition}
+            popVariants={popVariants}
+          />
+        </div>
+      )}
     </section>
   );
 }
