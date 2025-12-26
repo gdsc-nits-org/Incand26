@@ -31,6 +31,7 @@ import TribalTrackbar from "~/components/TrivalNavbar";
 import { Footer } from "~/components/Footer";
 import Landing from "~/components/Home/Landing";
 import AboutIncandResponsive from "~/components/About/AboutIncandResponsive";
+import AboutNITSilchar from "~/components/Home/AboutNITSilchar";
 
 export default function HomePage() {
   const [loading, setLoading] = useState(true);
@@ -47,17 +48,15 @@ export default function HomePage() {
           <Landing />
         </section>
 
-        {/* --- ABOUT INCAND --- */}
+        {/* --- ABOUT NIT SILCHAR SECTION --- */}
         <section id="about" className="h-screen w-full snap-start">
-          <AboutIncandResponsive />
+          <AboutNITSilchar />
         </section>
 
-        {/* --- ABOUT NIT SILCHAR ---
-        <section id="about" className="h-screen w-full snap-start">
-          <AboutNits />
-        </section> */}
+        {/* --- SPONSORS --- */}
+        <Sponsors />
 
-        {/* ---EVENTS ---
+        {/* ---EVENTS --- */}
         <section
           id="events"
           className="flex h-screen w-full snap-start flex-col items-center justify-center bg-[#e8dfc5] px-4 text-center"
@@ -65,8 +64,7 @@ export default function HomePage() {
           <h1 className="font-hitchcut text-5xl font-black text-[#520000] drop-shadow-lg sm:text-6xl md:text-7xl lg:text-8xl">
             EVENTS
           </h1>
-        </section> */}
-        <Sponsors />
+        </section>
         {/* --- HOME --- */}
         <section id="merch" className="h-screen w-full snap-start">
           <HomeMerch />

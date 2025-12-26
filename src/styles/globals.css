@@ -1,30 +1,14 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: "Hitchcut-Regular";
-  src: url("/fonts/Hitchcut-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
 @theme {
   --font-sans:
     var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-hitchcut: "Hitchcut-Regular", sans-serif;
+  --font-hitchcut: var(--font-hitchcut), sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
-}
-
-@font-face {
-  font-family: "Hitchcut";
-  src: url("/fonts/Hitchcut-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
 }
 
 /* ================= TORCH GLOW ================= */
@@ -158,9 +142,6 @@ body {
   }
 }
 
-:root {
-  --font-hitchcut: "Hitchcut";
-}
 .font-hitchcut {
   font-family: var(--font-hitchcut), sans-serif;
 }
@@ -322,6 +303,28 @@ body {
   animation: float-mobile-diagonal 10s ease-in-out infinite;
 }
 
-/* ================= About Us ================= */ 
+@keyframes cloud-infinite-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
 
+@keyframes cloud-infinite-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
 
+.animate-cloud-infinite-left {
+  animation: cloud-infinite-left 40s linear infinite;
+}
+
+.animate-cloud-infinite-right {
+  animation: cloud-infinite-right 40s linear infinite;
+}

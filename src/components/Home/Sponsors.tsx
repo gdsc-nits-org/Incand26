@@ -2,7 +2,7 @@
 import React from "react";
 import InfiniteScroller from "~/components/InfiniteScroller";
 import GlobalScrollStyles from "~/components/GlobalScrollStyles_Sponsers";
-import { sponsorsData } from "~/data/sponsors";
+import sponsorsData from "../../../public/data/sponsors.json";
 
 export default function Sponsors() {
   const data = sponsorsData;

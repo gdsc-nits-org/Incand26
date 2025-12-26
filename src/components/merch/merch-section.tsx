@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import localFont from "next/font/local";
 import { type Variants } from "framer-motion"; // FIX: Added import
 import { MerchMobile } from "./merch-mobile";
 import { MerchDesktop } from "./merch-desktop";
@@ -20,20 +18,6 @@ export interface Theme {
   shirtImage: string;
   japiImage: string;
 }
-
-// --- FONT CONFIGURATION ---
-const hitchcut = localFont({
-  src: [
-    {
-      path: "../../../public/fonts/Hitchcut-typeface/Hitchcut-Regular.otf",
-      weight: "400",
-      style: "normal",
-    },
-  ],
-  variable: "--font-hitchcut",
-  display: "swap",
-  fallback: ["Impact", "sans-serif"],
-});
 
 // --- CONFIGURATION ---
 const THEMES: Record<"light" | "dark", Theme> = {
@@ -108,7 +92,7 @@ export function MerchSection() {
 
   return (
     <section
-      className={`fixed inset-0 z-50 h-full w-full overflow-hidden transition-colors duration-700 ease-in-out ${hitchcut.className}`}
+      className={`font-hitchcut fixed inset-0 z-50 h-full w-full overflow-hidden transition-colors duration-700 ease-in-out`}
       style={{
         backgroundColor: theme.bg,
         backgroundImage: theme.bgTexture,

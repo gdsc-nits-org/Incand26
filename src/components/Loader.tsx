@@ -177,9 +177,7 @@ const Loader: React.FC<LoaderProps> = ({ onComplete, onTilesStart }) => {
                   <img
                     src={src}
                     alt={src[i]}
-
-                    className="h-full w-full object-cover scale-x-[1.09]"
-
+                    className="h-full w-full scale-x-[1.09] object-cover"
                     draggable={false}
                   />
                 </div>
@@ -225,7 +223,7 @@ const Loader: React.FC<LoaderProps> = ({ onComplete, onTilesStart }) => {
 
           {showText && (
             <p
-              style={{ fontFamily: "Hitchcut" }}
+              style={{ fontFamily: "var(--font-hitchcut)" }}
               className={`relative top-[80vh] left-[40vw] z-50 text-[3vw] tracking-[0.1vw] text-white transition-opacity duration-3000 ease-out ${fadeText ? "opacity-0" : "opacity-100"} `}
             >
               LOADING <span className="tracking-[1vw]">...</span>
@@ -233,7 +231,7 @@ const Loader: React.FC<LoaderProps> = ({ onComplete, onTilesStart }) => {
           )}
           {showCandle && !progressDone && phase !== "tiles" && (
             <p
-              style={{ fontFamily: "Hitchcut" }}
+              style={{ fontFamily: "var(--font-hitchcut)" }}
               className="relative top-[78vh] left-[48vw] z-50 text-[2vw] tracking-[0.1vw] text-white"
             >
               {progress}%
@@ -317,7 +315,7 @@ const Loader: React.FC<LoaderProps> = ({ onComplete, onTilesStart }) => {
           {/* /* ================= LOADING TEXT (MATCH DESKTOP POSITIONING) ================= */}
           {showText && (
             <p
-              style={{ fontFamily: "Hitchcut" }}
+              style={{ fontFamily: "var(--font-hitchcut)" }}
               className={`relative top-[78vh] left-[20vw] z-50 text-[9.5vw] tracking-[0.4vw] text-white transition-opacity duration-3000 ease-out ${fadeText ? "opacity-0" : "opacity-100"} `}
             >
               LOADING <span className="tracking-[1vw]">...</span>
@@ -325,7 +323,7 @@ const Loader: React.FC<LoaderProps> = ({ onComplete, onTilesStart }) => {
           )}
           {showCandle && !progressDone && phase !== "tiles" && (
             <p
-              style={{ fontFamily: "Hitchcut" }}
+              style={{ fontFamily: "var(--font-hitchcut)" }}
               className="relative top-[77vh] left-[44vw] z-50 text-[6vw] tracking-[0.1vw] text-white"
             >
               {progress}%
@@ -411,7 +409,7 @@ const Loader: React.FC<LoaderProps> = ({ onComplete, onTilesStart }) => {
           {/* ================= LOADING TEXT (MATCH DESKTOP POSITIONING) ================= */}
           {showText && (
             <p
-              style={{ fontFamily: "Hitchcut" }}
+              style={{ fontFamily: "var(--font-hitchcut)" }}
               className={`relative top-[78vh] left-[20vw] z-50 text-[9.5vw] tracking-[0.4vw] text-white transition-opacity duration-3000 ease-out ${fadeText ? "opacity-0" : "opacity-100"} `}
             >
               LOADING <span className="tracking-[1vw]">...</span>
@@ -419,7 +417,7 @@ const Loader: React.FC<LoaderProps> = ({ onComplete, onTilesStart }) => {
           )}
           {showCandle && !progressDone && phase !== "tiles" && (
             <p
-              style={{ fontFamily: "Hitchcut" }}
+              style={{ fontFamily: "var(--font-hitchcut)" }}
               className="relative top-[77vh] left-[44vw] z-50 text-[7vw] tracking-[0.1vw] text-white"
             >
               {progress}%

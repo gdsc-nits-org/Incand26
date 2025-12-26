@@ -4,13 +4,44 @@ import { type Metadata } from "next";
 import localfont from "next/font/local";
 
 export const metadata: Metadata = {
-  title: "Tribal Fest",
-  description: "NIT Silchar",
+  title: {
+    default: "Incandescence 2026 | NIT Silchar",
+    template: "%s | Incandescence 2026",
+  },
+  description:
+    "Incandescence is the annual cultural festival of NIT Silchar. Join us for a celebration of art, culture, and creativity.",
+  keywords: [
+    "Incandescence",
+    "Incandescence 2026",
+    "NIT Silchar",
+    "Cultural Festival",
+    "Fest",
+    "NITS",
+    "Assam",
+    "Northeast India",
+  ],
+  authors: [{ name: "GDGC NITS" }],
+  creator: "GDGC NITS",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://incand.in/",
+    title: "Incandescence 2026 | NIT Silchar",
+    description:
+      "Incandescence is the annual cultural festival of NIT Silchar. Join us for a celebration of art, culture, and creativity.",
+    siteName: "Incandescence 2026",
+    images: [
+      {
+        url: "https://incand.in/og-image.png",
+      },
+    ],
+  },
+
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
 const hitchcut = localfont({
-  src: "../fonts/Hitchcut-Regular.otf",
+  src: "../../public/fonts/Hitchcut-Regular.otf",
   variable: "--font-hitchcut",
   display: "swap",
 });
