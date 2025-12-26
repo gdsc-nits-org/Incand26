@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { type Variants } from "framer-motion"; // FIX: Added import
+import { type Variants, AnimatePresence, motion } from "framer-motion";
 import { MerchMobile } from "./merch-mobile";
 import { MerchDesktop } from "./merch-desktop";
+import Loader from "../Loader"; 
 
 // --- TYPES ---
 export interface Theme {
@@ -63,11 +64,39 @@ const popVariants: Variants = {
   exit: { scale: 0.8, opacity: 0, transition: { duration: 0.3 } },
 };
 
+// --- PRELOAD HELPER (FIXED: Removed unused reject) ---
+const preloadImages = async (srcArray: string[], onProgress: (pct: number) => void) => {
+  let loadedCount = 0;
+  const total = srcArray.length;
+
+  const promises = srcArray.map((src) => {
+    // FIX: Removed 'reject' param to avoid linting error since we resolve on error anyway
+    return new Promise<void>((resolve) => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => {
+        loadedCount++;
+        onProgress(Math.floor((loadedCount / total) * 100)); 
+        resolve();
+      };
+      img.onerror = () => {
+        loadedCount++; // Count errors as loaded so we don't get stuck
+        onProgress(Math.floor((loadedCount / total) * 100));
+        resolve(); // Resolve anyway to continue
+      };
+    });
+  });
+  await Promise.all(promises);
+};
+
 export function MerchSection() {
   const [activeTheme, setActiveTheme] = useState<"light" | "dark">("light");
   const [isAnimating, setIsAnimating] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [mounted, setMounted] = useState(false);
+  
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0); 
 
   const theme = THEMES[activeTheme];
   const isLight = activeTheme === "light";
@@ -82,32 +111,54 @@ export function MerchSection() {
     [activeTheme, isAnimating],
   );
 
-  // Handle Resize Logic to Determine Desktop vs Mobile
   useEffect(() => {
     setMounted(true);
+    
     const checkScreenSize = () => {
-      // 1024px is the standard Tailwind 'lg' breakpoint
       setIsDesktop(window.innerWidth >= 1024);
     };
-
-    checkScreenSize(); // Initial check
+    checkScreenSize();
     window.addEventListener("resize", checkScreenSize);
+
+    // 2. Preload All Heavy Assets
+    const loadAssets = async () => {
+      try {
+        await preloadImages([
+          "/merch/photo_bg1.png",
+          "/merch/merch_bg2.png",
+          THEMES.light.shirtImage,
+          THEMES.dark.shirtImage,
+          THEMES.light.japiImage,
+        ], (pct) => {
+            setLoadingProgress(pct); 
+        });
+        
+        // Wait just a moment at 100% to let animation finish
+        setTimeout(() => setIsLoading(false), 1200); 
+      } catch (error) {
+        console.error("Failed to preload merch images", error);
+        setIsLoading(false); 
+      }
+    };
+
+    // FIX: Added 'void' to explicitly ignore the floating promise
+    void loadAssets();
+
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
-  // Handle Scroll Logic for Theme Switch
+  // Handle Scroll Logic
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
-      if (isAnimating) return;
+      if (isAnimating || isLoading) return; 
       if (e.deltaY > 50 && activeTheme === "light") handleThemeSwitch("dark");
       else if (e.deltaY < -50 && activeTheme === "dark")
         handleThemeSwitch("light");
     };
     window.addEventListener("wheel", handleWheel);
     return () => window.removeEventListener("wheel", handleWheel);
-  }, [activeTheme, isAnimating, handleThemeSwitch]);
+  }, [activeTheme, isAnimating, handleThemeSwitch, isLoading]);
 
-  // Prevent Hydration Mismatch
   if (!mounted) return null;
 
   return (
@@ -115,34 +166,55 @@ export function MerchSection() {
       className={`font-hitchcut fixed inset-0 z-50 h-full w-full overflow-hidden transition-colors duration-700 ease-in-out`}
       style={{
         backgroundColor: theme.bg,
-        backgroundImage: theme.bgTexture,
+        backgroundImage: isLoading ? undefined : theme.bgTexture, 
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      {isDesktop ? (
-        /* --- DESKTOP VIEW (Visible >= lg) --- */
-        <div className="relative z-10 flex h-full w-full items-center justify-center">
-          <MerchDesktop
-            theme={theme}
-            isLight={isLight}
-            handleThemeSwitch={handleThemeSwitch}
-            springTransition={springTransition}
-            popVariants={popVariants}
-          />
-        </div>
-      ) : (
-        /* --- MOBILE & TABLET VIEW (Visible < lg) --- */
-        <div className="relative z-10 block h-full w-full">
-          <MerchMobile
-            theme={theme}
-            isLight={isLight}
-            handleThemeSwitch={handleThemeSwitch}
-            springTransition={springTransition}
-            popVariants={popVariants}
-          />
-        </div>
-      )}
+      <AnimatePresence mode="wait">
+        {isLoading ? (
+          // --- LOADING SCREEN ---
+          <motion.div
+            key="loader"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0, transition: { duration: 0.5 } }}
+            className="absolute inset-0 z-[60] flex items-center justify-center bg-black"
+          >
+            <Loader loadingPercentage={loadingProgress} /> 
+          </motion.div>
+        ) : (
+          // --- MAIN CONTENT ---
+          <motion.div
+            key="content"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="h-full w-full"
+          >
+            {isDesktop ? (
+              <div className="relative z-10 flex h-full w-full items-center justify-center">
+                <MerchDesktop
+                  theme={theme}
+                  isLight={isLight}
+                  handleThemeSwitch={handleThemeSwitch}
+                  springTransition={springTransition}
+                  popVariants={popVariants}
+                />
+              </div>
+            ) : (
+              <div className="relative z-10 block h-full w-full">
+                <MerchMobile
+                  theme={theme}
+                  isLight={isLight}
+                  handleThemeSwitch={handleThemeSwitch}
+                  springTransition={springTransition}
+                  popVariants={popVariants}
+                />
+              </div>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

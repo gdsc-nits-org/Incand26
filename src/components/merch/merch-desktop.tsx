@@ -362,7 +362,6 @@ function HeadingElement({ theme, popVariants }: SubComponentProps) {
     </motion.div>
   );
 }
-
 function ButtonsElement({ popVariants }: SubComponentProps) {
   const [optOutHover, setOptOutHover] = useState(false);
   const [buyNowHover, setBuyNowHover] = useState(false);
@@ -391,14 +390,14 @@ function ButtonsElement({ popVariants }: SubComponentProps) {
             <motion.img
               src="/merch/svg1.svg"
               className="absolute h-full w-full object-contain"
-              animate={{ y: optOutHover ? -35 : 0 }}
+              animate={{ y: optOutHover ? "-100%" : "0%" }} // FIX: Changed -35 to -100%
               transition={{ duration: 0.2 }}
             />
             <motion.img
               src="/merch/svg2.svg"
               className="absolute h-full w-full object-contain"
-              initial={{ y: 35 }}
-              animate={{ y: optOutHover ? 0 : 35 }}
+              initial={{ y: "100%" }} // FIX: Changed 35 to 100%
+              animate={{ y: optOutHover ? "0%" : "100%" }} // FIX: Changed 35 to 100%
               transition={{ duration: 0.2 }}
             />
           </div>
@@ -424,14 +423,14 @@ function ButtonsElement({ popVariants }: SubComponentProps) {
             <motion.img
               src="/merch/svg3.svg"
               className="absolute h-full w-full object-contain"
-              animate={{ y: buyNowHover ? -35 : 0 }}
+              animate={{ y: buyNowHover ? "-100%" : "0%" }} // FIX: Changed -35 to -100%
               transition={{ duration: 0.2 }}
             />
             <motion.img
               src="/merch/svg4.svg"
               className="absolute h-full w-full object-contain"
-              initial={{ y: 35 }}
-              animate={{ y: buyNowHover ? 0 : 35 }}
+              initial={{ y: "100%" }} // FIX: Changed 35 to 100%
+              animate={{ y: buyNowHover ? "0%" : "100%" }} // FIX: Changed 35 to 100%
               transition={{ duration: 0.2 }}
             />
           </div>

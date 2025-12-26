@@ -319,7 +319,7 @@ export function MerchMobile({
               className={`flex h-14 w-14 items-center justify-center rounded-full transition-all duration-300 ${
                 isLight
                   ? "scale-110 border-[2px] border-black bg-white shadow-xl"
-                  : "scale-100 border-[2px] border-[#C39044] bg-black opacity-80"
+                  : "scale-100 border-[2px] border-[#C39044] bg-black "
               }`}
             >
               <img
@@ -333,7 +333,7 @@ export function MerchMobile({
               className={`flex h-14 w-14 items-center justify-center rounded-full transition-all duration-300 ${
                 !isLight
                   ? "scale-110 border-[2px] border-black bg-white shadow-xl"
-                  : "scale-100 border-[2px] border-[#DCA54E] bg-black opacity-80"
+                  : "scale-100 border-[2px] border-[#DCA54E] bg-black "
               }`}
             >
               <img
@@ -383,14 +383,14 @@ function MobileButton({
           <motion.img
             src={iconDefault}
             className="absolute h-full w-full object-contain"
-            animate={{ y: hover ? -30 : 0 }}
+            animate={{ y: hover ? -100 : 0 }}
             transition={{ duration: 0.2 }}
           />
           <motion.img
             src={iconHover}
             className="absolute h-full w-full object-contain"
-            initial={{ y: 30 }}
-            animate={{ y: hover ? 0 : 30 }}
+            initial={{ y: 100 }}
+            animate={{ y: hover ? 0 : 100 }}
             transition={{ duration: 0.2 }}
           />
         </div>
