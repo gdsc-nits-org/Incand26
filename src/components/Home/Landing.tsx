@@ -126,7 +126,7 @@ export default function Landing() {
         <img
           src="/incandlogo.png"
           alt="Incandescence Logo"
-          className="pointer-events-none absolute top-16 left-1/2 z-50 h-40 w-40 -translate-x-1/2 lg:top-8 xl:h-44 xl:w-44"
+          className="pointer-events-none absolute top-16 left-1/2 z-50 h-44 w-44 -translate-x-1/2 lg:top-8 xl:h-52 xl:w-52"
         />
       </div>
 
