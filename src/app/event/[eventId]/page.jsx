@@ -4,7 +4,6 @@ import { useState } from "react";
 import events from "../../../data/event.json";
 import { useParams, useRouter } from "next/navigation";
 
-
 const images = [
   "/image/Vector1.png",
   "/image/Vector2.png",
@@ -18,34 +17,29 @@ const images = [
 
 export default function EventPoster() {
   const params = useParams();
-const router = useRouter();
+  const router = useRouter();
 
-const currentIndex = Number(params.eventId) || 0;
-const event = events[currentIndex];
+  const currentIndex = Number(params.eventId) || 0;
+  const event = events[currentIndex];
 
-
-if (!event) {
-  return <div className="p-10">Event not found</div>;
-}
-
-
-
+  if (!event) {
+    return <div className="p-10">Event not found</div>;
+  }
 
   const dateParts = event.date ? event.date.split(" • ") : ["00", "00", "00"];
   const [day, month, year] = dateParts;
 
   const isAlternateTheme = currentIndex % 2 === 1;
 
- const goNext = () => {
-  const next = (currentIndex + 1) % events.length;
-  router.push(`/event/${next}`);
-};
+  const goNext = () => {
+    const next = (currentIndex + 1) % events.length;
+    router.push(`/event/${next}`);
+  };
 
-const goPrev = () => {
-  const prev = (currentIndex - 1 + events.length) % events.length;
-  router.push(`/event/${prev}`);
-};
-
+  const goPrev = () => {
+    const prev = (currentIndex - 1 + events.length) % events.length;
+    router.push(`/event/${prev}`);
+  };
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100">
