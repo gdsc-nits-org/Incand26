@@ -9,6 +9,8 @@ import { Footer } from "~/components/Home/Footer";
 import Landing from "~/components/Home/Landing";
 import AboutIncandResponsive from "~/components/Home/AboutIncandResponsive";
 import AboutNITSilchar from "~/components/Home/AboutNITSilchar";
+import TopNavbar from "~/components/TopNavbar";
+import NewLanding from "~/components/Home/newLanding";
 
 export default function HomePage() {
   const [loading, setLoading] = useState(true);
@@ -22,7 +24,7 @@ export default function HomePage() {
       >
         {/* --- LANDING / HERO SECTION --- */}
         <section id="home" className="h-screen w-full snap-start">
-          <Landing />
+          <NewLanding />
         </section>
 
         {/* --- ABOUT Incand SECTION --- */}
@@ -48,7 +50,7 @@ export default function HomePage() {
           <Footer />
         </section>
 
-        {!loading && <TribalTrackbar />}
+        {!loading && <TopNavbar />}
       </main>
       {loading && (
         <Loader
