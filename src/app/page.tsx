@@ -9,7 +9,7 @@ import { Footer } from "~/components/Home/Footer";
 import Landing from "~/components/Home/Landing";
 import AboutIncandResponsive from "~/components/Home/AboutIncandResponsive";
 import AboutNITSilchar from "~/components/Home/AboutNITSilchar";
-import TopNavbar from "~/components/Home/TopNavbar";
+import TopNavbar from "~/components/TopNavbar";
 import NewLanding from "~/components/Home/newLanding";
 
 export default function HomePage() {
