@@ -16,6 +16,8 @@ const images = [
   "/image/Group1.png",
 ];
 
+export const runtime = 'edge';
+
 export default function EventPoster() {
  const params = useParams();
 const router = useRouter();
