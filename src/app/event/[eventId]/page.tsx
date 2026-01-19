@@ -24,19 +24,24 @@ export default function EventPoster() {
   const eventId = Number(params.eventId);
 
   const [gridDimensions, setGridDimensions] = useState({ cols: 9, rows: 30, cellWidth: 60, cellHeight: 60 });
-  const TARGET_CELL_SIZE = 60;
+  const TARGET_CELL_SIZE_DESKTOP = 60;
+  const TARGET_CELL_SIZE_MOBILE = 36;
 
   useEffect(() => {
     const calculateGrid = () => {
-      const cols = Math.floor(window.innerWidth / TARGET_CELL_SIZE);
+      // Check if mobile first using a preliminary calculation
+      const preliminaryCols = Math.floor(window.innerWidth / TARGET_CELL_SIZE_DESKTOP);
+      const isMobileDevice = preliminaryCols < 15;
+      
+      // Use smaller cells on mobile for more granular grid
+      const targetSize = isMobileDevice ? TARGET_CELL_SIZE_MOBILE : TARGET_CELL_SIZE_DESKTOP;
+      const cols = Math.floor(window.innerWidth / targetSize);
       const cellWidth = window.innerWidth / cols;
       const cellHeight = cellWidth; // Keep cells square
 
       // Calculate rows based on viewport and content needs
-      // For mobile, we need fewer rows to avoid extra space
       const viewportRows = Math.ceil(window.innerHeight / cellHeight);
-      const isMobile = cols < 15;
-      const totalRows = isMobile ? 22 : viewportRows; // Fixed 22 rows for mobile to fit content exactly
+      const totalRows = viewportRows; // Use viewport rows to fit exactly in single screen
 
       setGridDimensions({ cols, rows: totalRows, cellWidth, cellHeight });
     };
@@ -51,28 +56,28 @@ export default function EventPoster() {
 
   // Mobile layout (typically 9-12 columns)
   const mobileLayout = {
-    image: { colStart: 2, colSpan: gridDimensions.cols - 2, rowStart: 2, rowSpan: 6 },
-    eventId: { colStart: 1, colSpan: 1, rowStart: 9, rowSpan: 1 },
-    day: { colStart: 4, colSpan: 1, rowStart: 9, rowSpan: 1 },
-    month: { colStart: 5, colSpan: 1, rowStart: 9, rowSpan: 1 },
-    year: { colStart: 6, colSpan: 1, rowStart: 9, rowSpan: 1 },
-    title: { colStart: 2, colSpan: gridDimensions.cols - 2, rowStart: 11, rowSpan: 1 },
-    description: { colStart: 2, colSpan: gridDimensions.cols - 2, rowStart: 13, rowSpan: 6 },
-    prevButton: { colStart: 2, colSpan: 3, rowStart: 20, rowSpan: 1 },
-    nextButton: { colStart: 6, colSpan: 3, rowStart: 20, rowSpan: 1 },
+    image: { colStart: 2, colSpan: gridDimensions.cols - 2, rowStart: 2, rowSpan: 10 },
+    eventId: { colStart: 2, colSpan: 1, rowStart: 13, rowSpan: 1 },
+    day: { colStart: 7, colSpan: 1, rowStart: 13, rowSpan: 1 },
+    month: { colStart: 8, colSpan: 1, rowStart: 13, rowSpan: 1 },
+    year: { colStart: 9, colSpan: 1, rowStart: 13, rowSpan: 1 },
+    title: { colStart: 2, colSpan: gridDimensions.cols - 5, rowStart: 14, rowSpan: 1 },
+    description: { colStart: 2, colSpan: gridDimensions.cols - 2, rowStart: 15, rowSpan: 7 },
+    prevButton: { colStart: 2, colSpan: 2, rowStart: 22, rowSpan: 1 },
+    nextButton: { colStart: 8, colSpan: 2, rowStart: 22, rowSpan: 1 },
   };
 
   // Desktop layout (typically 20+ columns)
   const desktopLayout = {
-    image: { colStart: 2, colSpan: Math.floor(gridDimensions.cols * 0.35), rowStart: 2, rowSpan: gridDimensions.rows - 4 },
+    image: { colStart: 2, colSpan: Math.floor(gridDimensions.cols * 0.35) + 1, rowStart: 2, rowSpan: gridDimensions.rows - 3 },
     eventId: { colStart: Math.floor(gridDimensions.cols * 0.5), colSpan: 1, rowStart: 2, rowSpan: 1 },
-    day: { colStart: Math.floor(gridDimensions.cols * 0.9), colSpan: 1, rowStart: 2, rowSpan: 1 },
-    month: { colStart: Math.floor(gridDimensions.cols * 0.8), colSpan: 1, rowStart: 2, rowSpan: 1 },
-    year: { colStart: Math.floor(gridDimensions.cols * 0.85), colSpan: 1, rowStart: 2, rowSpan: 1 },
-    title: { colStart: Math.floor(gridDimensions.cols * 0.5), colSpan: Math.floor(gridDimensions.cols * 0.45), rowStart: 3, rowSpan: 2 },
-    description: { colStart: Math.floor(gridDimensions.cols * 0.5), colSpan: Math.floor(gridDimensions.cols * 0.45), rowStart: 6, rowSpan: gridDimensions.rows - 9 },
-    prevButton: { colStart: 2, colSpan: 3, rowStart: gridDimensions.rows - 2, rowSpan: 1 },
-    nextButton: { colStart: gridDimensions.cols - 4, colSpan: 3, rowStart: gridDimensions.rows - 2, rowSpan: 1 },
+    day: { colStart: Math.floor(gridDimensions.cols * 0.9) + 2, colSpan: 1, rowStart: 2, rowSpan: 1 },
+    month: { colStart: Math.floor(gridDimensions.cols * 0.8) + 2, colSpan: 1, rowStart: 2, rowSpan: 1 },
+    year: { colStart: Math.floor(gridDimensions.cols * 0.85) + 2, colSpan: 1, rowStart: 2, rowSpan: 1 },
+    title: { colStart: Math.floor(gridDimensions.cols * 0.5), colSpan: Math.floor(gridDimensions.cols * 0.3) + 3, rowStart: 3, rowSpan: 2 },
+    description: { colStart: Math.floor(gridDimensions.cols * 0.5), colSpan: Math.floor(gridDimensions.cols * 0.45) + 2, rowStart: 5, rowSpan: gridDimensions.rows - 6 },
+    prevButton: { colStart: 2, colSpan: 2, rowStart: gridDimensions.rows - 1, rowSpan: 1 },
+    nextButton: { colStart: Math.floor(gridDimensions.cols * 0.5) + Math.floor(gridDimensions.cols * 0.45) + 2 - 2, colSpan: 2, rowStart: gridDimensions.rows - 1, rowSpan: 1 },
   };
 
   const layout = isMobile ? mobileLayout : desktopLayout;
@@ -229,14 +234,16 @@ export default function EventPoster() {
 
         {/* Event Title */}
         <div
-          className={`flex items-center justify-center border border-white px-2 text-center font-bold leading-tight transition-colors duration-300 ${isAlternateTheme
+          className={`flex items-center justify-start border border-white px-2 text-left font-bold leading-tight transition-colors duration-300 ${isAlternateTheme
               ? "bg-[#1E0C0C] text-white"
               : "bg-[#FFF8EC] text-black"
             }`}
           style={{
             gridColumn: `${layout.title.colStart} / span ${layout.title.colSpan}`,
             gridRow: `${layout.title.rowStart} / span ${layout.title.rowSpan}`,
-            fontSize: `${Math.min(gridDimensions.cellWidth * 0.4, 24)}px`,
+            fontSize: isMobile 
+              ? `clamp(16px, ${gridDimensions.cellWidth * 0.45}px, 24px)` 
+              : `clamp(32px, ${gridDimensions.cellWidth * 0.85}px, 56px)`,
           }}
         >
           {event.title}
@@ -251,42 +258,58 @@ export default function EventPoster() {
           style={{
             gridColumn: `${layout.description.colStart} / span ${layout.description.colSpan}`,
             gridRow: `${layout.description.rowStart} / span ${layout.description.rowSpan}`,
-            fontSize: `${Math.min(gridDimensions.cellWidth * 0.25, 16)}px`,
-            overflow: 'visible',
+            fontSize: isMobile 
+              ? `clamp(16px, ${gridDimensions.cellWidth * 0.4}px, 20px)` 
+              : `clamp(18px, ${gridDimensions.cellWidth * 0.35}px, 26px)`,
+            overflow: 'auto',
+            lineHeight: '1.6',
           }}
         >
           {event.description}
         </div>
 
-        {/* Buttons Container */}
+        {/* Previous Button */}
         <div
-          className="flex items-center justify-center gap-4"
+          className={`${isAlternateTheme ? "bg-[#1E0C0C]" : ""}`}
           style={{
-            gridColumn: `2 / span ${gridDimensions.cols - 2}`,
+            gridColumn: `${layout.prevButton.colStart} / span ${layout.prevButton.colSpan}`,
             gridRow: `${layout.prevButton.rowStart} / span ${layout.prevButton.rowSpan}`,
+            padding: '8px',
           }}
         >
           <button
             onClick={goPrev}
-            className={`rounded px-3 py-2 font-bold uppercase tracking-wide transition-all hover:scale-105 ${isAlternateTheme
-                ? "bg-[#8B4513] text-white shadow-lg hover:bg-[#A0522D]"
-                : "bg-[#D97706] text-white shadow-lg hover:bg-[#F59E0B]"
+            className={`w-full h-full flex items-center justify-center px-3 py-2 font-bold uppercase tracking-widest transition-all hover:scale-105 ${isAlternateTheme
+                ? "bg-[#FFF8EC] text-[#4F2222] border-2 border-[#4F2222] hover:bg-[#F5EED9]"
+                : "bg-[#D97706] text-white shadow-lg hover:bg-[#F59E0B] rounded"
               }`}
             style={{
-              fontSize: `${Math.min(gridDimensions.cellWidth * 0.2, 12)}px`,
+              fontSize: `${Math.min(gridDimensions.cellWidth * 0.22, 12)}px`,
+              letterSpacing: '0.15em',
             }}
           >
             Previous
           </button>
+        </div>
 
+        {/* Next Button */}
+        <div
+          className={`${isAlternateTheme ? "bg-[#1E0C0C]" : ""}`}
+          style={{
+            gridColumn: `${layout.nextButton.colStart} / span ${layout.nextButton.colSpan}`,
+            gridRow: `${layout.nextButton.rowStart} / span ${layout.nextButton.rowSpan}`,
+            padding: '8px',
+          }}
+        >
           <button
             onClick={goNext}
-            className={`rounded px-3 py-2 font-bold uppercase tracking-wide transition-all hover:scale-105 ${isAlternateTheme
-                ? "bg-[#8B4513] text-white shadow-lg hover:bg-[#A0522D]"
-                : "bg-[#D97706] text-white shadow-lg hover:bg-[#F59E0B]"
+            className={`w-full h-full flex items-center justify-center px-3 py-2 font-bold uppercase tracking-widest transition-all hover:scale-105 ${isAlternateTheme
+                ? "bg-[#FFF8EC] text-[#4F2222] border-2 border-[#4F2222] hover:bg-[#F5EED9]"
+                : "bg-[#D97706] text-white shadow-lg hover:bg-[#F59E0B] rounded"
               }`}
             style={{
-              fontSize: `${Math.min(gridDimensions.cellWidth * 0.2, 12)}px`,
+              fontSize: `${Math.min(gridDimensions.cellWidth * 0.22, 12)}px`,
+              letterSpacing: '0.15em',
             }}
           >
             Next
