@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import Login from "./GoogleAuth";
 interface NavItem {
   id: string;
   icon: string;
@@ -101,6 +102,7 @@ const TribalTrackbar: React.FC = () => {
             </button>
           );
         })}
+        <Login/>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import "~/styles/landing.css";
 import { type Metadata } from "next";
 import localfont from "next/font/local";
 import MusicButton from "~/components/MusicButton";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: {
@@ -52,13 +53,28 @@ const hitchcut = localfont({
   display: "swap",
 });
 
+const toastOps = {
+  classNames: {
+    title: "text-md md:text-lg font-mono",
+    success: "toast-theme-blue",
+    info: "toast-theme-blue",
+    error: "toast-theme-red",
+    warning: "toast-theme-red",
+  },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={hitchcut.variable}>
       <body className="relative">
-        <MusicButton className="fixed right-8 bottom-4 z-[100]" />
+        <MusicButton className="fixed right-8 bottom-4 z-100" />
+        <Toaster
+          toastOptions={toastOps}
+          visibleToasts={1}
+          position="bottom-center"
+        />
         {children}
       </body>
     </html>
