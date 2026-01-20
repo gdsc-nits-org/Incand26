@@ -215,7 +215,7 @@ export function MerchMobile({
         </AnimatePresence>
 
         {/* --- T-SHIRT CONTAINER --- */}
-        <div className="relative z-10 flex aspect-[3/4] w-[85%] max-w-[300px] items-center justify-center">
+        <div className="relative z-10 flex aspect-[3/4] w-[85%] max-w-[300px] mt-20 items-center justify-center">
           <AnimatePresence mode="popLayout">
             {isLight ? (
               <motion.img
@@ -223,7 +223,7 @@ export function MerchMobile({
                 src={theme.shirtImage}
                 alt="Light Merch"
                 initial={{ opacity: 0, scale: 0.7, y: 15 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
+                animate={{ opacity: 1, scale: 1.2, y: 0 }}
                 exit={{ opacity: 0, scale: 0.7, y: -15 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
                 className="absolute inset-0 h-full w-full object-contain drop-shadow-2xl"
@@ -234,7 +234,7 @@ export function MerchMobile({
                 src={theme.shirtImage}
                 alt="Dark Merch"
                 initial={{ opacity: 0, scale: 0.6, y: 15 }}
-                animate={{ opacity: 1, scale: 0.8, y: 0 }}
+                animate={{ opacity: 1, scale: 1.2, y: 0 }}
                 exit={{ opacity: 0, scale: 0.6, y: -15 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
                 className="absolute inset-0 h-full w-full object-contain drop-shadow-2xl"
@@ -321,7 +321,7 @@ export function MerchMobile({
               className={`flex h-14 w-14 items-center justify-center rounded-full transition-all duration-300 ${
                 isLight
                   ? "scale-110 border-[2px] border-black bg-white shadow-xl"
-                  : "scale-100 border-[2px] border-[#C39044] bg-black opacity-80"
+                  : "scale-100 border-[2px] border-[#C39044] bg-black"
               }`}
             >
               <img
@@ -335,7 +335,7 @@ export function MerchMobile({
               className={`flex h-14 w-14 items-center justify-center rounded-full transition-all duration-300 ${
                 !isLight
                   ? "scale-110 border-[2px] border-black bg-white shadow-xl"
-                  : "scale-100 border-[2px] border-[#DCA54E] bg-black opacity-80"
+                  : "scale-100 border-[2px] border-[#DCA54E] bg-black"
               }`}
             >
               <img
@@ -385,14 +385,14 @@ function MobileButton({
           <motion.img
             src={iconDefault}
             className="absolute h-full w-full object-contain"
-            animate={{ y: hover ? -30 : 0 }}
+            animate={{ y: hover ? -100 : 0 }}
             transition={{ duration: 0.2 }}
           />
           <motion.img
             src={iconHover}
             className="absolute h-full w-full object-contain"
-            initial={{ y: 30 }}
-            animate={{ y: hover ? 0 : 30 }}
+            initial={{ y: 100 }}
+            animate={{ y: hover ? 0 : 100 }}
             transition={{ duration: 0.2 }}
           />
         </div>

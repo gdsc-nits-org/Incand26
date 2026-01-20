@@ -10,7 +10,6 @@ import {
 import { useState } from "react";
 import Link from "next/link";
 import type { Theme } from "./merch-section";
-
 interface MerchProps {
   theme: Theme;
   isLight: boolean;
@@ -202,7 +201,7 @@ export function MerchDesktop({
             {/* T-Shirt Image - Z-Index 40 (Highest priority) */}
             <motion.div
               layoutId="shirt-container"
-              className="relative z-40 flex h-[115%] w-full items-center justify-center drop-shadow-2xl lg:h-[120%]"
+              className="relative z-40 mt-25 flex h-[115%] w-full items-center justify-center drop-shadow-2xl lg:h-[120%]"
               transition={springTransition}
             >
               <AnimatePresence mode="popLayout">
@@ -210,7 +209,7 @@ export function MerchDesktop({
                   key={`desk-shirt-${isLight ? "l" : "d"}`}
                   src={theme.shirtImage}
                   initial={{ y: -20, opacity: 0, scale: isLight ? 0.9 : 0.7 }}
-                  animate={{ y: 0, opacity: 1, scale: isLight ? 1.1 : 0.9 }}
+                  animate={{ y: 0, opacity: 1.8, scale: isLight ? 1.1 : 1.1 }}
                   exit={{ y: 20, opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.4 }}
                   className="absolute inset-0 h-full w-full object-contain"
@@ -365,7 +364,7 @@ function HeadingElement({ theme, popVariants }: SubComponentProps) {
 
 function ButtonsElement({ popVariants }: SubComponentProps) {
   const [optOutHover, setOptOutHover] = useState(false);
-  const [buyNowHover, setBuyNowHover] = useState(false);
+  //const [buyNowHover, setBuyNowHover] = useState(false);
 
   return (
     <motion.div

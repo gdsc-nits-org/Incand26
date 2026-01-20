@@ -29,8 +29,8 @@ const THEMES: Record<"light" | "dark", Theme> = {
     textSecondary: "#8B2323",
     heading: "INCAND\nMERCH",
     desc: "From lectures\n to late nights\n Incand fits\n everywhere.",
-    price: "399/-",
-    shirtImage: "/merch/d3692dbcecc3ee28bbb6cb71bba972eed7c75499.png",
+    price: "450/-",
+    shirtImage: "/merch/incandmarch.png",
     japiImage: "/merch/a881a76b8a204d1e7a322115721f2ff57996f036.png",
   },
   dark: {
@@ -41,8 +41,8 @@ const THEMES: Record<"light" | "dark", Theme> = {
     textSecondary: "#FFFFFF",
     heading: "THUNDER\nMARCH",
     desc: "Drip that\n hits harder\n than the\n bass drops",
-    price: "399/-",
-    shirtImage: "/merch/36e3457304d265d12daff04034d952d55c27800a.png",
+    price: "450/-",
+    shirtImage: "/merch/thundermerch.png",
     japiImage: "/merch/a881a76b8a204d1e7a322115721f2ff57996f036.png",
   },
 };
