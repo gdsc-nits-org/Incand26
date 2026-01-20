@@ -3,7 +3,12 @@
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
-import type { Theme } from "./merch-section";
+import { OptOut, type Theme } from "./merch-section";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "~/utils/firebase";
+import { toast } from "sonner";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 interface MerchProps {
   theme: Theme;
@@ -215,7 +220,7 @@ export function MerchMobile({
         </AnimatePresence>
 
         {/* --- T-SHIRT CONTAINER --- */}
-        <div className="relative z-10 flex aspect-[3/4] w-[85%] max-w-[300px] items-center justify-center">
+        <div className="relative z-10 mt-20 flex aspect-[3/4] w-[85%] max-w-[300px] items-center justify-center">
           <AnimatePresence mode="popLayout">
             {isLight ? (
               <motion.img
@@ -223,7 +228,7 @@ export function MerchMobile({
                 src={theme.shirtImage}
                 alt="Light Merch"
                 initial={{ opacity: 0, scale: 0.7, y: 15 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
+                animate={{ opacity: 1, scale: 1.2, y: 0 }}
                 exit={{ opacity: 0, scale: 0.7, y: -15 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
                 className="absolute inset-0 h-full w-full object-contain drop-shadow-2xl"
@@ -234,7 +239,7 @@ export function MerchMobile({
                 src={theme.shirtImage}
                 alt="Dark Merch"
                 initial={{ opacity: 0, scale: 0.6, y: 15 }}
-                animate={{ opacity: 1, scale: 0.8, y: 0 }}
+                animate={{ opacity: 1, scale: 1.2, y: 0 }}
                 exit={{ opacity: 0, scale: 0.6, y: -15 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
                 className="absolute inset-0 h-full w-full object-contain drop-shadow-2xl"
@@ -273,6 +278,8 @@ export function MerchMobile({
         <div className="flex w-full items-center justify-center gap-3">
           <AnimatePresence mode="wait">
             {/* BUY NOW */}
+            {/* 
+
             <motion.div
               key={`btn-buy-${theme.id}`}
               variants={popVariants}
@@ -289,7 +296,7 @@ export function MerchMobile({
                 iconHover="/merch/svg4.svg"
               />
             </motion.div>
-
+                     */}
             {/* OPT OUT */}
             <motion.div
               key={`btn-opt-${theme.id}`}
@@ -366,12 +373,45 @@ function MobileButton({
   iconHover,
 }: MobileButtonProps) {
   const [hover, setHover] = useState(false);
+  const [user, loading] = useAuthState(auth);
+  const router = useRouter();
 
   return (
     <button
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      className="relative flex h-[50px] w-[160px] items-center justify-center overflow-hidden rounded-full shadow-lg transition-transform active:scale-95 md:w-[200px]"
+      onClick={() => {
+        toast.promise(
+          (async () => {
+            try {
+              if (!user) {
+                throw new Error("You need to log in to opt out");
+              }
+              await OptOut(user, router);
+              router.refresh();
+            } catch (err) {
+              throw err;
+            }
+          })(),
+          {
+            loading: "Processing your request...",
+            success: "Successfully opted out!",
+            error: (err) => {
+              interface ApiErrorResponse {
+                msg: string;
+              }
+              if (axios.isAxiosError(err)) {
+                const data = err.response?.data as ApiErrorResponse | undefined;
+                return data?.msg ?? "Server error occurred";
+              }
+              return err instanceof Error
+                ? err.message
+                : "Could not complete opt-out";
+            },
+          },
+        );
+      }}
+      className="relative flex h-[50px] w-[260px] items-center justify-center overflow-hidden rounded-full shadow-lg transition-transform active:scale-95 md:w-[200px]"
       style={{
         backgroundImage: `url('${bg}')`,
         backgroundSize: "cover",

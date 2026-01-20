@@ -1,5 +1,7 @@
 "use client";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import Login from "../GoogleAuth";
 
 // Define the shape of a trail segment
 interface TrailSegment {
@@ -113,6 +115,65 @@ export default function Landing() {
       className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-cover bg-center"
       style={{ backgroundImage: `url('${bgImage}')` }}
     >
+      <div className="absolute top-20 left-[47%] flex flex-col items-center gap-[4vh] cursor-pointer">
+        <div
+          className={`flex translate-y-[-30vh] gap-[2vw] transition-transform delay-150 duration-1500 ease-out`}
+        >
+          <div className="relative h-[5vw] w-[5vw]">
+            <Image src="/about/design-1.webp" alt="Top Left Decoration" fill />
+          </div>
+          <div className="relative h-[5vw] w-[5vw]">
+            <Image src="/about/design-2.webp" alt="Top Left Decoration" fill />
+          </div>
+          <div className="relative h-[5vw] w-[5vw]">
+            <Image src="/about/design-3.webp" alt="Top Left Decoration" fill />
+          </div>
+        </div>
+        <div
+          className={`z-20 translate-x-[30vw] translate-y-[-20vh] transition-transform delay-150 duration-1500 ease-out`}
+        >
+          <div
+            className={`relative my-[1.5vh] flex items-center gap-0 overflow-hidden rounded-full border-[0.2vw] border-black bg-[#751313] shadow-black transition-all duration-500 ease-out hover:scale-[1.3] hover:-rotate-6`}
+            style={{
+              boxShadow: "none",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.boxShadow =
+                "0 1.3vh 0 0 rgba(162, 93, 93), 0 1.25vh 0 0.2vw rgba(0, 0, 0)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.boxShadow = "none";
+            }}
+          >
+            {/* Left Decorative Element */}
+            <div className="relative mr-[-0.5vw] h-[3.5vw] w-[3.5vw]">
+              <Image
+                src="/about/brochure.webp"
+                alt="Decoration"
+                fill
+                className="object-fill"
+              />
+            </div>
+
+            {/* Button Text Background */}
+            <div className="my-[1.5vh] flex items-center justify-center">
+              <span className="font-hitchcut text-[1.25vw] px-3 font-bold tracking-wider text-[#f5e6c8]">
+                <Login/>
+              </span>
+            </div>
+
+            {/* Right Decorative Element (Rotated 180deg) */}
+            <div className="relative ml-[-0.5vw] h-[3.5vw] w-[3.5vw] rotate-180">
+              <Image
+                src="/about/brochure.webp"
+                alt="Decoration"
+                fill
+                className="object-fill"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
       <video
         autoPlay
         loop

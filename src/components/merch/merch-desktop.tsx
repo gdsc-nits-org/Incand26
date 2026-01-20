@@ -9,8 +9,12 @@ import {
 } from "framer-motion";
 import { useState } from "react";
 import Link from "next/link";
-import type { Theme } from "./merch-section";
-
+import { OptOut, type Theme } from "./merch-section";
+import { toast } from "sonner";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "~/utils/firebase";
 interface MerchProps {
   theme: Theme;
   isLight: boolean;
@@ -201,7 +205,7 @@ export function MerchDesktop({
             {/* T-Shirt Image - Z-Index 40 (Highest priority) */}
             <motion.div
               layoutId="shirt-container"
-              className="relative z-40 flex h-[115%] w-full items-center justify-center drop-shadow-2xl lg:h-[120%]"
+              className="relative z-40 mt-25 flex h-[115%] w-full items-center justify-center drop-shadow-2xl lg:h-[120%]"
               transition={springTransition}
             >
               <AnimatePresence mode="popLayout">
@@ -209,7 +213,7 @@ export function MerchDesktop({
                   key={`desk-shirt-${isLight ? "l" : "d"}`}
                   src={theme.shirtImage}
                   initial={{ y: -20, opacity: 0, scale: isLight ? 0.9 : 0.7 }}
-                  animate={{ y: 0, opacity: 1, scale: isLight ? 1.1 : 0.9 }}
+                  animate={{ y: 0, opacity: 1.8, scale: isLight ? 1.1 : 1.1 }}
                   exit={{ y: 20, opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.4 }}
                   className="absolute inset-0 h-full w-full object-contain"
@@ -361,9 +365,13 @@ function HeadingElement({ theme, popVariants }: SubComponentProps) {
     </motion.div>
   );
 }
+
 function ButtonsElement({ popVariants }: SubComponentProps) {
   const [optOutHover, setOptOutHover] = useState(false);
-  const [buyNowHover, setBuyNowHover] = useState(false);
+  const router = useRouter();
+  const [user, loading] = useAuthState(auth);
+
+  //const [buyNowHover, setBuyNowHover] = useState(false);
 
   return (
     <motion.div
@@ -377,6 +385,39 @@ function ButtonsElement({ popVariants }: SubComponentProps) {
       <button
         onMouseEnter={() => setOptOutHover(true)}
         onMouseLeave={() => setOptOutHover(false)}
+        onClick={() => {
+          toast.promise(
+            (async () => {
+              try {
+                if (!user) {
+                  throw new Error("You need to log in to opt out");
+                }
+                await OptOut(user, router);
+                router.refresh();
+              } catch (err) {
+                throw err;
+              }
+            })(),
+            {
+              loading: "Processing your request...",
+              success: "Successfully opted out!",
+              error: (err) => {
+                interface ApiErrorResponse {
+                  msg: string;
+                }
+                if (axios.isAxiosError(err)) {
+                  const data = err.response?.data as
+                    | ApiErrorResponse
+                    | undefined;
+                  return data?.msg ?? "Server error occurred";
+                }
+                return err instanceof Error
+                  ? err.message
+                  : "Could not complete opt-out";
+              },
+            },
+          );
+        }}
         className="group relative flex h-[60px] w-full items-center justify-center overflow-hidden rounded-full shadow-lg transition-all duration-200 hover:scale-105 lg:h-[70px] xl:h-[80px]"
         style={{
           backgroundImage: "url('/merch/button_texture2.png')",
@@ -389,14 +430,14 @@ function ButtonsElement({ popVariants }: SubComponentProps) {
             <motion.img
               src="/merch/svg1.svg"
               className="absolute h-full w-full object-contain"
-              animate={{ y: optOutHover ? "-100%" : "0%" }} // FIX: Changed -35 to -100%
+              animate={{ y: optOutHover ? -35 : 0 }}
               transition={{ duration: 0.2 }}
             />
             <motion.img
               src="/merch/svg2.svg"
               className="absolute h-full w-full object-contain"
-              initial={{ y: "100%" }} // FIX: Changed 35 to 100%
-              animate={{ y: optOutHover ? "0%" : "100%" }} // FIX: Changed 35 to 100%
+              initial={{ y: 35 }}
+              animate={{ y: optOutHover ? 0 : 35 }}
               transition={{ duration: 0.2 }}
             />
           </div>
@@ -407,6 +448,9 @@ function ButtonsElement({ popVariants }: SubComponentProps) {
       </button>
 
       {/* BUY NOW BUTTON */}
+
+      {/* remove comment to get back the buy now
+
       <button
         onMouseEnter={() => setBuyNowHover(true)}
         onMouseLeave={() => setBuyNowHover(false)}
@@ -422,14 +466,14 @@ function ButtonsElement({ popVariants }: SubComponentProps) {
             <motion.img
               src="/merch/svg3.svg"
               className="absolute h-full w-full object-contain"
-              animate={{ y: buyNowHover ? "-100%" : "0%" }} // FIX: Changed -35 to -100%
+              animate={{ y: buyNowHover ? -35 : 0 }}
               transition={{ duration: 0.2 }}
             />
             <motion.img
               src="/merch/svg4.svg"
               className="absolute h-full w-full object-contain"
-              initial={{ y: "100%" }} // FIX: Changed 35 to 100%
-              animate={{ y: buyNowHover ? "0%" : "100%" }} // FIX: Changed 35 to 100%
+              initial={{ y: 35 }}
+              animate={{ y: buyNowHover ? 0 : 35 }}
               transition={{ duration: 0.2 }}
             />
           </div>
@@ -437,7 +481,7 @@ function ButtonsElement({ popVariants }: SubComponentProps) {
             BUY NOW
           </span>
         </div>
-      </button>
+      </button>  */}
     </motion.div>
   );
 }
