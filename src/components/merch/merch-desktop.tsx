@@ -409,6 +409,11 @@ function ButtonsElement({ popVariants }: SubComponentProps) {
       </button>
 
       {/* BUY NOW BUTTON */}
+
+
+
+            {/* remove comment to get back the buy now
+
       <button
         onMouseEnter={() => setBuyNowHover(true)}
         onMouseLeave={() => setBuyNowHover(false)}
@@ -439,7 +444,7 @@ function ButtonsElement({ popVariants }: SubComponentProps) {
             BUY NOW
           </span>
         </div>
-      </button>
+      </button>  */}
     </motion.div>
   );
 }

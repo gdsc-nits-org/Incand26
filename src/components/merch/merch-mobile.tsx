@@ -273,6 +273,8 @@ export function MerchMobile({
         <div className="flex w-full items-center justify-center gap-3">
           <AnimatePresence mode="wait">
             {/* BUY NOW */}
+                        {/* 
+
             <motion.div
               key={`btn-buy-${theme.id}`}
               variants={popVariants}
@@ -289,7 +291,7 @@ export function MerchMobile({
                 iconHover="/merch/svg4.svg"
               />
             </motion.div>
-
+                     */}
             {/* OPT OUT */}
             <motion.div
               key={`btn-opt-${theme.id}`}
@@ -371,7 +373,7 @@ function MobileButton({
     <button
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      className="relative flex h-[50px] w-[160px] items-center justify-center overflow-hidden rounded-full shadow-lg transition-transform active:scale-95 md:w-[200px]"
+      className="relative flex h-[50px] w-[260px] items-center justify-center overflow-hidden rounded-full shadow-lg transition-transform active:scale-95 md:w-[200px]"
       style={{
         backgroundImage: `url('${bg}')`,
         backgroundSize: "cover",
