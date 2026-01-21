@@ -7,8 +7,9 @@ import { MerchDesktop } from "./merch-desktop";
 import type { User } from "firebase/auth";
 import { env } from "~/env";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 import type { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "~/utils/firebase";
 
 
 // --- TYPES ---
@@ -74,9 +75,33 @@ export function MerchSection() {
   const [isAnimating, setIsAnimating] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [hasOpted, setHasOpted] = useState(true);
+  const [user] = useAuthState(auth);
 
   const theme = THEMES[activeTheme];
   const isLight = activeTheme === "light";
+
+  // Fetch user's hasOpted status
+  useEffect(() => {
+    const fetchUserOptStatus = async () => {
+      if (!user) return;
+      try {
+        const token = await user.getIdToken();
+        const res = await axios.get<{ msg: { hasOpted: boolean } }>(
+          `${env.NEXT_PUBLIC_API_URL}/api/user/me`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        );
+        setHasOpted(res.data.msg.hasOpted);
+      } catch (error) {
+        console.error("Error fetching user opt status:", error);
+      }
+    };
+    void fetchUserOptStatus();
+  }, [user]);
 
   const handleThemeSwitch = useCallback(
     (newTheme: "light" | "dark") => {
@@ -135,6 +160,8 @@ export function MerchSection() {
             handleThemeSwitch={handleThemeSwitch}
             springTransition={springTransition}
             popVariants={popVariants}
+            hasOpted={hasOpted}
+            onOptOutSuccess={() => setHasOpted(false)}
           />
         </div>
       ) : (
@@ -146,6 +173,8 @@ export function MerchSection() {
             handleThemeSwitch={handleThemeSwitch}
             springTransition={springTransition}
             popVariants={popVariants}
+            hasOpted={hasOpted}
+            onOptOutSuccess={() => setHasOpted(false)}
           />
         </div>
       )}

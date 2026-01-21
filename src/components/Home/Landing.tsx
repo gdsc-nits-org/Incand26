@@ -104,8 +104,6 @@ export default function Landing() {
     "https://res.cloudinary.com/dwzakk4bw/image/upload/v1766546238/Incand_jomks5.webp";
   const comingSoon =
     "https://res.cloudinary.com/dwzakk4bw/image/upload/v1766546242/Component_70_ulqr1o.webp";
-  const decoration =
-    "https://res.cloudinary.com/dwzakk4bw/image/upload/v1766546239/Frame_11_w666cw.webp";
   const ripple =
     "https://res.cloudinary.com/dwzakk4bw/video/upload/v1766579546/4_1_sv8giu.mp4";
 

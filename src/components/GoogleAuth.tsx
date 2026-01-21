@@ -13,15 +13,16 @@ interface UserResponse {
   username: string;
   firstName: string;
   lastName: string;
+  hasOpted: boolean;
 }
 
 const Login = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   const [_user, _loading] = useAuthState(auth);
   const router = useRouter();
   const [userName, setUserName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   useEffect(() => {
     const checkUserFirstTime = async () => {
       if (!_user) return;
@@ -37,6 +38,8 @@ const Login = () => {
         );
 
         setUserName(() => res.data.msg.username);
+        setFirstName(() => res.data.msg.firstName);
+        setLastName(() => res.data.msg.lastName);
       } catch (e) {
         if (axios.isAxiosError(e)) {
           if (e.response?.status === 404) {
@@ -79,14 +82,13 @@ const Login = () => {
   }
 
   return (
-    <p>Logged In</p>
-    // <ProfileCard
-    //     photoURL={_user.photoURL}
-    //     displayName={_user.displayName}
-    //     userName={userName}
-    //     firstName={firstName}
-    //     lastName={lastName}
-    // />
+    <ProfileCard
+        photoURL={_user.photoURL}
+        displayName={_user.displayName}
+        userName={userName}
+        firstName={firstName}
+        lastName={lastName}
+    />
   );
 };
 
@@ -99,16 +101,12 @@ const StyledButton = ({
   children: React.ReactNode;
   isLoggedIn: boolean;
 }) => {
-  const [hovered, setHovered] = useState(false);
-
   if (isLoggedIn) {
     return <button onClick={onClick}>{children}</button>;
   }
 
   return (
     <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
       onClick={onClick}
     >
       <div></div>

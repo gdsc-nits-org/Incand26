@@ -16,6 +16,8 @@ interface MerchProps {
   handleThemeSwitch: (t: "light" | "dark") => void;
   springTransition: object;
   popVariants: Variants;
+  hasOpted?: boolean;
+  onOptOutSuccess?: () => void;
 }
 
 export function MerchMobile({
@@ -24,6 +26,8 @@ export function MerchMobile({
   handleThemeSwitch,
   springTransition,
   popVariants,
+  hasOpted = true,
+  onOptOutSuccess,
 }: MerchProps) {
   const [user] = useAuthState(auth);
   const router = useRouter();
@@ -49,6 +53,7 @@ export function MerchMobile({
       (async () => {
         try {
           await OptOut(user, router);
+          onOptOutSuccess?.();
           router.refresh();
         } catch (err) {
           throw err;
@@ -405,14 +410,22 @@ export function MerchMobile({
               exit="exit"
               transition={{ delay: 0.2 }}
             >
-              <MobileButton
-                text="OPT OUT"
-                textColor="#2A1B12"
-                bg="/merch/button_texture2.png"
-                iconDefault="/merch/svg1.svg"
-                iconHover="/merch/svg2.svg"
-                onClick={handleOptOutClick}
-              />
+              {hasOpted ? (
+                <MobileButton
+                  text="OPT OUT"
+                  textColor="#2A1B12"
+                  bg="/merch/button_texture2.png"
+                  iconDefault="/merch/svg1.svg"
+                  iconHover="/merch/svg2.svg"
+                  onClick={handleOptOutClick}
+                />
+              ) : (
+                <div className="flex h-[50px] w-full items-center justify-center rounded-full border-2 border-dashed border-gray-400 bg-gray-50/50">
+                  <span className="font-hitchcut pt-1 text-base px-3 tracking-widest text-gray-600">
+                    ALREADY OPTED OUT
+                  </span>
+                </div>
+              )}
             </motion.div>
           </AnimatePresence>
         </div>

@@ -65,7 +65,7 @@ const CompleteProfile = () => {
   });
   const [error, setError] = useState<string | null>(null);
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const _isMobile = useMediaQuery("(max-width: 768px)");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
