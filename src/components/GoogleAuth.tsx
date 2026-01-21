@@ -83,11 +83,11 @@ const Login = () => {
 
   return (
     <ProfileCard
-        photoURL={_user.photoURL}
-        displayName={_user.displayName}
-        userName={userName}
-        firstName={firstName}
-        lastName={lastName}
+      photoURL={_user.photoURL}
+      displayName={_user.displayName}
+      userName={userName}
+      firstName={firstName}
+      lastName={lastName}
     />
   );
 };
@@ -106,9 +106,7 @@ const StyledButton = ({
   }
 
   return (
-    <div
-      onClick={onClick}
-    >
+    <div onClick={onClick}>
       <div></div>
       <div>Log In</div>
     </div>
@@ -134,22 +132,21 @@ const ProfileCard: React.FC<UserCred> = ({
     <section>
       <section
         onClick={() => router.push("/merch")}
-        className="flex items-center gap-2"
+        className="flex items-center gap-[2vw] sm:gap-[1.5vw] md:gap-[1vw]"
       >
         <div>
           {photoURL && (
             <Image
               src={photoURL}
-              width={50}
-              height={50}
+              width={100}
+              height={100}
               alt="avatar"
-              className="rounded-full"
+              className="h-[8vw] w-[8vw] rounded-full sm:h-[5vw] sm:w-[5vw] md:h-[4vw] md:w-[4vw] lg:h-[3.5vw] lg:w-[3.5vw]"
             />
           )}
         </div>
         <div>
-          <h3>{userName}</h3>
-          <span>
+          <span className="text-[3.5vw] sm:text-[2vw] md:text-[1.5vw] lg:text-[1.25vw]">
             {firstName} {lastName}
           </span>
         </div>

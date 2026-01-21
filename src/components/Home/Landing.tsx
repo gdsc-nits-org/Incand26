@@ -113,22 +113,9 @@ export default function Landing() {
       className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-cover bg-center"
       style={{ backgroundImage: `url('${bgImage}')` }}
     >
-      <div className="absolute top-20 left-[47%] flex flex-col items-center gap-[4vh] cursor-pointer">
+      <div className="absolute lg:top-[10vh] lg:right-[5vw] md:top-[9vh] md:right-[4.5vw] sm:top-[7vh] sm:right-[3.5vw] top-[3vh] right-[2.5vw] flex flex-col items-center gap-[4vh] cursor-pointer">
         <div
-          className={`flex translate-y-[-30vh] gap-[2vw] transition-transform delay-150 duration-1500 ease-out`}
-        >
-          <div className="relative h-[5vw] w-[5vw]">
-            <Image src="/about/design-1.webp" alt="Top Left Decoration" fill />
-          </div>
-          <div className="relative h-[5vw] w-[5vw]">
-            <Image src="/about/design-2.webp" alt="Top Left Decoration" fill />
-          </div>
-          <div className="relative h-[5vw] w-[5vw]">
-            <Image src="/about/design-3.webp" alt="Top Left Decoration" fill />
-          </div>
-        </div>
-        <div
-          className={`z-20 translate-x-[15vw] translate-y-[-14vh] sm:translate-x-[20vw] sm:translate-y-[-18vh] md:translate-x-[25vw] md:translate-y-[-12vh] lg:translate-x-[30vw] lg:translate-y-[-12vh]`}
+          className={`z-20`}
         >
           <div
             className={`relative my-[1vh] sm:my-[1.2vh] md:my-[1.5vh] flex items-center gap-0 overflow-hidden rounded-full border-[0.3vw] sm:border-[0.25vw] md:border-[0.2vw] border-black bg-[#751313] shadow-black transition-all duration-500 ease-out hover:scale-[1.15] sm:hover:scale-[1.2] md:hover:scale-[1.3] hover:-rotate-6`}
@@ -155,7 +142,7 @@ export default function Landing() {
 
             {/* Button Text Background */}
             <div className="my-[1vh] sm:my-[1.2vh] md:my-[1.5vh] flex items-center justify-center">
-              <span className="font-hitchcut text-[3.5vw] sm:text-[2vw] md:text-[1.5vw] lg:text-[1.25vw] px-2 sm:px-2.5 md:px-3 font-bold tracking-wider text-[#f5e6c8]">
+              <span className="font-hitchcut text-[3.5vw] sm:text-[2vw] md:text-[1.5vw] lg:text-[1.25vw] font-bold tracking-wider text-[#f5e6c8]">
                 <Login/>
               </span>
             </div>
