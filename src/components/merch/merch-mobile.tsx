@@ -34,8 +34,7 @@ export function MerchMobile({
   const [showConfirm, setShowConfirm] = useState(false);
 
   const handleOptOutClick = () => {
-    toast.error("Time's up for opting out");
-    return;
+    setShowConfirm(true);
   };
 
   const handleConfirmOptOut = async () => {
