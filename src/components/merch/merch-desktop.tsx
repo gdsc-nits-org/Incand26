@@ -39,6 +39,14 @@ export function MerchDesktop({
   const [showConfirm, setShowConfirm] = useState(false);
 
   const handleOptOutClick = () => {
+    if (!user) {
+      toast.error("You need to log in to opt out");
+      return;
+    }
+    if (!user.email?.endsWith("nits.ac.in")) {
+      toast.error("Opt out option only for NIT students");
+      return;
+    }
     setShowConfirm(true);
   };
 
@@ -472,11 +480,7 @@ function HeadingElement({ theme, popVariants }: SubComponentProps) {
   );
 }
 
-function ButtonsElement({
-  popVariants,
-  onOptOutClick,
-  hasOpted = true,
-}: SubComponentProps) {
+function ButtonsElement({ popVariants, onOptOutClick, hasOpted = true }: SubComponentProps) {
   const [optOutHover, setOptOutHover] = useState(false);
 
   //const [buyNowHover, setBuyNowHover] = useState(false);
