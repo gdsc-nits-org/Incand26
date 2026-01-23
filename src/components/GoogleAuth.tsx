@@ -23,6 +23,8 @@ const Login = () => {
   const [userName, setUserName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+
   useEffect(() => {
     const checkUserFirstTime = async () => {
       if (!_user) return;
@@ -53,6 +55,18 @@ const Login = () => {
     void checkUserFirstTime();
   }, [_user, userName, setUserName, router, user]);
 
+  const handleLogout = async () => {
+    try {
+      await auth.signOut();
+      setShowLogoutModal(false);
+      toast.success("Logged out successfully");
+      router.push("/");
+    } catch (error) {
+      console.error("Error logging out", error);
+      toast.error("Error logging out");
+    }
+  };
+
   if (error) {
     console.log("Firebase Error", error);
   }
@@ -82,13 +96,21 @@ const Login = () => {
   }
 
   return (
-    <ProfileCard
-      photoURL={_user.photoURL}
-      displayName={_user.displayName}
-      userName={userName}
-      firstName={firstName}
-      lastName={lastName}
-    />
+    <>
+      <ProfileCard
+        photoURL={_user.photoURL}
+        displayName={_user.displayName}
+        userName={userName}
+        firstName={firstName}
+        lastName={lastName}
+        onClick={() => setShowLogoutModal(true)}
+      />
+      <LogoutModal
+        isOpen={showLogoutModal}
+        onClose={() => setShowLogoutModal(false)}
+        onConfirm={handleLogout}
+      />
+    </>
   );
 };
 
@@ -119,6 +141,7 @@ interface UserCred {
   firstName: string | null | undefined;
   lastName: string | null | undefined;
   userName: string | null | undefined;
+  onClick?: () => void;
 }
 
 const ProfileCard: React.FC<UserCred> = ({
@@ -126,13 +149,13 @@ const ProfileCard: React.FC<UserCred> = ({
   userName,
   firstName,
   lastName,
+  onClick,
 }) => {
-  const router = useRouter();
   return (
     <section>
       <section
-        onClick={() => router.push("/merch")}
-        className="flex items-center gap-[2vw] sm:gap-[1.5vw] md:gap-[1vw]"
+        onClick={onClick}
+        className="flex cursor-pointer items-center gap-[2vw] sm:gap-[1.5vw] md:gap-[1vw]"
       >
         <div>
           {photoURL && (
@@ -152,6 +175,55 @@ const ProfileCard: React.FC<UserCred> = ({
         </div>
       </section>
     </section>
+  );
+};
+
+import { createPortal } from "react-dom";
+
+const LogoutModal = ({
+  isOpen,
+  onClose,
+  onConfirm,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  onConfirm: () => void;
+}) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
+
+  if (!isOpen || !mounted) return null;
+
+  return createPortal(
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-sm">
+      <div className="relative flex w-[90vw] max-w-md flex-col items-center gap-6 rounded-xl border-[0.3vw] border-black bg-[#751313] p-8 text-[#f5e6c8] shadow-2xl sm:border-[0.2vw]">
+        <h2 className="font-hitchcut text-3xl font-bold tracking-wider">
+          Log Out?
+        </h2>
+        <p className="text-center font-sans text-lg font-medium">
+          Are you sure you want to log out?
+        </p>
+        <div className="flex gap-4 font-sans">
+          <button
+            onClick={onClose}
+            className="rounded-full border-2 border-[#f5e6c8] bg-transparent px-6 py-2 font-bold transition-all hover:bg-[#f5e6c8] hover:text-[#751313]"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={onConfirm}
+            className="rounded-full border-2 border-[#f5e6c8] bg-[#f5e6c8] px-6 py-2 font-bold text-[#751313] transition-all hover:bg-transparent hover:text-[#f5e6c8]"
+          >
+            Confirm
+          </button>
+        </div>
+      </div>
+    </div>,
+    document.body,
   );
 };
 
