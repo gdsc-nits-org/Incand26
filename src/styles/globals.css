@@ -424,6 +424,10 @@ body {
   height:90%;
   animation: ribbonFlowBottom 30s linear infinite;
 }
+.ribbon-flow-bottom-ipad {
+  height:90%;
+  animation: ribbonFlowBottom 30s linear infinite;
+}
 
 
 

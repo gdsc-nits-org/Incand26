@@ -13,10 +13,8 @@ const GALLERY_ITEMS = [
 ];
 const BOARD_IMAGES = Array.from({ length: 15 }, (_, i) => ({
   id: i,
-  src: `/Gallery/image${i + 1}.jpg`,
+  src: `/Gallery/image${i + 1}.webp`,
 }));
-
-
 
 export function Gallery() {
   const [isPhone, setIsPhone] = useState(false);
@@ -25,26 +23,25 @@ export function Gallery() {
   const [mounted, setMounted] = useState(false);
 
   const [showWhite, setShowWhite] = useState(false);
-const [centerIndex, setCenterIndex] = useState(1);
-const [imageCenterIndex, setImageCenterIndex] = useState(1);
+  const [centerIndex, setCenterIndex] = useState(1);
+  const [imageCenterIndex, setImageCenterIndex] = useState(1);
 
-const handleNextImage = () => {
-  setImageCenterIndex((prev) => (prev + 1) % BOARD_IMAGES.length);
-};
+  const handleNextImage = () => {
+    setImageCenterIndex((prev) => (prev + 1) % BOARD_IMAGES.length);
+  };
 
-const handlePrevImage = () => {
-  setImageCenterIndex(
-    (prev) => (prev - 1 + BOARD_IMAGES.length) % BOARD_IMAGES.length
-  );
-};
+  const handlePrevImage = () => {
+    setImageCenterIndex(
+      (prev) => (prev - 1 + BOARD_IMAGES.length) % BOARD_IMAGES.length,
+    );
+  };
 
-const getBoardImage = (diff: number) => {
-  const index =
-    (imageCenterIndex + diff + BOARD_IMAGES.length) %
-    BOARD_IMAGES.length;
+  const getBoardImage = (diff: number) => {
+    const index =
+      (imageCenterIndex + diff + BOARD_IMAGES.length) % BOARD_IMAGES.length;
 
-  return BOARD_IMAGES[index] ?? BOARD_IMAGES[0];
-};
+    return BOARD_IMAGES[index] ?? BOARD_IMAGES[0];
+  };
 
   const isShortHeight =
     typeof window !== "undefined" && window.innerHeight <= 700;
@@ -201,25 +198,25 @@ const getBoardImage = (diff: number) => {
     // Phone - Vertical Stack (Added slight rotation for style)
     return {
       center: {
-        left: isShortHeight ? "18vw" : "6vw",
-        top: isShortHeight ? "11vh" : "14vh",
-        width: isShortHeight ? "73vw" : "84vw",
+        left: isShortHeight ? "17vw" : "7vw",
+        top: isShortHeight ? "24vh" : "25vh",
+        width: isShortHeight ? "140vw" : "160vw",
         opacity: 1,
         zIndex: 20,
         rotate: 0,
       },
       right: {
-        left: isShortHeight ? "37vw" : "30vw",
-        top: isShortHeight ? "47vh" : "48vh",
-        width: isShortHeight ? "58vw" : "68vw",
+        left: isShortHeight ? "42vw" : "30vw",
+        top: isShortHeight ? "53vh" : "53vh",
+        width: isShortHeight ? "105vw" : "125vw",
         opacity: 1,
         zIndex: 10,
         rotate: -20,
       },
       left: {
-        left: isShortHeight ? "37vw" : "32vw",
-        top: isShortHeight ? "-11vh" : "-8vh",
-        width: isShortHeight ? "58vw" : "68vw",
+        left: isShortHeight ? "39vw" : "29vw",
+        top: isShortHeight ? "7vh" : "7vh",
+        width: isShortHeight ? "105vw" : "125vw",
         opacity: 1,
         zIndex: 10,
         rotate: 20,
@@ -266,20 +263,19 @@ const getBoardImage = (diff: number) => {
             <img
               src="/Gallery/topringpart.svg"
               alt="Bottom Ring Part 1"
-              className=" rotate-cw absolute bottom-[80vh] left-[5vw] w-[22vw]"
+              className="rotate-cw absolute bottom-[80vh] left-[5vw] w-[22vw]"
             />
 
             <img
               src="/Gallery/topringpart.svg"
               alt="Bottom Ring Part 2"
-              className=" rotate-ccw absolute bottom-[74vh] right-[63vw] w-[18vw]"
+              className="rotate-ccw absolute right-[63vw] bottom-[74vh] w-[18vw]"
             />
           </div>
 
-
           {/* TOP RIBBON — RIVER FLOW, STARTS AFTER RING */}
           <div className="pointer-events-none absolute inset-0 z-40">
-            <div className="absolute -top-[0.3vh] left-[30vw] h-[20vh] w-[calc(100vw-30vw)] translate-y-[1px] overflow-hidden ">
+            <div className="absolute -top-[0.1vh] left-[30vw] h-[20vh] w-[calc(100vw-30vw)] translate-y-[1px] overflow-hidden">
               <div
                 className="ribbon-flow-right absolute inset-0 bg-top bg-repeat-x"
                 style={{
@@ -291,7 +287,7 @@ const getBoardImage = (diff: number) => {
               <div
                 className="ribbon-flow-right ribbon-flow-right-2 absolute inset-0 bg-top bg-repeat-x"
                 style={{
-                  backgroundImage: "url('/Gallery/ribbonupper.svg')",
+                  backgroundImage: "url('/Gallery/ribbonupper.webp')",
                   backgroundSize: "auto 100%",
                 }}
               />
@@ -303,7 +299,7 @@ const getBoardImage = (diff: number) => {
             <img
               src="/Gallery/board1.svg"
               alt="Board 1"
-              className="board-two-phase relative -left-[12vw] h-[100vh] w-[80vw]"
+              className="board-two-phase relative -left-[12vw] h-[110vh] w-[80vw]"
             />
           </div>
 
@@ -357,26 +353,24 @@ const getBoardImage = (diff: number) => {
 
                   const isInteractive = diff === 1 || diff === -1;
                   const clickHandler =
-  diff === 1
-    ? () => {
-        handleNext();       // board move
-        handleNextImage();  // image change
-      }
-    : diff === -1
-      ? () => {
-          handlePrev();       // board move
-          handlePrevImage();  // image change
-        }
-      : undefined;
-
+                    diff === 1
+                      ? () => {
+                          handleNext(); // board move
+                          handleNextImage(); // image change
+                        }
+                      : diff === -1
+                        ? () => {
+                            handlePrev(); // board move
+                            handlePrevImage(); // image change
+                          }
+                        : undefined;
 
                   // rotation stays PERFECT (do not touch)
                   let rotation = 0;
                   if (state === "left") rotation = -12;
                   if (state === "right") rotation = 16;
-  
 
-const boardImage = getBoardImage(diff)!;
+                  const boardImage = getBoardImage(diff)!;
 
                   return (
                     <motion.div
@@ -408,23 +402,59 @@ const boardImage = getBoardImage(diff)!;
                       onClick={clickHandler}
                     >
                       {/* RELATIVE WRAPPER — only for positioning image */}
-  <div className="relative w-full h-full">
-    <img
-      src="/Gallery/whiteboard.svg"
+<div className="relative h-full w-full">
+
+  {/* WHITEBOARD */}
+  <div className="relative w-full z-0">
+    <Image
+      src="/Gallery/whiteboard.webp"
       alt="White board"
-      className="h-auto w-full"
+      width={1300}
+      height={800}
+      className="w-[60vw] h-auto"
+      priority
     />
-
-    {/* Small image ON TOP */}
-    <img
-  src={boardImage.src}
-  alt="Board item"
-  className="pointer-events-none absolute top-[5%] left-1/2 w-[82%] max-w-[87%]
-             -translate-x-1/2 rounded-md shadow-lg z-20"
-/>
-
   </div>
-  
+
+{/* 🔴 BANNER RING */}
+<div
+  className={`rotate-cw pointer-events-none absolute left-[5%] z-40
+              w-[5vw] h-[5vw]`}
+  style={{
+    top:
+      diff === 1   // RIGHT banner
+        ? "42%"
+        : diff === -1 // LEFT banner (optional)
+          ? "42%"
+          : "44%",    // CENTER banner
+  }}
+>
+  <Image
+    src="/Gallery/bannerring.webp"
+    alt="Banner Ring"
+    fill
+    className="object-contain"
+    priority
+  />
+</div>
+
+
+
+  {/* SMALL IMAGE ON TOP */}
+  <div
+    className="absolute top-[4.5%] left-1/2 
+               w-[81%] h-[48%]
+               -translate-x-1/2 z-20"
+  >
+    <Image
+      src={boardImage.src}
+      alt="Board item"
+      fill
+      className="object-fill rounded-md shadow-lg pointer-events-none"
+    />
+  </div>
+
+</div>
                     </motion.div>
                   );
                 })}
@@ -446,18 +476,18 @@ const boardImage = getBoardImage(diff)!;
               </div>
 
               {/* ================= BOTTOM RIBBON (COVERS WHITE BOARDS) ================= */}
-              <div className="relative -bottom-[78vh] left-[8vw] z-40 h-[20vh] w-full overflow-hidden">
+              <div className="relative -bottom-[76vh] left-[8vw] z-40 h-[20vh] w-full overflow-hidden">
                 <div
                   className="ribbon-flow-bottom absolute inset-0 bg-bottom bg-repeat-x"
                   style={{
-                    backgroundImage: "url('/Gallery/ribbonbottom.svg')",
+                    backgroundImage: "url('/Gallery/ribbonbottom.webp')",
                     backgroundSize: "auto 100%",
                   }}
                 />
                 <div
                   className="ribbon-flow-bottom absolute inset-0 bg-bottom bg-repeat-x"
                   style={{
-                    backgroundImage: "url('/Gallery/ribbonbottom.svg')",
+                    backgroundImage: "url('/Gallery/ribbonbottom.webp')",
                     backgroundSize: "auto 100%",
                   }}
                 />
@@ -482,23 +512,36 @@ const boardImage = getBoardImage(diff)!;
             />
           </div>
 
-          {/* ================= TOP RIBBON ================= */}
-          {/* ================= TOP RIBBON (FLOWING) ================= */}
-          <div className="pointer-events-none absolute -top-[2vh] left-0 z-10 h-[12vh] w-[110vw] overflow-hidden">
-            <div className="ribbon-flow-right flex h-full">
-              <img src="/Gallery/ribbonupper.svg" className="ribbon-img" />
-              <img src="/Gallery/ribbonupper.svg" className="ribbon-img" />
-            </div>
+          {/* TOP RIBBON */}
+          <div className="pointer-events-none absolute bottom-[90vh] left-0 z-10 h-[10vh] w-[120vw] overflow-hidden">
+            <div
+              className="ribbon-flow-right h-full"
+              style={{
+                backgroundImage: "url('/Gallery/ribbonupper.webp')",
+                backgroundSize: "auto 100%",
+              }}
+            />
           </div>
 
-          {/* ================= TOP RING ================= */}
-          <div className="absolute top-[0vh] left-[50vw] z-20 w-full max-w-[68vw]">
+          {/* TOP RING */}
+          <div className="absolute left-[52vw] z-20 w-[70vw]">
+            {/* Top ring part 1 */}
             <Image
-              src="/Gallery/topringmobile.svg"
-              alt="Top Ring"
+              src="/Gallery/topringpart.svg"
+              alt="Top Ring Part 1"
               width={0}
               height={0}
-              className="h-auto w-full"
+              className="rotate-cw absolute left-[22vw] -top-[9vh] w-[55%] h-auto"
+              priority
+            />
+
+            {/* Top ring part 2 */}
+            <Image
+              src="/Gallery/topringpart.svg"
+              alt="Top Ring Part 2"
+              width={0}
+              height={0}
+              className="rotate-ccw absolute right-[30vw] -top-[9vh] w-[70%] h-auto"
               priority
             />
           </div>
@@ -552,33 +595,44 @@ const boardImage = getBoardImage(diff)!;
             </div>
           </div>
 
-          {/* ================= BOTTOM RIBBON ================= */}
-          {/* ================= BOTTOM RIBBON (FLOWING) ================= */}
-          <div className="pointer-events-none absolute top-[89vh] left-[2vw] z-10 h-[12vh] w-[100vw] overflow-hidden">
+          {/* BOTTOM RIBBON */}
+          <div className="pointer-events-none absolute top-[91vh] left-0 z-10 h-[10vh] w-[110vw] overflow-hidden">
             <div
-              className="ribbon-flow-bottom absolute inset-0 bg-bottom bg-repeat-x"
+              className="ribbon-flow-bottom-ipad absolute inset-0 bg-bottom bg-repeat-x h-[90%]"
               style={{
-                backgroundImage: "url('/Gallery/ribbonbottom.svg')",
+                backgroundImage: "url('/Gallery/ribbonbottom.webp')",
                 backgroundSize: "auto 100%",
               }}
             />
             <div
-              className="ribbon-flow-bottom absolute inset-0 bg-bottom bg-repeat-x"
+              className="ribbon-flow-bottom-ipad absolute inset-0 bg-bottom bg-repeat-x h-[90%]"
               style={{
-                backgroundImage: "url('/Gallery/ribbonbottom.svg')",
+                backgroundImage: "url('/Gallery/ribbonbottom.webp')",
                 backgroundSize: "auto 100%",
               }}
             />
           </div>
 
-          {/* ================= BOTTOM RING ================= */}
-          <div className="absolute top-[62vh] z-20 w-[40vw] max-w-[40vw]">
+          {/* BOTTOM RING */}
+          {/* BOTTOM RING (MOBILE) */}
+          <div className="pointer-events-none absolute relative right-0 left-0 z-30 flex items-center justify-center">
+            {/* Ring 1 – anti-clockwise */}
             <Image
-              src="/Gallery/circularbottomring.svg"
-              alt="Bottom Ring"
+              src="/Gallery/bottomring1.svg"
+              alt="Bottom Ring 1"
               width={0}
               height={0}
-              className="h-auto w-full"
+              className="rotate-ccw absolute top-[60vh] right-[77vw] h-auto w-[45vw]"
+              priority
+            />
+
+            {/* Ring 2 – clockwise */}
+            <Image
+              src="/Gallery/bottomring2.svg"
+              alt="Bottom Ring 2"
+              width={0}
+              height={0}
+              className="rotate-cw absolute top-[77vh] right-[58vw] h-auto w-[50vw]"
               priority
             />
           </div>
@@ -601,65 +655,132 @@ const boardImage = getBoardImage(diff)!;
           </div>
 
           {/* TOP RIBBON */}
-          <div className="pointer-events-none absolute bottom-[92vh] left-0 z-10 h-[10vh] w-[120vw] overflow-hidden">
+          <div className="pointer-events-none absolute bottom-[90vh] left-0 z-10 h-[10vh] w-[120vw] overflow-hidden">
             <div
               className="ribbon-flow-right h-full"
               style={{
-                backgroundImage: "url('/Gallery/ribbonupper.svg')",
+                backgroundImage: "url('/Gallery/ribbonupper.webp')",
                 backgroundSize: "auto 100%",
               }}
             />
           </div>
 
           {/* TOP RING */}
-          <div className="absolute top-[0vh] left-[52vw] z-20 w-[70vw]">
-            <Image
-              src="/Gallery/topringmobile.svg"
-              alt="Top Ring"
-              width={0}
-              height={0}
-              className="h-auto w-full"
-              priority
-            />
-          </div>
+          <div className="absolute left-[52vw] z-20 w-[70vw]">
+  {/* Top ring part 1 */}
+  <Image
+    src="/Gallery/topringpart.svg"
+    alt="Top Ring Part 1"
+    width={0}
+    height={0}
+    className="rotate-cw absolute left-[22vw] -top-[9vh] w-[55%] h-auto"
+    priority
+  />
+
+  {/* Top ring part 2 */}
+  <Image
+    src="/Gallery/topringpart.svg"
+    alt="Top Ring Part 2"
+    width={0}
+    height={0}
+    className="rotate-ccw absolute right-[30vw] -top-[9vh] w-[70%] h-auto"
+    priority
+  />
+</div>
+
 
           {/* ================= WHITE BANNERS (PHONE) ================= */}
           {/* REMOVED pointer-events-none, ensured items are clickable */}
-          <div className="absolute left-[10vw] z-[1]">
-            {GALLERY_ITEMS.map((item, index) => {
-              const diff = getPosition(index);
+<div className="absolute left-[10vw] z-[1]">
+  {GALLERY_ITEMS.map((item, index) => {
+    const diff = getPosition(index);
+const boardImage = getBoardImage(diff)!;
 
-              let state = "hiddenRight";
-              if (diff === 0) state = "center";
-              else if (diff === 1) state = "right";
-              else if (diff === -1) state = "left";
+    let state = "hiddenRight";
+    if (diff === 0) state = "center";
+    else if (diff === 1) state = "right";
+    else if (diff === -1) state = "left";
 
-              const clickable = diff === 1 || diff === -1;
-              const clickHandler =
-                diff === 1 ? handleNext : diff === -1 ? handlePrev : undefined;
+    const clickable = diff === 1 || diff === -1;
+    const clickHandler =
+  diff === 1
+    ? () => {
+        handleNext();       // banner move
+        handleNextImage();  // image move
+      }
+    : diff === -1
+      ? () => {
+          handlePrev();       // banner move
+          handlePrevImage();  // image move
+        }
+      : undefined;
 
-              return (
-                <motion.div
-                  key={item.id}
-                  initial="hiddenRight" // 🔥 start off-screen
-                  animate={showWhite ? state : "hiddenRight"}
-                  variants={variants}
-                  className={`absolute ${
-                    clickable
-                      ? "pointer-events-auto cursor-pointer"
-                      : "pointer-events-none"
-                  }`}
-                  onClick={clickHandler}
-                >
-                  <img
-                    src="/Gallery/whitebannermobilemiddle.svg"
-                    alt=""
-                    className="h-auto w-full"
-                  />
-                </motion.div>
-              );
-            })}
-          </div>
+    return (
+      <motion.div
+        key={item.id}
+        initial="hiddenRight"
+        animate={showWhite ? state : "hiddenRight"}
+        variants={variants}
+        className={`absolute ${
+          clickable
+            ? "pointer-events-auto cursor-pointer"
+            : "pointer-events-none"
+        }`}
+        onClick={clickHandler}
+      >
+        {/* ✅ WRAPPER (ADDED) */}
+        <div className="relative w-full">
+
+          {/* EXISTING BANNER IMAGE (UNCHANGED) */}
+          <img
+            src="/Gallery/mobilewhitebanner.webp"
+            alt=""
+            className="h-auto w-full"
+          />
+
+         {/* 🖼️ SMALL IMAGE (ADDED) */}
+<div
+  className="absolute top-[24.5%] left-1/4
+             w-[40%] h-[44%]
+             -translate-x-1/2 z-20"
+>
+  <Image
+    src={boardImage.src}
+    alt="Board item"
+    fill
+    className="object-fill pointer-events-none"
+    sizes="(max-width: 768px) 80vw, 40vw"
+    priority
+  />
+</div>
+
+
+          {/* 🔴 RING IMAGE (ADDED) */}
+          {/* 🔴 BANNER RING */}
+<div
+  className="rotate-cw pointer-events-none absolute z-40
+             w-[13vw] h-[13vw]"
+  style={{
+    left: "3%",                        // ⬅️ move horizontally
+    top: diff === 1 ? "56%" : diff===-1?"55%":"59%",   // ⬆️ move vertically (per banner)
+  }}
+>
+  <Image
+    src="/Gallery/bannerring.webp"
+    alt="Banner Ring"
+    fill
+    className="object-contain"
+    priority
+  />
+</div>
+
+
+        </div>
+      </motion.div>
+    );
+  })}
+</div>
+
 
           {/* ================= CENTER PHOTO / GALLERY (BELOW RIBBON) ================= */}
           {/* ================= CENTER PHOTO / GALLERY (PHONE) ================= */}
@@ -697,14 +818,14 @@ const boardImage = getBoardImage(diff)!;
             <div
               className="ribbon-flow-bottom absolute inset-0 bg-bottom bg-repeat-x"
               style={{
-                backgroundImage: "url('/Gallery/ribbonbottom.svg')",
+                backgroundImage: "url('/Gallery/ribbonbottom.webp')",
                 backgroundSize: "auto 100%",
               }}
             />
             <div
               className="ribbon-flow-bottom absolute inset-0 bg-bottom bg-repeat-x"
               style={{
-                backgroundImage: "url('/Gallery/ribbonbottom.svg')",
+                backgroundImage: "url('/Gallery/ribbonbottom.webp')",
                 backgroundSize: "auto 100%",
               }}
             />
