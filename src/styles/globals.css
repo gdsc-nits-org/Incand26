@@ -408,7 +408,20 @@ body {
   /* extra safety */
   image-rendering: auto;
 }
+.ribbon-flow-right-ipad {
+  height:60%;
+  animation: ribbonFlowRight 30s linear infinite;
 
+  
+  background-repeat: repeat-x;
+
+  
+  background-size: calc(800px + 20px) 100%;
+  background-position-y: center;
+
+  /* extra safety */
+  image-rendering: auto;
+}
 
 
 @keyframes ribbonFlowBottom {
@@ -425,7 +438,7 @@ body {
   animation: ribbonFlowBottom 30s linear infinite;
 }
 .ribbon-flow-bottom-ipad {
-  height:90%;
+  height:60%;
   animation: ribbonFlowBottom 30s linear infinite;
 }
 
@@ -477,14 +490,7 @@ body {
     transform: translateY(-95px) scale(0.7);
   }
 }
-.banner-stick {
-  animation: bannerTwoPhaseVertical 3s ease-out forwards;
-}
 
-.banner-board {
-  --board-offset: -140px; /* adjust once */
-  animation: bannerTwoPhaseVerticalBoard 3s ease-out forwards;
-}
 
 @keyframes bannerTwoPhaseVerticalBoard {
   0% {
@@ -558,128 +564,12 @@ body {
   transform: rotateZ(var(--r, 0deg));
 }
 
-
-
 /* BASE BOARD */
 .white-board {
   transform-style: preserve-3d;
   backface-visibility: hidden;
   transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
-
-/* CENTER */
-.white-center {
-  transform: translateZ(0) rotateY(0deg) scale(1);
-}
-
-/* RIGHT */
-.white-right {
-  transform:
-    translateZ(-80px)
-    rotateY(-42deg)
-    rotateZ(8deg)
-    scale(0.92);
-}
-
-/* LEFT */
-.white-left {
-  transform:
-    translateZ(-80px)
-    rotateY(42deg)
-    rotateZ(-8deg)
-    scale(0.92);
-}
-
-/* HIDDEN */
-.white-hidden-right {
-  transform: translateX(120vw) rotateY(-60deg) scale(0.8);
-  opacity: 0;
-}
-
-.white-hidden-left {
-  transform: translateX(-200vw) rotateY(60deg) scale(0.8);
-  opacity: 0;
-}
-
-
-.white-left {
-  animation: whiteBoardRiseLeft 2s ease-out forwards;
-  animation-delay: 3.1s;
-  transform-origin: bottom right;
-}
-
-@keyframes whiteBoardRiseLeft {
-  from {
-    transform: translateY(40px) rotate(-6deg); 
-    opacity: 0;
-  }
-  to {
-    transform: translateY(-78vh) rotate(-12deg);
-    opacity: 1;
-  }
-}
-
-
-.white-middle {
-  animation-delay: 3.3s;
-}
-
-.white-right {
-  animation: whiteBoardRiseRight 2s ease-out forwards;
-  animation-delay: 3.5s;
-  transform-origin: bottom left;
-}
-
-@keyframes whiteBoardRiseRight {
-  from {
-    transform: translateY(40px) rotate(6deg);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(-78vh) rotate(20deg);
-    opacity: 1;
-  }
-}
-
-
-@keyframes whiteBoardRise {
-  from {
-    transform: translateY(40px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(-78vh);
-    opacity: 1;
-  }
-}
-
-.white-left-active {
-  transform: translateY(-78vh) rotate(-12deg) translateX(-6vw) !important;
-  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.white-right-active {
-  transform: translateY(-78vh) rotate(12deg) translateX(6vw) !important;
-  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-
-
-.white-locked {
-  animation: none !important;
-  transition:
-    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-    width 0.9s ease,
-    opacity 0.5s ease,
-    z-index 0.3s;
-}
-
-
-
-
-
-
-
 
 @keyframes ipadBannerMove {
   
@@ -702,7 +592,7 @@ body {
   
   100% {
     transform: 
-      translate(-16vw, -20vh)
+      translate(-18vw, -22vh)
       scale(0.8)
       rotate(-18deg); 
   }
@@ -743,77 +633,11 @@ body {
   animation: ipadBannerLayerJump 3s linear forwards;
 }
 
-@layer utilities {
+
 
   
-  .white-banner {
-    @apply transition-transform transition-opacity ease-out;
+ 
 
-
-    animation: whiteBannerSlideIn 3s ease-out forwards;
-    animation-fill-mode: both; 
-  }
-
-  
-  .white-top {
-  animation-delay: 0.9s;
-  --r: 18deg;
-}
-
-.white-bottom {
-  animation-delay: 0.9s;
-  --r: -18deg;
-}
-
-.white-middle {
-  --r: 0deg;
-}
-
- @keyframes whiteBannerSlideIn {
-  0% {
-    opacity: 1;
-    transform: translateX(80vw) scale(0.95) rotate(var(--r, 0deg));
-  }
-
-  40% {
-    opacity: 1;
-    transform: translateX(80vw) scale(1) rotate(var(--r, 0deg));
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateX(15vw) scale(1) rotate(var(--r, 0deg));
-  }
-}
-
-
-}
-
-.white-banner-middle {
-  opacity: 0;
-  transform: translateX(80vw) translateY(10px) scale(0.96);
-
-  animation: whiteBannerMiddleSlide 3s ease-out forwards;
-  animation-delay: 0.9s;
-
-  will-change: transform, opacity;
-}
-@keyframes whiteBannerMiddleSlide {
-  0% {
-    opacity: 0;
-    transform: translateX(80vw) translateY(10px) scale(0.96);
-  }
-
-  50% {
-    opacity: 1;
-    transform: translateX(80vw) translateY(0) scale(1);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateX(15vw) translateY(-4px) scale(1);
-  }
-}
 
 .gallery-settle-ipad {
   animation: gallerySettleInIpad 0.05s ease-out forwards;
@@ -831,7 +655,7 @@ body {
     transform: translateY(-4%);
   }
   100% {
-    transform: translateY(-5%);
+    transform: translate(-3%,-7%);
   }
 }
 
@@ -895,130 +719,13 @@ body {
  .phone-banner-layer {
   animation: phoneBannerLayerJump 3s linear forwards;
 } 
-@layer utilities {
 
-  .m-white-banner {
-    animation: mWhiteBannerSlideIn 3s ease-out forwards;
-    animation-fill-mode: both;
-    will-change: transform, opacity;
-  }
 
-  .m-white-top {
-    animation-delay: 1.3s;
-    
-  }
 
-  .m-white-bottom {
-    animation-delay: 1.3s;
-    
-  }
 
-  .m-white-middle {
-    --r: 0deg;
-  }
 
-  @keyframes mWhiteBannerSlideIn {
-    0% {
-      opacity: 1;
-      transform: translateX(80vw) scale(0.95) rotate(var(--r, 0deg));
-    }
 
-    40% {
-      opacity: 1;
-      transform: translateX(80vw) scale(1) rotate(var(--r, 0deg));
-    }
 
-    100% {
-  transform: none;
-}
 
-  }
-}
-.m-white-banner-middle {
-  opacity: 0;
-  transform: translateX(80vw) translateY(10px) scale(0.96);
 
-  animation: mWhiteBannerMiddleSlide 3s ease-out forwards;
-  animation-delay: 1s;
 
-  will-change: transform, opacity;
-}
-
-@keyframes mWhiteBannerMiddleSlide {
-  0% {
-    opacity: 0;
-    transform: translateX(100vw) translateY(10px) scale(0.96);
-  }
-
-  50% {
-    opacity: 1;
-    transform: translateX(100vw) translateY(0) scale(1);
-  }
-
-  100% {
-  transform: none;
-}
-
-}
-@media (max-height: 700px) {
-  .m-white-banner,
-  .m-white-banner-middle {
-    transform: scale(0.8);
-  }
-}
-
-@media (max-height: 700px) {
-  .m-white-top {
-    top: -12vh !important;
-    left: 35vw !important;;
-  }
-
-  .m-white-banner-middle {
-    top: 15vh !important;
-    left:17vw;
-  }
-
-  .m-white-bottom {
-    top: 52vh !important;
-    left:36vw;
-  }
-}
-@media (max-height: 700px) {
-  .m-white-banner,
-  .m-white-banner-middle {
-    zoom: 0.9;
-  }
-}
-
-/* ===== PHONE WHITE BANNER ENTRY ===== */
-
-.white-entry-hidden {
-  transform: translateX(80vw) scale(0.95);
-  opacity: 0;
-}
-
-.white-entry-active {
-  animation: whiteBannerEntry 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-/* CRITICAL: end at transform:none */
-@keyframes whiteBannerEntry {
-  0% {
-    transform: translateX(80vw) scale(0.95);
-    opacity: 0;
-  }
-
-  60% {
-    opacity: 1;
-  }
-
-  100% {
-    transform: none;
-    opacity: 1;
-  }
-}
-
-/* phone white banners */
-.phone-white {
-  will-change: transform, left, top;
-}
