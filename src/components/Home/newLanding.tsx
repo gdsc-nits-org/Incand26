@@ -21,13 +21,13 @@ const MOBILE_CARD_CLASS = "w-40 h-56";
 
 // --- DATA ---
 const figures = [
-  { id: 1, src: "/newLanding/Frame 1000008516.png" },
-  { id: 2, src: "/newLanding/Frame 1000008515.png" },
-  { id: 3, src: "/newLanding/Frame 1000008514.png" },
-  { id: 4, src: "/newLanding/Frame 1000008512.png" },
-  { id: 5, src: "/newLanding/Frame 1000008513.png" },
-  { id: 6, src: "/newLanding/Frame 1000008511.png" },
-  { id: 7, src: "/newLanding/Frame 1000008517.png" },
+  { id: 1, src: "/newLanding/Frame_1000008516.png" },
+  { id: 2, src: "/newLanding/Frame_1000008515.png" },
+  { id: 3, src: "/newLanding/Frame_1000008514.png" },
+  { id: 4, src: "/newLanding/Frame_1000008512.png" },
+  { id: 5, src: "/newLanding/Frame_1000008513.png" },
+  { id: 6, src: "/newLanding/Frame_1000008511.png" },
+  { id: 7, src: "/newLanding/Frame_1000008517.png" },
 ];
 
 // --- SHAPE DEFINITIONS ---
