@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useState,useRef } from "react";
+import { useLayoutEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 
@@ -12,24 +12,67 @@ const GALLERY_ITEMS = [
   { id: 5, content: "Item 5" },
 ];
 const BOARD_IMAGES = [
-  { id: 0, src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image1.webp" },
-  { id: 1, src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image2.webp" },
-  { id: 2, src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image3_zb6wht.webp" },
-  { id: 3, src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image15_rxtsgr.webp" },
-  { id: 4, src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image4.webp" },
-  { id: 5, src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image5.webp" },
-  { id: 6, src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image6_flfzo3.webp" },
-  { id: 7, src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image7.webp" },
-  { id: 8, src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image8_wltuge.webp" },
-  { id: 9, src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image9.webp" },
-  { id: 10, src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image10_dtynzl.webp" },
-  { id: 11, src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image11.webp" },
-  { id: 12, src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image12.webp" },
-  { id: 13, src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image13_fi9e1i.webp" },
-  { id: 14, src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image14_srfwz8.webp" },
+  {
+    id: 0,
+    src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image1.webp",
+  },
+  {
+    id: 1,
+    src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image2.webp",
+  },
+  {
+    id: 2,
+    src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image3_zb6wht.webp",
+  },
+  {
+    id: 3,
+    src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image15_rxtsgr.webp",
+  },
+  {
+    id: 4,
+    src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image4.webp",
+  },
+  {
+    id: 5,
+    src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image5.webp",
+  },
+  {
+    id: 6,
+    src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image6_flfzo3.webp",
+  },
+  {
+    id: 7,
+    src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image7.webp",
+  },
+  {
+    id: 8,
+    src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image8_wltuge.webp",
+  },
+  {
+    id: 9,
+    src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image9.webp",
+  },
+  {
+    id: 10,
+    src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image10_dtynzl.webp",
+  },
+  {
+    id: 11,
+    src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image11.webp",
+  },
+  {
+    id: 12,
+    src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image12.webp",
+  },
+  {
+    id: 13,
+    src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image13_fi9e1i.webp",
+  },
+  {
+    id: 14,
+    src: "https://res.cloudinary.com/dysisk9kx/image/upload/f_auto,q_auto,w_900/image14_srfwz8.webp",
+  },
 ];
-
-
 
 export function Gallery() {
   const isFirstAppearance = useRef(true);
@@ -37,11 +80,10 @@ export function Gallery() {
   const [isIpad, setIsIpad] = useState(false);
   const [isLap, setIsLap] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const[showWhite,setShowWhite]=useState(false);
+  const [showWhite, setShowWhite] = useState(false);
   const [imageCenterIndex, setImageCenterIndex] = useState(1);
   const [photoStarted, setPhotoStarted] = useState(false);
   const [whiteIntroDone, setWhiteIntroDone] = useState(false);
-
 
   const handleNextImage = () => {
     setImageCenterIndex((prev) => (prev + 1) % BOARD_IMAGES.length);
@@ -59,11 +101,12 @@ export function Gallery() {
     return BOARD_IMAGES[index] ?? BOARD_IMAGES[0];
   };
 
-  const isShortHeight =typeof window !== "undefined" && window.innerHeight <= 700;
+  const isShortHeight =
+    typeof window !== "undefined" && window.innerHeight <= 700;
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleNext = () => {
-   setCurrentIndex((prev) => (prev + 1) % GALLERY_ITEMS.length);
+    setCurrentIndex((prev) => (prev + 1) % GALLERY_ITEMS.length);
   };
 
   const handlePrev = () => {
@@ -147,14 +190,14 @@ export function Gallery() {
           opacity: 0,
         },
         hiddenBottom: {
-          left: "37vw",      
-          top: "120vh",      
+          left: "37vw",
+          top: "120vh",
           width: "35vw",
           opacity: 0,
           zIndex: 0,
-        }
-      };  
-    }  
+        },
+      };
+    }
     if (isIpad) {
       return {
         center: {
@@ -321,7 +364,7 @@ export function Gallery() {
                   priority
                 />
               </div>
-              
+
               <div className="banner-z-jump absolute inset-0 z-30">
                 <Image
                   src="/Gallery/board2part2.svg"
@@ -332,7 +375,7 @@ export function Gallery() {
                   priority
                 />
               </div>
-              </motion.div>
+            </motion.div>
           </div>
 
           <div className="pointer-events-none absolute inset-0 z-20">
@@ -355,12 +398,12 @@ export function Gallery() {
                   const clickHandler =
                     diff === 1
                       ? () => {
-                          handleNext(); 
-                          handleNextImage(); 
+                          handleNext();
+                          handleNextImage();
                         }
                       : diff === -1
                         ? () => {
-                            handlePrev(); 
+                            handlePrev();
                             handlePrevImage();
                           }
                         : undefined;
@@ -379,18 +422,20 @@ export function Gallery() {
                           ? {
                               duration: 2.5,
                               ease: [0.22, 1, 0.36, 1],
-                              delay: 2.4, 
+                              delay: 2.4,
                             }
                           : {
                               duration: 0.3,
-                              ease: "easeOut", 
+                              ease: "easeOut",
                             }
                       }
                       onAnimationComplete={() => {
                         isFirstAppearance.current = false;
                       }}
                       className={`white-board absolute ${
-                        isInteractive ? "pointer-events-auto cursor-pointer" : ""
+                        isInteractive
+                          ? "pointer-events-auto cursor-pointer"
+                          : ""
                       }`}
                       style={{
                         rotate: rotation,
@@ -416,11 +461,7 @@ export function Gallery() {
                           className={`rotate-cw pointer-events-none absolute left-[5%] z-40 h-[5vw] w-[5vw]`}
                           style={{
                             top:
-                              diff === 1 
-                                ? "42%"
-                                : diff === -1 
-                                  ? "42%"
-                                  : "44%",
+                              diff === 1 ? "42%" : diff === -1 ? "42%" : "44%",
                           }}
                         >
                           <Image
@@ -438,7 +479,7 @@ export function Gallery() {
                             src={boardImage.src}
                             alt="Board item"
                             fill
-                            className="pointer-events-none  object-fill shadow-lg"
+                            className="pointer-events-none object-fill shadow-lg"
                           />
                         </div>
                       </div>
@@ -544,13 +585,13 @@ export function Gallery() {
               const clickHandler =
                 diff === 1
                   ? () => {
-                      handleNext(); 
-                      handleNextImage(); 
+                      handleNext();
+                      handleNextImage();
                     }
                   : diff === -1
                     ? () => {
-                        handlePrev(); 
-                        handlePrevImage(); 
+                        handlePrev();
+                        handlePrevImage();
                       }
                     : undefined;
 
@@ -562,11 +603,11 @@ export function Gallery() {
                   variants={variants}
                   transition={
                     whiteIntroDone
-                      ? { duration: 0.3 } 
+                      ? { duration: 0.3 }
                       : {
                           duration: 1,
                           ease: [0.22, 1, 0.36, 1],
-                          delay: 2, 
+                          delay: 2,
                         }
                   }
                   onAnimationComplete={() => {
@@ -579,7 +620,6 @@ export function Gallery() {
                   }`}
                   onClick={clickHandler}
                 >
-
                   <div className="relative w-full">
                     <img
                       src="/Gallery/mobilewhitebanner.webp"
@@ -599,13 +639,12 @@ export function Gallery() {
                       />
                     </div>
 
-
                     {/*BANNER RING */}
                     <div
                       className="rotate-cw pointer-events-none absolute z-40 h-[9vh] w-[9vw]"
                       style={{
                         left: "2%", // ⬅️ move horizontally
-                        top: diff === 1 ? "52%" : diff === -1 ? "52%" : "56%", 
+                        top: diff === 1 ? "52%" : diff === -1 ? "52%" : "56%",
                       }}
                     >
                       <Image
@@ -657,14 +696,14 @@ export function Gallery() {
           {/* BOTTOM RIBBON */}
           <div className="pointer-events-none absolute top-[88vh] left-0 z-10 h-[20vh] w-[110vw] overflow-hidden">
             <div
-              className="ribbon-flow-bottom-ipad absolute inset-0  bg-bottom bg-repeat-x"
+              className="ribbon-flow-bottom-ipad absolute inset-0 bg-bottom bg-repeat-x"
               style={{
                 backgroundImage: "url('/Gallery/ribbonbottom.webp')",
                 backgroundSize: "auto 100%",
               }}
             />
             <div
-              className="ribbon-flow-bottom-ipad absolute inset-0  bg-bottom bg-repeat-x"
+              className="ribbon-flow-bottom-ipad absolute inset-0 bg-bottom bg-repeat-x"
               style={{
                 backgroundImage: "url('/Gallery/ribbonbottom.webp')",
                 backgroundSize: "auto 100%",
@@ -673,7 +712,7 @@ export function Gallery() {
           </div>
 
           {/* BOTTOM RING */}
-          <div className="pointer-events-none absolute  right-0 left-0 z-30 flex items-center justify-center">
+          <div className="pointer-events-none absolute right-0 left-0 z-30 flex items-center justify-center">
             {/* Ring 1 – anti-clockwise */}
             <Image
               src="/Gallery/bottomring1.svg"
@@ -757,13 +796,13 @@ export function Gallery() {
               const clickHandler =
                 diff === 1
                   ? () => {
-                      handleNext(); 
-                      handleNextImage(); 
+                      handleNext();
+                      handleNextImage();
                     }
                   : diff === -1
                     ? () => {
-                        handlePrev(); 
-                        handlePrevImage(); 
+                        handlePrev();
+                        handlePrevImage();
                       }
                     : undefined;
 
@@ -775,11 +814,11 @@ export function Gallery() {
                   variants={variants}
                   transition={
                     whiteIntroDone
-                      ? { duration: 0.3 } 
+                      ? { duration: 0.3 }
                       : {
                           duration: 1.2,
                           ease: [0.22, 1, 0.36, 1],
-                          delay: 2.5, 
+                          delay: 2.5,
                         }
                   }
                   onAnimationComplete={() => {
@@ -815,8 +854,8 @@ export function Gallery() {
                     <div
                       className="rotate-cw pointer-events-none absolute z-40 h-[11vh] w-[11vw]"
                       style={{
-                        left: "3%", 
-                        top: diff === 1 ? "51%" : diff === -1 ? "51%" : "55%", 
+                        left: "3%",
+                        top: diff === 1 ? "51%" : diff === -1 ? "51%" : "55%",
                       }}
                     >
                       <Image
@@ -833,17 +872,15 @@ export function Gallery() {
             })}
           </div>
 
-
           {/*CENTER PHOTO*/}
           <div className="phone-banner-layer pointer-events-none relative z-[5] flex h-screen items-center justify-center">
-
             <motion.div
               className="photo-gallery-group phone-banner-anim relative bottom-[40vh] left-[28vw] aspect-[3/2] w-[95vw] max-w-[1200px]"
               initial={{ y: 0 }}
               animate={{ y: "-40vh" }}
               transition={{ duration: 2.8, ease: "easeInOut" }}
               onAnimationStart={() => {
-                setShowWhite(true); 
+                setShowWhite(true);
               }}
             >
               {/* PHOTO */}
@@ -869,8 +906,7 @@ export function Gallery() {
                   priority
                 />
               </div>
-              </motion.div>
-            
+            </motion.div>
           </div>
 
           {/* BOTTOM RIBBON */}
@@ -893,7 +929,6 @@ export function Gallery() {
 
           {/* BOTTOM RING */}
           <div className="pointer-events-none absolute right-0 left-0 z-30 flex items-center justify-center">
-
             <Image
               src="/Gallery/bottomring1.svg"
               alt="Bottom Ring 1"
@@ -902,7 +937,6 @@ export function Gallery() {
               className="rotate-ccw absolute -top-[33vh] right-[70vw] h-auto w-[60vw]"
               priority
             />
-
 
             <Image
               src="/Gallery/bottomring2.svg"
