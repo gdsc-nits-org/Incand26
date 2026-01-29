@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import Login from "../GoogleAuth";
+import Link from "next/link";
 
 // Define the shape of a trail segment
 interface TrailSegment {
@@ -113,6 +114,33 @@ export default function Landing() {
       className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-cover bg-center"
       style={{ backgroundImage: `url('${bgImage}')` }}
     >
+      <Link
+        href="/events"
+        className="absolute bottom-8 left-8 z-100 flex animate-[wiggle_2.5s_ease-in-out_infinite] cursor-pointer items-center justify-center overflow-hidden rounded-full border-3 border-black bg-[#6b1f1f] px-4 py-2 text-[0.125rem] tracking-widest text-[#fff2cc] shadow-lg hover:scale-105 lg:px-10 lg:py-4"
+      >
+        {/* LEFT END DESIGN */}
+        <div>
+          <img
+            src="https://res.cloudinary.com/dsaaxuphe/image/upload/v1766330315/Group_48096168_ufcdsb.webp"
+            alt=""
+            className="absolute top-[-0.125rem] left-[0.125rem] h-full rotate-180 opacity-90"
+          />
+        </div>
+
+        {/* TEXT */}
+        <span className="tracking-0.18em relative z-70 w-full text-lg">
+          Explore Events
+        </span>
+
+        {/* RIGHT END DESIGN */}
+        <div>
+          <img
+            src="https://res.cloudinary.com/dsaaxuphe/image/upload/v1766330315/Group_48096168_ufcdsb.webp"
+            alt=""
+            className="absolute top-[0.125rem] right-[-0.125rem] h-full"
+          />
+        </div>
+      </Link>
       <div className="absolute top-[3vh] right-[2.5vw] flex cursor-pointer flex-col items-center gap-[4vh] sm:top-[7vh] sm:right-[3.5vw] md:top-[9vh] md:right-[4.5vw] lg:top-[10vh] lg:right-[5vw]">
         <div className={`z-20`}>
           <div

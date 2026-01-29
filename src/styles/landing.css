@@ -52,6 +52,7 @@
 body {
   background: #001a2c;
   margin: 0;
-  overflow: hidden;
-  height: 100dvh;
+  overflow-x: hidden; 
+  overflow-y: auto;
+  min-height: 100dvh;
 }
