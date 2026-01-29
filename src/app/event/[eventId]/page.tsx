@@ -105,6 +105,7 @@ export default function EventPoster() {
             alt="Event"
             fill
             className="object-cover"
+            objectPosition="top"
             priority
           />
         </div>
@@ -180,7 +181,7 @@ export default function EventPoster() {
           className={`col-span-4 col-start-4 row-span-1 row-start-20 flex items-center justify-center sm:col-span-4 sm:col-start-11 sm:row-start-10 ${
             isAlternateTheme
               ? "border border-white bg-amber-950 text-white"
-              : "bg-[#FFF8EC] text-white"
+              : "bg-[#FFF8EC] text-white border md:border-0 border-black"
           }`}
         >
           <button
@@ -200,7 +201,7 @@ export default function EventPoster() {
           className={`col-span-3 col-start-2 row-span-1 row-start-22 flex items-center justify-center sm:col-span-2 sm:col-start-2 sm:row-start-10 ${
             isAlternateTheme
               ? "border border-white bg-amber-950 text-white"
-              : "bg-[#FFF8EC] text-white"
+              : "bg-[#FFF8EC] text-white border md:border-0 border-black"
           }`}
         >
           <button
@@ -220,7 +221,7 @@ export default function EventPoster() {
           className={`col-span-3 col-start-7 row-start-22 flex items-center justify-center sm:col-span-2 sm:col-start-18 sm:row-start-10 ${
             isAlternateTheme
               ? "border border-white bg-amber-950 text-white"
-              : "bg-[#FFF8EC] text-white"
+              : "bg-[#FFF8EC] text-white border md:border-0 border-black"
           }`}
         >
           <button
