@@ -116,7 +116,7 @@ export default function Landing() {
     >
       <Link
         href="/events"
-        className="absolute bottom-8 left-8 z-100 flex animate-[wiggle_2.5s_ease-in-out_infinite] cursor-pointer items-center justify-center overflow-hidden rounded-full border-3 border-black bg-[#6b1f1f] px-4 py-2 text-[0.125rem] tracking-widest text-[#fff2cc] shadow-lg hover:scale-105 lg:px-10 lg:py-4"
+        className="absolute bottom-[10vh] left-8 z-100 flex animate-[wiggle_2.5s_ease-in-out_infinite] cursor-pointer items-center justify-center overflow-hidden rounded-full border-3 border-black bg-[#6b1f1f] px-4 py-2 text-[0.125rem] tracking-widest text-[#fff2cc] shadow-lg hover:scale-105 lg:px-10 lg:py-4"
       >
         {/* LEFT END DESIGN */}
         <div>
