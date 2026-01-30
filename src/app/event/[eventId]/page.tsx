@@ -181,7 +181,7 @@ export default function EventPoster() {
           className={`col-span-4 col-start-4 row-span-1 row-start-20 flex items-center justify-center sm:col-span-4 sm:col-start-11 sm:row-start-10 ${
             isAlternateTheme
               ? "border border-white bg-amber-950 text-white"
-              : "bg-[#FFF8EC] text-white border md:border-0 border-black"
+              : "border border-black bg-[#FFF8EC] text-white md:border-0"
           }`}
         >
           <button
@@ -201,7 +201,7 @@ export default function EventPoster() {
           className={`col-span-3 col-start-2 row-span-1 row-start-22 flex items-center justify-center sm:col-span-2 sm:col-start-2 sm:row-start-10 ${
             isAlternateTheme
               ? "border border-white bg-amber-950 text-white"
-              : "bg-[#FFF8EC] text-white border md:border-0 border-black"
+              : "border border-black bg-[#FFF8EC] text-white md:border-0"
           }`}
         >
           <button
@@ -221,7 +221,7 @@ export default function EventPoster() {
           className={`col-span-3 col-start-7 row-start-22 flex items-center justify-center sm:col-span-2 sm:col-start-18 sm:row-start-10 ${
             isAlternateTheme
               ? "border border-white bg-amber-950 text-white"
-              : "bg-[#FFF8EC] text-white border md:border-0 border-black"
+              : "border border-black bg-[#FFF8EC] text-white md:border-0"
           }`}
         >
           <button
@@ -270,7 +270,8 @@ export default function EventPoster() {
                 isAlternateTheme ? "text-white/70" : "text-amber-700"
               }`}
             >
-              The registration link for this event is not live yet. Please check back later!
+              The registration link for this event is not live yet. Please check
+              back later!
             </p>
             <button
               onClick={() => setShowModal(false)}

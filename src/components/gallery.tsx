@@ -479,7 +479,8 @@ export function Gallery() {
                             src={boardImage.src}
                             alt="Board item"
                             fill
-                            className="pointer-events-none object-fill shadow-lg"
+                            className="pointer-events-none object-cover shadow-lg"
+                            objectPosition="center"
                           />
                         </div>
                       </div>

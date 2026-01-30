@@ -5,22 +5,27 @@ import { useRouter } from "next/navigation";
 import CardHover from "./CardHover";
 import eventsData from "../../data/event.json";
 
-const UPPER_CARD_IMAGE = "https://res.cloudinary.com/dig1vxljf/image/upload/v1768216195/Component_96_fjlycb.webp";
-const LOWER_CARD_IMAGE = "https://res.cloudinary.com/dig1vxljf/image/upload/v1768216273/Component_96_1_uapuri.webp";
+const UPPER_CARD_IMAGE =
+  "https://res.cloudinary.com/dig1vxljf/image/upload/v1768216195/Component_96_fjlycb.webp";
+const LOWER_CARD_IMAGE =
+  "https://res.cloudinary.com/dig1vxljf/image/upload/v1768216273/Component_96_1_uapuri.webp";
 
 const STYLES = {
   day1: {
-    bgImage: "https://res.cloudinary.com/dig1vxljf/image/upload/v1768213636/Frame_1000008510_qiglnj.png",
+    bgImage:
+      "https://res.cloudinary.com/dig1vxljf/image/upload/v1768213636/Frame_1000008510_qiglnj.png",
     alt: "Day 1 Style",
     paddingClass: "pt-48 pb-32",
   },
   day2: {
-    bgImage: "https://res.cloudinary.com/dig1vxljf/image/upload/v1768214357/Frame_1000008506_jbkk6e.png",
+    bgImage:
+      "https://res.cloudinary.com/dig1vxljf/image/upload/v1768214357/Frame_1000008506_jbkk6e.png",
     alt: "Day 2 Style",
     paddingClass: "pt-32 pb-20 sm:pt-64 sm:pb-32",
   },
   day3: {
-    bgImage: "https://res.cloudinary.com/dig1vxljf/image/upload/v1768214482/Frame_1000008509_g8ykxh.png",
+    bgImage:
+      "https://res.cloudinary.com/dig1vxljf/image/upload/v1768214482/Frame_1000008509_g8ykxh.png",
     alt: "Day 3 Style",
     paddingClass: "pt-32 pb-32 sm:pt-64 sm:pb-10",
   },
@@ -59,7 +64,7 @@ const DayEvents = () => {
         {eventRows.map((rowEvents, index) => {
           const isFirst = index === 0;
           const isLast = index === eventRows.length - 1;
-          
+
           let config;
           if (isLast) {
             config = STYLES.day3;
@@ -68,8 +73,8 @@ const DayEvents = () => {
           }
 
           return (
-            <div 
-              key={`row-${index}`} 
+            <div
+              key={`row-${index}`}
               className={`relative w-full ${!isFirst ? "-mt-20 sm:-mt-40" : ""}`}
             >
               <div className="absolute inset-0 z-0 hidden sm:block">
@@ -81,16 +86,20 @@ const DayEvents = () => {
                 />
               </div>
 
-              <div className={`mx-auto max-w-7xl px-4 ${isFirst ? "pt-70 pb-20 sm:pt-48 sm:pb-32" : config.paddingClass}`}>
-                <div className={
-                  isLast 
-                    ? "flex flex-wrap justify-center gap-8" 
-                    : "grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4"
-                }>
+              <div
+                className={`mx-auto max-w-7xl px-4 ${isFirst ? "pt-70 pb-20 sm:pt-48 sm:pb-32" : config.paddingClass}`}
+              >
+                <div
+                  className={
+                    isLast
+                      ? "flex flex-wrap justify-center gap-8"
+                      : "grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4"
+                  }
+                >
                   {rowEvents.map((event) => (
-                    <div 
+                    <div
                       key={event.id}
-                      className={`flex justify-center ${isLast ? "w-full sm:w-72 lg:w-1/5 min-w-[260px]" : ""}`}
+                      className={`flex justify-center ${isLast ? "w-full min-w-[260px] sm:w-72 lg:w-1/5" : ""}`}
                     >
                       <CardHover
                         upperImage={UPPER_CARD_IMAGE}

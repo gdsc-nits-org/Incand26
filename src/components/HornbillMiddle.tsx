@@ -24,10 +24,10 @@ const Letter = ({
   isPhone,
   className,
 }: LetterProps) => {
-  let sizeClass = "h-[16vh] w-[8vw]";
+  let sizeClass = "h-[14vh] w-[9vw] scale-[1.05] ";
 
   if (isIpad) {
-    sizeClass = "h-[6.5vh] w-[10vw]";
+    sizeClass = "h-[6.5vh] w-[10vw] ";
   }
 
   if (isPhone) {
@@ -167,8 +167,11 @@ export default function HornbillMiddle() {
         <section className="relative flex min-h-screen w-full justify-center overflow-x-hidden bg-[#f6eddc] py-14">
           {/* ===== ONE GLOBAL WRAPPER ===== */}
           <div className="relative top-[4vh] right-[2vw] flex scale-[0.9] flex-col items-center">
+            {/* --- SUN  --- */}
+            <div className="absolute top-[3vh] left-1/2 h-[60vh] w-[60vh] -translate-x-1/2 rounded-full bg-white" />
+
             {/* ================= Hornbill (TOP) ================= */}
-            <div className="relative mb-[3vh]">
+            <div className="relative -right-[1.6vw] mb-[3vh]">
               <div className="relative -top-[9vh] left-[1.7vw] h-[20vh] w-[20vw]">
                 <div
                   ref={headRef}
@@ -232,7 +235,7 @@ export default function HornbillMiddle() {
             {/* ================= TEXT BLOCK ================= */}
             <div className="relative left-[0.5vw] flex items-start">
               {/* LEFT: INCAND */}
-              <div className="flex flex-col gap-[3.2vh]">
+              <div className="flex flex-col gap-[5vh]">
                 <div className="flex origin-left scale-[1] items-end gap-[0.3vw]">
                   <div className="translate-x-[2vw]">
                     <Letter
@@ -348,14 +351,14 @@ export default function HornbillMiddle() {
               </div>
 
               {/* RIGHT: 2026 */}
-              <div className="group relative right-[6vw] cursor-pointer">
+              <div className="group relative -top-[1.2vh] right-[8vw] scale-[0.97] cursor-pointer">
                 {/* NORMAL 2026 */}
                 <Image
                   src="/Hornbill/title2.svg"
                   alt="2026"
                   width={0}
                   height={0}
-                  className="h-[33.5vh] w-auto transition-all duration-200 group-hover:scale-[0.96] group-hover:opacity-0"
+                  className="h-[33.5vh] w-auto transition-all duration-200 group-hover:scale-[0.6] group-hover:opacity-0"
                 />
 
                 {/* ANIMATED 2026 (hover) */}
@@ -397,7 +400,7 @@ export default function HornbillMiddle() {
               </div>
 
               {/* RIGHT BIRDS (2) */}
-              <div className="relative top-[2vh] left-[57vw] flex gap-[0.5vw]">
+              <div className="relative top-[1vh] left-[65vw] flex gap-[0.5vw]">
                 <Image
                   src="/Hornbill/bird5.svg"
                   alt="Flying birds right 1"
@@ -431,6 +434,9 @@ export default function HornbillMiddle() {
         <section className="relative flex min-h-screen w-full justify-center overflow-x-hidden bg-[#f6eddc] py-14">
           {/* ===== ONE GLOBAL WRAPPER ===== */}
           <div className="relative top-[4vh] right-[2vw] flex scale-[0.9] flex-col items-center">
+            {/* --- SUN --- */}
+            <div className="absolute top-[18vh] left-1/2 h-[38vh] w-[38vh] -translate-x-1/2 rounded-full bg-white" />
+
             {/* ================= Hornbill (TOP) ================= */}
             <div className="relative mb-[3vh]">
               <div className="relative -top-[9vh] -left-[3.8vw] h-[20vh] w-[20vw] scale-[1]">
@@ -696,6 +702,9 @@ export default function HornbillMiddle() {
         <section className="relative flex min-h-screen w-full justify-center overflow-x-hidden bg-[#f6eddc] py-14">
           {/* ===== ONE GLOBAL WRAPPER ===== */}
           <div className="relative top-[4vh] right-[2vw] flex scale-[0.9] flex-col items-center">
+            {/* --- SUN --- */}
+            <div className="absolute top-[22vh] left-1/2 h-[28vh] w-[28vh] -translate-x-1/2 rounded-full bg-white" />
+
             {/* ================= Hornbill (TOP) ================= */}
             <div className="relative mb-[3vh]">
               <div className="relative -top-[6vh] -left-[0.8vw] h-[20vh] w-[20vw] scale-[0.9]">

@@ -473,7 +473,11 @@ function HeadingElement({ theme, popVariants }: SubComponentProps) {
   );
 }
 
-function ButtonsElement({ popVariants, onOptOutClick, hasOpted = true }: SubComponentProps) {
+function ButtonsElement({
+  popVariants,
+  onOptOutClick,
+  hasOpted = true,
+}: SubComponentProps) {
   const [optOutHover, setOptOutHover] = useState(false);
 
   //const [buyNowHover, setBuyNowHover] = useState(false);

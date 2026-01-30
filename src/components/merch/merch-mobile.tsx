@@ -414,7 +414,7 @@ export function MerchMobile({
                 />
               ) : (
                 <div className="flex h-[50px] w-full items-center justify-center rounded-full border-2 border-dashed border-gray-400 bg-gray-50/50">
-                  <span className="font-hitchcut pt-1 text-base px-3 tracking-widest text-gray-600">
+                  <span className="font-hitchcut px-3 pt-1 text-base tracking-widest text-gray-600">
                     ALREADY OPTED OUT
                   </span>
                 </div>
