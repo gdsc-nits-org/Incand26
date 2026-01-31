@@ -1,13 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import RamanText from "~/components/Nirvana/raman";
 import TabaChake from "~/components/Nirvana/tabaChake";
 import NegiText from "~/components/Nirvana/negi";
 
 const Nirvana = () => {
-  // --- Shared Logic ---
   const [active, setActive] = useState(false);
   const [showGif, setShowGif] = useState(false);
   const [showNirvana, setShowNirvana] = useState(false);
@@ -39,10 +38,10 @@ const Nirvana = () => {
 
   return (
     <div className="relative h-screen w-full overflow-hidden bg-black">
-      {/* --- MOBILE VIEW --- */}
+      {/* MOBILE VIEW*/}
 
       <div className="relative flex h-screen w-full flex-col overflow-hidden lg:hidden">
-        {/* UPPER HALF - NO CHANGES */}
+        {/* UPPER HALF*/}
         <motion.div
           onClick={() => setMobileView("upper")}
           animate={{
@@ -69,7 +68,7 @@ const Nirvana = () => {
             className="object-cover"
           />
 
-          {/* --- GIF: Adjusted top for connector visibility --- */}
+          {/* GIF */}
           <motion.div
             className="pointer-events-none absolute z-20 mt-120 ml-40"
             initial={false}
@@ -77,7 +76,6 @@ const Nirvana = () => {
               width: "280%",
               height: "230%",
               left: "-125%",
-              // Brought slightly up in split view to be seen in the connector area
               top: mobileView === "upper" ? "-25%" : "-125%",
               opacity: mobileView === "lower" ? 0 : 1,
               scale: mobileView === "upper" ? 1.2 : 1,
@@ -125,7 +123,7 @@ const Nirvana = () => {
           </div>
         </motion.div>
 
-        {/* --- UPDATED CONNECTOR: Clean Image, Full Width, No Styles --- */}
+        {/*CONNECTOR SECTION*/}
         <motion.div
           initial={false}
           animate={{
@@ -141,23 +139,23 @@ const Nirvana = () => {
             e.stopPropagation();
             setMobileView("split");
           }}
-          className="absolute right-[-20%] left-[-20%] z-50 flex h-24 -translate-y-1/2 -skew-y-[8deg] cursor-pointer items-center justify-center bg-transparent"
+          className="absolute right-[-20%] left-[-20%] z-50 flex h-45 -translate-y-1/2 -skew-y-[8deg] cursor-pointer items-center justify-center bg-transparent"
         >
           <motion.div
             animate={{ skewY: "8deg" }}
-            className="flex h-20 w-full justify-center"
+            className="flex h-45 w-full justify-center"
           >
             <Image
               src="https://res.cloudinary.com/dig1vxljf/image/upload/v1769838082/Frame_1000008537_2_cdz0g9.png"
               alt="Connector"
-              width={1000} // Increased for full width detail
+              width={1000}
               height={200}
               className="object-contain"
             />
           </motion.div>
         </motion.div>
 
-        {/* LOWER HALF - Margin Fix & Man Logic Preserved */}
+        {/* LOWER HALF */}
         <motion.div
           onClick={() => setMobileView("lower")}
           animate={{
@@ -167,7 +165,6 @@ const Nirvana = () => {
                 : mobileView === "upper"
                   ? "0vh"
                   : "50vh",
-            // Brought lower to cover the gap
             marginTop: mobileView === "split" ? "0vh" : "0vh",
           }}
           transition={{ type: "spring", stiffness: 100, damping: 20 }}
@@ -180,14 +177,15 @@ const Nirvana = () => {
             className="object-cover"
           />
 
+          {/* MAN */}
           <motion.div
             className="pointer-events-none absolute bottom-0 z-20"
             initial={false}
             animate={{
-              width: "280%",
-              right: "-85%",
-              opacity: mobileView === "lower" ? 1 : 0,
-              y: mobileView === "lower" ? 0 : 50,
+              width: mobileView === "lower" ? "280%" : "260%",
+              right: mobileView === "lower" ? "-85%" : "-65%",
+              opacity: mobileView === "upper" ? 0 : 1,
+              y: mobileView === "lower" ? 0 : 180,
               scale: mobileView === "lower" ? 1.1 : 1,
             }}
             transition={{ type: "spring", stiffness: 80, damping: 15 }}
@@ -234,9 +232,7 @@ const Nirvana = () => {
           </div>
         </motion.div>
       </div>
-      {/* ================================================================
-          DESKTOP VIEW (lg:flex) - Original functionality preserved
-          ================================================================ */}
+      {/* DESKTOP VIEW (lg:flex) */}
       <div className="relative hidden h-full w-full lg:flex">
         <div
           className={`absolute top-5 left-10 z-150 transition-all duration-500 ${
@@ -327,7 +323,7 @@ const Nirvana = () => {
         </div>
 
         <div
-          className={`absolute inset-y-0 left-1/2 z-[100] w-[6%] -translate-x-1/2 transition-all duration-500 ${
+          className={`absolute inset-y-0 left-1/2 z-100 w-[6%] -translate-x-1/2 transition-all duration-500 ${
             showNirvana
               ? "translate-y-0 scale-100 opacity-100"
               : "-translate-y-20 scale-50 opacity-0"
