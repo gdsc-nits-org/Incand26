@@ -42,7 +42,7 @@ const Nirvana = () => {
       {/* --- MOBILE VIEW --- */}
 
       <div className="relative flex h-screen w-full flex-col overflow-hidden lg:hidden">
-        {/* UPPER HALF */}
+        {/* UPPER HALF - NO CHANGES */}
         <motion.div
           onClick={() => setMobileView("upper")}
           animate={{
@@ -69,17 +69,16 @@ const Nirvana = () => {
             className="object-cover"
           />
 
-          {/* --- EVEN BIGGER MASSIVE GIF --- */}
+          {/* --- GIF: Adjusted top for connector visibility --- */}
           <motion.div
             className="pointer-events-none absolute z-20 mt-120 ml-40"
             initial={false}
             animate={{
-              // Extreme dimensions: 350% width for massive immersion
               width: "280%",
               height: "230%",
-              // Centering for extreme width
               left: "-125%",
-              top: mobileView === "upper" ? "-30%" : "-50%",
+              // Brought slightly up in split view to be seen in the connector area
+              top: mobileView === "upper" ? "-25%" : "-125%",
               opacity: mobileView === "lower" ? 0 : 1,
               scale: mobileView === "upper" ? 1.2 : 1,
             }}
@@ -95,7 +94,6 @@ const Nirvana = () => {
             />
           </motion.div>
 
-          {/* TabaChake Text Component */}
           <div
             className={`absolute top-12 left-6 z-30 origin-top-left transition-all duration-700 ${
               mobileView === "upper"
@@ -106,29 +104,28 @@ const Nirvana = () => {
             <TabaChake show={mobileView === "upper"} />
           </div>
 
-          {/* BACK BUTTON (Upper Section) */}
           <div
             onClick={(e) => {
               e.stopPropagation();
               setMobileView("split");
             }}
-            className={`absolute top-6 right-6 z-50 h-12 w-12 cursor-pointer transition-opacity duration-500 ${
+            className={`absolute bottom-1 left-[20%] z-50 h-30 w-[70%] cursor-pointer transition-opacity duration-500 ${
               mobileView === "upper"
                 ? "opacity-100"
                 : "pointer-events-none opacity-0"
             }`}
           >
             <Image
-              src="https://res.cloudinary.com/dig1vxljf/image/upload/v1769779575/Frame_1000008537_1_ydeewf.png"
+              src="https://res.cloudinary.com/dig1vxljf/image/upload/v1769837212/Back_2_kqxo79.png"
               alt="Back"
-              width={48}
-              height={48}
-              className="drop-shadow-lg"
+              width={600}
+              height={600}
+              className="object-contain"
             />
           </div>
         </motion.div>
 
-        {/* --- FULL-WIDTH TILTED SEPARATOR (Right Side Up) --- */}
+        {/* --- UPDATED CONNECTOR: Clean Image, Full Width, No Styles --- */}
         <motion.div
           initial={false}
           animate={{
@@ -144,20 +141,23 @@ const Nirvana = () => {
             e.stopPropagation();
             setMobileView("split");
           }}
-          className="absolute right-[-20%] left-[-20%] z-50 flex h-20 -translate-y-1/2 -skew-y-[8deg] cursor-pointer items-center justify-center border-y border-white/20 bg-white/5 shadow-[0_0_40px_rgba(0,0,0,0.7)] backdrop-blur-md"
+          className="absolute right-[-20%] left-[-20%] z-50 flex h-24 -translate-y-1/2 -skew-y-[8deg] cursor-pointer items-center justify-center bg-transparent"
         >
-          <motion.div animate={{ skewY: "8deg" }} className="h-14 w-14">
+          <motion.div
+            animate={{ skewY: "8deg" }}
+            className="flex h-20 w-full justify-center"
+          >
             <Image
-              src="https://res.cloudinary.com/dig1vxljf/image/upload/v1769779575/Frame_1000008537_1_ydeewf.png"
+              src="https://res.cloudinary.com/dig1vxljf/image/upload/v1769838082/Frame_1000008537_2_cdz0g9.png"
               alt="Connector"
-              width={56}
-              height={56}
-              className="drop-shadow-[0_0_15px_rgba(255,255,255,0.9)]"
+              width={1000} // Increased for full width detail
+              height={200}
+              className="object-contain"
             />
           </motion.div>
         </motion.div>
 
-        {/* LOWER HALF */}
+        {/* LOWER HALF - Margin Fix & Man Logic Preserved */}
         <motion.div
           onClick={() => setMobileView("lower")}
           animate={{
@@ -167,7 +167,8 @@ const Nirvana = () => {
                 : mobileView === "upper"
                   ? "0vh"
                   : "50vh",
-            marginTop: mobileView === "split" ? "-8vh" : "0vh",
+            // Brought lower to cover the gap
+            marginTop: mobileView === "split" ? "0vh" : "0vh",
           }}
           transition={{ type: "spring", stiffness: 100, damping: 20 }}
           className="relative z-10 w-full cursor-pointer overflow-hidden"
@@ -178,35 +179,57 @@ const Nirvana = () => {
             fill
             className="object-cover"
           />
+
+          <motion.div
+            className="pointer-events-none absolute bottom-0 z-20"
+            initial={false}
+            animate={{
+              width: "280%",
+              right: "-85%",
+              opacity: mobileView === "lower" ? 1 : 0,
+              y: mobileView === "lower" ? 0 : 50,
+              scale: mobileView === "lower" ? 1.1 : 1,
+            }}
+            transition={{ type: "spring", stiffness: 80, damping: 15 }}
+          >
+            <Image
+              src="https://res.cloudinary.com/dig1vxljf/image/upload/v1769801653/Gemini_Generated_Image_ifti9hifti9hifti_3_1_qvvlhs.png"
+              alt="Man"
+              width={6000}
+              height={7000}
+              className="object-contain object-bottom"
+              priority
+            />
+          </motion.div>
+
           <div
-            className={`absolute inset-0 flex flex-col items-center justify-center transition-opacity duration-500 ${
+            className={`absolute -top-2 flex flex-col items-center justify-center transition-opacity duration-500 ${
               mobileView === "lower" ? "opacity-100" : "opacity-0"
             }`}
           >
             <RamanText show={mobileView === "lower"} />
-            <div className="-mt-20">
+            <div className="-mt-35">
               <NegiText show={mobileView === "lower"} />
             </div>
           </div>
 
-          {/* BACK BUTTON (Lower Section) */}
           <div
             onClick={(e) => {
               e.stopPropagation();
               setMobileView("split");
             }}
-            className={`absolute bottom-6 left-6 z-50 h-12 w-12 cursor-pointer transition-opacity duration-500 ${
+            className={`absolute bottom-1 left-[20%] z-50 h-30 w-[70%] cursor-pointer transition-opacity duration-500 ${
               mobileView === "lower"
                 ? "opacity-100"
                 : "pointer-events-none opacity-0"
             }`}
           >
             <Image
-              src="https://res.cloudinary.com/dig1vxljf/image/upload/v1769779575/Frame_1000008537_1_ydeewf.png"
+              src="https://res.cloudinary.com/dig1vxljf/image/upload/v1769837212/Back_2_kqxo79.png"
               alt="Back"
-              width={48}
-              height={48}
-              className="rotate-180 drop-shadow-lg" // Rotated to indicate going "back up"
+              width={700}
+              height={700}
+              className="object-contain"
             />
           </div>
         </motion.div>
