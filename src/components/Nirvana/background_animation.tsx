@@ -14,7 +14,7 @@ export default function GeometricLayout() {
           src="/gif/gif_1.gif"
           alt=""
           fill
-          style={{ objectPosition: "90% 100%" }}
+          style={{ objectPosition: "20% 110%" }}
           className="object-cover"
           unoptimized
         />
