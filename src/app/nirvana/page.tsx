@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import RamanText from "~/components/Nirvana/raman";
 import TabaChake from "~/components/Nirvana/tabaChake";
 import NegiText from "~/components/Nirvana/negi";
+import ComicLayout from "~/components/Nirvana/background_animation";
 
 const Nirvana = () => {
   const [active, setActive] = useState(false);
@@ -38,10 +39,9 @@ const Nirvana = () => {
 
   return (
     <div className="relative h-screen w-full overflow-hidden bg-black">
-      {/* MOBILE VIEW*/}
-
+      {/* --- MOBILE VIEW --- */}
       <div className="relative flex h-screen w-full flex-col overflow-hidden lg:hidden">
-        {/* UPPER HALF*/}
+        {/* UPPER HALF */}
         <motion.div
           onClick={() => setMobileView("upper")}
           animate={{
@@ -68,7 +68,7 @@ const Nirvana = () => {
             className="object-cover"
           />
 
-          {/* GIF */}
+          {/* MASSIVE GIF */}
           <motion.div
             className="pointer-events-none absolute z-20 mt-120 ml-40"
             initial={false}
@@ -93,11 +93,7 @@ const Nirvana = () => {
           </motion.div>
 
           <div
-            className={`absolute top-12 left-6 z-30 origin-top-left transition-all duration-700 ${
-              mobileView === "upper"
-                ? "scale-[0.5] opacity-100"
-                : "scale-[0.2] opacity-0"
-            }`}
+            className={`absolute top-12 left-6 z-30 origin-top-left transition-all duration-700 ${mobileView === "upper" ? "scale-[0.5] opacity-100" : "scale-[0.2] opacity-0"}`}
           >
             <TabaChake show={mobileView === "upper"} />
           </div>
@@ -107,11 +103,7 @@ const Nirvana = () => {
               e.stopPropagation();
               setMobileView("split");
             }}
-            className={`absolute bottom-1 left-[20%] z-50 h-30 w-[70%] cursor-pointer transition-opacity duration-500 ${
-              mobileView === "upper"
-                ? "opacity-100"
-                : "pointer-events-none opacity-0"
-            }`}
+            className={`absolute bottom-1 left-[20%] z-50 h-30 w-[70%] cursor-pointer transition-opacity duration-500 ${mobileView === "upper" ? "opacity-100" : "pointer-events-none opacity-0"}`}
           >
             <Image
               src="https://res.cloudinary.com/dig1vxljf/image/upload/v1769837212/Back_2_kqxo79.png"
@@ -123,7 +115,7 @@ const Nirvana = () => {
           </div>
         </motion.div>
 
-        {/*CONNECTOR SECTION*/}
+        {/* CONNECTOR SECTION */}
         <motion.div
           initial={false}
           animate={{
@@ -201,9 +193,7 @@ const Nirvana = () => {
           </motion.div>
 
           <div
-            className={`absolute -top-2 flex flex-col items-center justify-center transition-opacity duration-500 ${
-              mobileView === "lower" ? "opacity-100" : "opacity-0"
-            }`}
+            className={`absolute -top-2 flex flex-col items-center justify-center transition-opacity duration-500 ${mobileView === "lower" ? "opacity-100" : "opacity-0"}`}
           >
             <RamanText show={mobileView === "lower"} />
             <div className="-mt-35">
@@ -216,11 +206,7 @@ const Nirvana = () => {
               e.stopPropagation();
               setMobileView("split");
             }}
-            className={`absolute bottom-1 left-[20%] z-50 h-30 w-[70%] cursor-pointer transition-opacity duration-500 ${
-              mobileView === "lower"
-                ? "opacity-100"
-                : "pointer-events-none opacity-0"
-            }`}
+            className={`absolute bottom-1 left-[20%] z-50 h-30 w-[70%] cursor-pointer transition-opacity duration-500 ${mobileView === "lower" ? "opacity-100" : "pointer-events-none opacity-0"}`}
           >
             <Image
               src="https://res.cloudinary.com/dig1vxljf/image/upload/v1769837212/Back_2_kqxo79.png"
@@ -232,23 +218,19 @@ const Nirvana = () => {
           </div>
         </motion.div>
       </div>
-      {/* DESKTOP VIEW (lg:flex) */}
+
+      {/* --- DESKTOP VIEW --- */}
       <div className="relative hidden h-full w-full lg:flex">
+        {/* SPRING OVERLAYS */}
         <div
-          className={`absolute top-5 left-10 z-150 transition-all duration-500 ${
-            showFinalGroup
-              ? "translate-x-0 translate-y-0 scale-100 opacity-100"
-              : "-translate-x-40 -translate-y-40 scale-0 opacity-0"
-          }`}
+          className={`absolute top-5 left-10 z-[150] transition-all duration-500 ${showFinalGroup ? "translate-x-0 translate-y-0 scale-100 opacity-100" : "-translate-x-40 -translate-y-40 scale-0 opacity-0"}`}
           style={springStyle}
         >
           <TabaChake show={showFinalGroup} />
         </div>
 
         <div
-          className={`absolute -top-30 -left-178 z-60 h-[80%] w-[80%] transition-all duration-400 ${
-            showFinalGroup ? "scale-100 opacity-100" : "scale-0 opacity-0"
-          }`}
+          className={`absolute -top-30 -left-178 z-60 h-[80%] w-[80%] transition-all duration-400 ${showFinalGroup ? "scale-100 opacity-100" : "scale-0 opacity-0"}`}
           style={springStyle}
         >
           <Image
@@ -259,6 +241,7 @@ const Nirvana = () => {
           />
         </div>
 
+        {/* LEFT HALF */}
         <div
           className="relative z-40 w-1/2 cursor-pointer overflow-hidden shadow-2xl"
           onClick={handleClick}
@@ -271,11 +254,7 @@ const Nirvana = () => {
           />
 
           <div
-            className={`pointer-events-none absolute -top-[1%] w-[60%] transition-all duration-1200 ease-out ${
-              active
-                ? "left-[45%] z-50 scale-150 opacity-100"
-                : "left-[164%] z-50 scale-100 opacity-0"
-            }`}
+            className={`pointer-events-none absolute -top-[1%] w-[60%] transition-all duration-1200 ease-out ${active ? "left-[45%] z-50 scale-150 opacity-100" : "left-[164%] z-50 scale-100 opacity-0"}`}
           >
             <Image
               src="https://res.cloudinary.com/dig1vxljf/image/upload/v1769696035/CITYPNG.COM_HD_Real_White_Cloud_Smoke_Transparent_PNG_-_8000x8000_1_1_s7jzyr.png"
@@ -300,12 +279,14 @@ const Nirvana = () => {
           )}
         </div>
 
+        {/* --- COMIC BACKGROUND (Imported) --- */}
+        <div className="relative z-30 w-1/2 overflow-hidden border-l border-white/10">
+          <ComicLayout />
+        </div>
+
+        {/* FLOATING MAN (Desktop) */}
         <div
-          className={`pointer-events-none absolute bottom-8 left-0 transition-all duration-1200 ease-out ${
-            active
-              ? "z-110 translate-x-[40%] scale-110 opacity-100"
-              : "z-20 translate-x-[10%] scale-100 opacity-0"
-          }`}
+          className={`pointer-events-none absolute bottom-8 left-0 transition-all duration-1200 ease-out ${active ? "z-[110] translate-x-[40%] scale-110 opacity-100" : "z-20 translate-x-[10%] scale-100 opacity-0"}`}
           style={{
             clipPath: "inset(0 0 0 calc(50vw - 70%))",
             WebkitClipPath: "inset(0 0 0 calc(50vw - 70%))",
@@ -322,12 +303,9 @@ const Nirvana = () => {
           </div>
         </div>
 
+        {/* CENTER CONNECTOR */}
         <div
-          className={`absolute inset-y-0 left-1/2 z-100 w-[6%] -translate-x-1/2 transition-all duration-500 ${
-            showNirvana
-              ? "translate-y-0 scale-100 opacity-100"
-              : "-translate-y-20 scale-50 opacity-0"
-          }`}
+          className={`absolute inset-y-0 left-1/2 z-[100] w-[6%] -translate-x-1/2 transition-all duration-500 ${showNirvana ? "translate-y-0 scale-100 opacity-100" : "-translate-y-20 scale-50 opacity-0"}`}
           style={springStyle}
         >
           <Image
@@ -339,10 +317,16 @@ const Nirvana = () => {
           />
         </div>
 
+        <div className="absolute -top-[5%] right-[24%] z-[100] flex flex-col items-center">
+          <RamanText show={showGif} />
+          <div className="-mt-35">
+            <NegiText show={showGif} />
+          </div>
+        </div>
+
+        {/* SPRING OVERLAYS (Bottom/Right) */}
         <div
-          className={`absolute -top-60 z-45 h-[60%] w-[30%] transition-all duration-500 ${
-            showLeftToMid ? "left-[35%] opacity-100" : "-left-[35%] opacity-0"
-          }`}
+          className={`absolute -top-60 z-45 h-[60%] w-[30%] transition-all duration-500 ${showLeftToMid ? "left-[35%] opacity-100" : "-left-[35%] opacity-0"}`}
           style={springStyle}
         >
           <Image
@@ -354,9 +338,7 @@ const Nirvana = () => {
         </div>
 
         <div
-          className={`absolute -bottom-50 -left-130 z-60 h-[75%] w-[75%] transition-all duration-400 ${
-            showFinalGroup ? "scale-100 opacity-100" : "scale-0 opacity-0"
-          }`}
+          className={`absolute -bottom-50 -left-130 z-60 h-[75%] w-[75%] transition-all duration-400 ${showFinalGroup ? "scale-100 opacity-100" : "scale-0 opacity-0"}`}
           style={springStyle}
         >
           <Image
@@ -368,9 +350,7 @@ const Nirvana = () => {
         </div>
 
         <div
-          className={`absolute -bottom-[10%] z-55 h-[80%] w-[80%] transition-all duration-500 ${
-            showFinalGroup ? "left-[5%] opacity-100" : "left-[60%] opacity-0"
-          }`}
+          className={`absolute -bottom-[10%] z-55 h-[80%] w-[80%] transition-all duration-500 ${showFinalGroup ? "left-[5%] opacity-100" : "left-[60%] opacity-0"}`}
           style={springStyle}
         >
           <Image
@@ -378,22 +358,6 @@ const Nirvana = () => {
             alt="Right to Left"
             fill
             className="object-contain"
-          />
-        </div>
-
-        <div className="absolute -top-[5%] right-[24%] z-100 flex flex-col items-center">
-          <RamanText show={showGif} />
-          <div className="-mt-35">
-            <NegiText show={showGif} />
-          </div>
-        </div>
-
-        <div className="relative z-90 w-1/2 overflow-hidden">
-          <Image
-            src="https://res.cloudinary.com/dig1vxljf/image/upload/v1769695616/raman_negi_1_pczmse.png"
-            alt="Right"
-            fill
-            className="object-cover"
           />
         </div>
       </div>

@@ -5,90 +5,130 @@ import Image from "next/image";
 export default function GeometricLayout() {
   return (
     <div className="relative h-screen w-full overflow-hidden bg-gray-100">
-      {/* Blue section - top left */}
       <div
         className="absolute inset-0 bg-cyan-600"
         style={{ clipPath: "polygon(0 0, 45% 0, 32% 30%, 0 22%)" }}
       >
-        <Image
-          src="/gif/gif_1.gif"
-          alt=""
-          fill
-          style={{ objectPosition: "20% 110%" }}
-          className="object-cover"
-          unoptimized
-        />
+        <div
+          className="relative h-full w-full"
+          style={{ transform: "translateY(-45%) translateX(-30%) scale(0.49)" }}
+        >
+          <Image
+            src="/gif/gif_1.gif"
+            alt=""
+            fill
+            className="object-cover"
+            unoptimized
+          />
+        </div>
+        <div className="absolute inset-0 bg-cyan-600 opacity-20" />
       </div>
 
-      {/* Yellow section - top right */}
       <div
         className="absolute inset-0 bg-yellow-400"
         style={{ clipPath: "polygon(45% 0, 100% 0, 100% 48%, 32% 30%)" }}
       >
-        <Image
-          src="/gif/gif_4.gif"
-          alt=""
-          fill
-          className="object-cover"
-          style={{ objectPosition: "20% 60%" }}
-          unoptimized
-        />
+        <div
+          className="relative h-full w-full"
+          style={{ transform: "translateY(-15%)" }}
+        >
+          <Image
+            src="/gif/gif_4.gif"
+            alt=""
+            fill
+            className="object-cover"
+            unoptimized
+          />
+        </div>
+        <div className="absolute inset-0 bg-yellow-400 opacity-20" />
       </div>
 
-      {/* Purple section - left triangle */}
       <div
         className="absolute inset-0 bg-purple-500"
         style={{ clipPath: "polygon(0 22%, 0% 100%, 32% 30%)" }}
       >
-        <Image
-          src="/gif/gif_2.gif"
-          alt=""
-          fill
-          className="object-cover"
-          unoptimized
-        />
+        <div
+          className="relative h-full w-full"
+          style={{
+            transform:
+              "scale(0.65) translateX(-50%) translateY(15%) rotate(-90deg)",
+          }}
+        >
+          <Image
+            src="/gif/gif_2.gif"
+            alt=""
+            fill
+            className="object-cover"
+            unoptimized
+          />
+        </div>
+        <div className="absolute inset-0 bg-purple-500 opacity-20" />
       </div>
 
-      {/* Orange section - large center */}
       <div
         className="absolute inset-0 bg-orange-600"
         style={{ clipPath: "polygon(32% 30%, 100% 48%, 100% 78%, 15% 70%)" }}
       >
-        <Image
-          src="/gif/gif_3.gif"
-          alt=""
-          fill
-          className="-rotate-10 object-cover"
-          unoptimized
-        />
+        <div
+          className="relative h-full w-full"
+          style={{
+            transform:
+              "rotate(12deg) translateX(10%) translateY(-18%) scale(0.9)",
+          }}
+        >
+          <Image
+            src="/gif/gif_3.gif"
+            alt=""
+            fill
+            className="object-cover"
+            unoptimized
+          />
+        </div>
+        <div className="absolute inset-0 bg-orange-600 opacity-20" />
       </div>
 
-      {/* Red section - bottom left */}
       <div
         className="absolute inset-0 bg-red-500"
         style={{ clipPath: "polygon(15% 65%, 60% 74%, 64% 100%, 0 100%)" }}
       >
-        <Image
-          src="/gif/gif_2.gif"
-          alt=""
-          fill
-          className="object-cover"
-          unoptimized
-        />
+        <div
+          className="relative h-full w-full"
+          style={{
+            transform:
+              "scale(0.95) translateX(-2%) translateY(30%) rotate(-5deg)",
+          }}
+        >
+          <Image
+            src="/gif/gif_5.gif"
+            alt=""
+            fill
+            className="object-cover"
+            unoptimized
+          />
+        </div>
+        <div className="absolute inset-0 bg-red-500 opacity-20" />
       </div>
 
-      {/* Green section - bottom right */}
       <div
         className="absolute inset-0 bg-emerald-400"
         style={{ clipPath: "polygon(49% 70%, 100% 80%, 100% 100%, 60% 100%)" }}
       >
-        <Image
-          src="/gif/gif_2.gif"
-          alt=""
-          fill
-          className="object-cover"
-          unoptimized
-        />
+        <div
+          className="relative h-full w-full"
+          style={{
+            transform:
+              "scale(0.95) translateX(2%) translateY(30%) rotate(-5deg)",
+          }}
+        >
+          <Image
+            src="/gif/gif_5.gif"
+            alt=""
+            fill
+            className="object-cover"
+            unoptimized
+          />
+        </div>
+        <div className="absolute inset-0 bg-emerald-400 opacity-20" />
       </div>
 
       {/* Striped borders using SVG */}
@@ -98,6 +138,7 @@ export default function GeometricLayout() {
         preserveAspectRatio="none"
       >
         <defs>
+          {/* Define diagonal stripe pattern */}
           <pattern
             id="stripes"
             width="2"
@@ -110,6 +151,7 @@ export default function GeometricLayout() {
           </pattern>
         </defs>
 
+        {/* Left vertical border */}
         <line
           x1="0"
           y1="0"
@@ -118,6 +160,7 @@ export default function GeometricLayout() {
           stroke="url(#stripes)"
           strokeWidth="2.5"
         />
+        {/* Right vertical border */}
         <line
           x1="100"
           y1="0"
@@ -126,6 +169,7 @@ export default function GeometricLayout() {
           stroke="url(#stripes)"
           strokeWidth="2.5"
         />
+        {/* Blue-Purple section divider */}
         <line
           x1="0"
           y1="22"
@@ -134,14 +178,16 @@ export default function GeometricLayout() {
           stroke="url(#stripes)"
           strokeWidth="2.5"
         />
+        {/* Blue-Yellow section divider */}
         <line
           x1="32"
           y1="30"
           x2="45"
-          y2="0"
+          y2="-1"
           stroke="url(#stripes)"
           strokeWidth="2.5"
         />
+        {/* Yellow-Orange section divider */}
         <line
           x1="32"
           y1="30"
@@ -150,6 +196,7 @@ export default function GeometricLayout() {
           stroke="url(#stripes)"
           strokeWidth="2.5"
         />
+        {/* Purple section diagonal border */}
         <line
           x1="32"
           y1="30"
@@ -158,6 +205,7 @@ export default function GeometricLayout() {
           stroke="url(#stripes)"
           strokeWidth="2.5"
         />
+        {/* Orange-Red/Green section divider */}
         <line
           x1="15"
           y1="65"
@@ -166,6 +214,7 @@ export default function GeometricLayout() {
           stroke="url(#stripes)"
           strokeWidth="2.5"
         />
+        {/* Red-Green section divider */}
         <line
           x1="50"
           y1="70"
