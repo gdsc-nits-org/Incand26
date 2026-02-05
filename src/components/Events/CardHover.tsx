@@ -19,9 +19,9 @@ const CardHover = ({
       onClick={onClick}
       className="group relative h-72 w-full cursor-pointer overflow-hidden rounded-3xl border-6 border-[#000000] bg-white"
     >
-      <div className="absolute inset-0 z-0 flex flex-col items-center justify-center text-center">
+      <div className="absolute inset-0 z-0 mt-4 flex flex-col items-center justify-center px-6 text-center">
         {/* Event Name */}
-        <h3 className="font-hitchcut transform text-3xl font-black tracking-widest text-black uppercase transition-all duration-500 ease-out group-hover:-translate-y-4">
+        <h3 className="font-hitchcut transform text-2xl font-black tracking-widest text-black uppercase transition-all duration-500 ease-out group-hover:-translate-y-4">
           {eventName}
         </h3>
 

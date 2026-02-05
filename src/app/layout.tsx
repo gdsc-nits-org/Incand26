@@ -3,6 +3,8 @@ import "~/styles/landing.css";
 import { type Metadata } from "next";
 import localfont from "next/font/local";
 import MusicButton from "~/components/MusicButton";
+import GlobalNavbar from "~/components/GlobalNavbar";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: {
@@ -59,7 +61,9 @@ export default function RootLayout({
     <html lang="en" className={hitchcut.variable}>
       <body className="relative">
         <MusicButton className="fixed right-8 bottom-4 z-[100]" />
+        <Toaster />
         {children}
+        <GlobalNavbar />
       </body>
     </html>
   );

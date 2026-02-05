@@ -155,8 +155,8 @@ const Loader: React.FC<LoaderProps> = ({ onComplete, onTilesStart }) => {
         <div
           className={`fixed inset-0 overflow-hidden transition-all duration-200 ${
             phase === "tiles"
-              ? "pointer-events-none z-50 bg-transparent"
-              : "pointer-events-auto z-50"
+              ? "pointer-events-none z-[999] bg-transparent"
+              : "pointer-events-auto z-[999]"
           } `}
         >
           <div
@@ -245,8 +245,8 @@ const Loader: React.FC<LoaderProps> = ({ onComplete, onTilesStart }) => {
         <div
           className={`fixed inset-0 overflow-hidden transition-all duration-200 ${
             phase === "tiles"
-              ? "pointer-events-none z-50 bg-transparent"
-              : "pointer-events-auto z-50 bg-black"
+              ? "pointer-events-none z-[999] bg-transparent"
+              : "pointer-events-auto z-[999] bg-black"
           } `}
         >
           {/* MOBILE TILE GRID (SAME PATTERN AS DESKTOP) */}
@@ -337,8 +337,8 @@ const Loader: React.FC<LoaderProps> = ({ onComplete, onTilesStart }) => {
         <div
           className={`fixed inset-0 overflow-hidden transition-all duration-200 ${
             phase === "tiles"
-              ? "pointer-events-none z-50 bg-transparent"
-              : "pointer-events-auto z-50 bg-black"
+              ? "pointer-events-none z-[999] bg-transparent"
+              : "pointer-events-auto z-[999] bg-black"
           } `}
         >
           {/*  MOBILE TILE GRID (SAME PATTERN AS DESKTOP) */}

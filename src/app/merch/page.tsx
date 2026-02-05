@@ -1,4 +1,8 @@
-import { MerchSection } from "~/components/merch/merch-section";
+import dynamic from "next/dynamic";
+
+const MerchSection = dynamic(() =>
+  import("~/components/merch/merch-section").then((mod) => mod.MerchSection),
+);
 
 export default function MerchPage() {
   return (
