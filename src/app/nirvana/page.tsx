@@ -5,7 +5,8 @@ import { motion } from "framer-motion";
 import RamanText from "~/components/Nirvana/raman";
 import TabaChake from "~/components/Nirvana/tabaChake";
 import NegiText from "~/components/Nirvana/negi";
-import ComicLayout from "~/components/Nirvana/background_animation";
+import DesktopComicLayout from "~/components/Nirvana/DesktopComicLayout";
+import MobileComicLayout from "~/components/Nirvana/MobileComicLayout";
 
 const Nirvana = () => {
   const [active, setActive] = useState(false);
@@ -162,16 +163,14 @@ const Nirvana = () => {
           transition={{ type: "spring", stiffness: 100, damping: 20 }}
           className="relative z-10 w-full cursor-pointer overflow-hidden"
         >
-          <Image
-            src="https://res.cloudinary.com/dig1vxljf/image/upload/v1769695616/raman_negi_1_pczmse.png"
-            alt="Negi Side"
-            fill
-            className="object-cover"
-          />
+          {/* Comic Layout */}
+          <div className="absolute inset-0 z-0">
+            <MobileComicLayout />
+          </div>
 
           {/* MAN */}
           <motion.div
-            className="pointer-events-none absolute bottom-0 z-20"
+            className="pointer-events-none absolute bottom-0 z-40"
             initial={false}
             animate={{
               width: mobileView === "lower" ? "280%" : "260%",
@@ -193,7 +192,7 @@ const Nirvana = () => {
           </motion.div>
 
           <div
-            className={`absolute -top-2 flex flex-col items-center justify-center transition-opacity duration-500 ${mobileView === "lower" ? "opacity-100" : "opacity-0"}`}
+            className={`absolute -top-2 z-30 flex flex-col items-center justify-center transition-opacity duration-500 ${mobileView === "lower" ? "opacity-100" : "opacity-0"}`}
           >
             <RamanText show={mobileView === "lower"} />
             <div className="-mt-35">
@@ -223,7 +222,7 @@ const Nirvana = () => {
       <div className="relative hidden h-full w-full lg:flex">
         {/* SPRING OVERLAYS */}
         <div
-          className={`absolute top-5 left-10 z-[150] transition-all duration-500 ${showFinalGroup ? "translate-x-0 translate-y-0 scale-100 opacity-100" : "-translate-x-40 -translate-y-40 scale-0 opacity-0"}`}
+          className={`absolute top-5 left-10 z-150 transition-all duration-500 ${showFinalGroup ? "translate-x-0 translate-y-0 scale-100 opacity-100" : "-translate-x-40 -translate-y-40 scale-0 opacity-0"}`}
           style={springStyle}
         >
           <TabaChake show={showFinalGroup} />
@@ -279,14 +278,14 @@ const Nirvana = () => {
           )}
         </div>
 
-        {/* --- COMIC BACKGROUND (Imported) --- */}
-        <div className="relative z-30 w-1/2 overflow-hidden border-l border-white/10">
-          <ComicLayout />
+        {/* COMIC BACKGROUND */}
+        <div className="relative z-50 w-1/2 overflow-hidden border-l border-white/10">
+          <DesktopComicLayout />
         </div>
 
-        {/* FLOATING MAN (Desktop) */}
+        {/* FLOATING MAN*/}
         <div
-          className={`pointer-events-none absolute bottom-8 left-0 transition-all duration-1200 ease-out ${active ? "z-[110] translate-x-[40%] scale-110 opacity-100" : "z-20 translate-x-[10%] scale-100 opacity-0"}`}
+          className={`pointer-events-none absolute bottom-8 left-0 transition-all duration-1200 ease-out ${active ? "z-110 translate-x-[40%] scale-110 opacity-100" : "z-20 translate-x-[10%] scale-100 opacity-0"}`}
           style={{
             clipPath: "inset(0 0 0 calc(50vw - 70%))",
             WebkitClipPath: "inset(0 0 0 calc(50vw - 70%))",
@@ -305,7 +304,7 @@ const Nirvana = () => {
 
         {/* CENTER CONNECTOR */}
         <div
-          className={`absolute inset-y-0 left-1/2 z-[100] w-[6%] -translate-x-1/2 transition-all duration-500 ${showNirvana ? "translate-y-0 scale-100 opacity-100" : "-translate-y-20 scale-50 opacity-0"}`}
+          className={`absolute inset-y-0 left-1/2 z-100 w-[6%] -translate-x-1/2 transition-all duration-500 ${showNirvana ? "translate-y-0 scale-100 opacity-100" : "-translate-y-20 scale-50 opacity-0"}`}
           style={springStyle}
         >
           <Image
@@ -317,7 +316,7 @@ const Nirvana = () => {
           />
         </div>
 
-        <div className="absolute -top-[5%] right-[24%] z-[100] flex flex-col items-center">
+        <div className="absolute -top-[5%] right-[24%] z-100 flex flex-col items-center">
           <RamanText show={showGif} />
           <div className="-mt-35">
             <NegiText show={showGif} />
