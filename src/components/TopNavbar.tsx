@@ -108,7 +108,7 @@ const TopNavbar: React.FC<TopNavbarProps> = ({ fromLayout = false }) => {
                 </div>
 
                 <span
-                  className={`absolute z-10 -translate-y-2 text-sm font-bold tracking-wider whitespace-nowrap text-[#361E1E] transition-all duration-500 ease-out ${
+                  className={`absolute z-10 -translate-y-2 text-base font-bold tracking-wider whitespace-nowrap text-[#361E1E] transition-all duration-500 ease-out ${
                     isActive
                       ? "translate-y-12 opacity-100"
                       : "opacity-0 group-hover:translate-y-12 group-hover:opacity-100"

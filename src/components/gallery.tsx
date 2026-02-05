@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useState, useRef } from "react";
+import { useLayoutEffect, useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 
@@ -152,6 +152,18 @@ export function Gallery() {
     setWhiteIntroDone(false);
     isFirstAppearance.current = true;
   }, [isLap, isIpad, isPhone]);
+
+  // Autoplay effect - advances to next image every 1.5 seconds
+  useEffect(() => {
+    if (!mounted) return;
+
+    const autoplayInterval = setInterval(() => {
+      handleNextImage();
+      handleNext();
+    }, 1500);
+
+    return () => clearInterval(autoplayInterval);
+  }, [mounted, imageCenterIndex, currentIndex]);
 
   const getVariants = (isLap: boolean, isIpad: boolean, isPhone: boolean) => {
     if (isLap) {
