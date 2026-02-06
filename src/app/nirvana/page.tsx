@@ -250,9 +250,7 @@ const Nirvana = () => {
         </div>
 
         {/* LEFT HALF */}
-        <div
-          className="relative z-40 w-1/2 overflow-hidden shadow-2xl"
-        >
+        <div className="relative z-40 w-1/2 overflow-hidden shadow-2xl">
           <Image
             src="https://res.cloudinary.com/dig1vxljf/image/upload/v1769695216/Taba_chake_ordmix.png"
             alt="Base"
