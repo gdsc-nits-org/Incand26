@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import RamanText from "~/components/Nirvana/raman";
@@ -33,6 +33,15 @@ const Nirvana = () => {
       }, 600);
     }, 1800);
   };
+
+  // Auto-start animation on desktop after 1 second
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      handleClick();
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const springStyle = {
     transitionTimingFunction: "cubic-bezier(0.175, 0.885, 0.32, 1.275)",
@@ -242,8 +251,7 @@ const Nirvana = () => {
 
         {/* LEFT HALF */}
         <div
-          className="relative z-40 w-1/2 cursor-pointer overflow-hidden shadow-2xl"
-          onClick={handleClick}
+          className="relative z-40 w-1/2 overflow-hidden shadow-2xl"
         >
           <Image
             src="https://res.cloudinary.com/dig1vxljf/image/upload/v1769695216/Taba_chake_ordmix.png"

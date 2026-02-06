@@ -8,6 +8,10 @@ const config = {
         port: "", // Leave empty
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+      },
     ],
   },
 };
