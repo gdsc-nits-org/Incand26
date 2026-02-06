@@ -21,18 +21,18 @@ const Slideshow = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-black">
+    <div className="relative h-screen w-full overflow-hidden bg-black">
       {CLOUDINARY_LINKS.map((src, index) => (
         <div
           key={src}
-          className={`absolute inset-0 w-full h-full transition-opacity duration-300 ease-in-out ${
-            index === activeFrame ? "opacity-100 z-10" : "opacity-0 z-0"
+          className={`absolute inset-0 h-full w-full transition-opacity duration-300 ease-in-out ${
+            index === activeFrame ? "z-10 opacity-100" : "z-0 opacity-0"
           }`}
         >
           <img
             src={src}
             alt={`Godless slide ${index + 1}`}
-            className="w-full h-full object-fill"
+            className="h-full w-full object-fill"
           />
         </div>
       ))}
