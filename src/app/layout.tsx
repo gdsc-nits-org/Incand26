@@ -2,6 +2,7 @@ import "~/styles/globals.css";
 import "~/styles/landing.css";
 import { type Metadata } from "next";
 import localfont from "next/font/local";
+import TopNavbar from "~/components/TopNavbar";
 
 export const metadata: Metadata = {
   // ... (keep your existing metadata)
@@ -53,6 +54,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={hitchcut.variable}>
       <body className="relative">{children}</body>
+      <TopNavbar/>
     </html>
   );
 }

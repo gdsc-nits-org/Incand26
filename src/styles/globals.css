@@ -356,3 +356,9 @@ body {
 .animate-cloud-infinite-right {
   animation: cloud-infinite-right 40s linear infinite;
 }
+@font-face {
+  font-family: 'Rocket Thunder';
+  src: url('/fonts/RocketThunder-DEMO-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
