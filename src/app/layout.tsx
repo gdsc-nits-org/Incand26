@@ -2,11 +2,10 @@ import "~/styles/globals.css";
 import "~/styles/landing.css";
 import { type Metadata } from "next";
 import localfont from "next/font/local";
-import MusicButton from "~/components/MusicButton";
-import GlobalNavbar from "~/components/GlobalNavbar";
-import { Toaster } from "sonner";
+import TopNavbar from "~/components/TopNavbar";
 
 export const metadata: Metadata = {
+  // ... (keep your existing metadata)
   title: {
     default: "Incandescence 2026 | NIT Silchar",
     template: "%s | Incandescence 2026",
@@ -40,12 +39,7 @@ export const metadata: Metadata = {
     ],
   },
 
-  icons: [
-    {
-      rel: "icon",
-      url: "https://res.cloudinary.com/dm74yd2j9/image/upload/v1766838091/colour_light_qjmcwd.svg",
-    },
-  ],
+  icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
 const hitchcut = localfont({
@@ -60,10 +54,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={hitchcut.variable}>
       <body className="relative">
-        <MusicButton className="fixed right-8 bottom-4 z-[100]" />
-        <Toaster />
+        <TopNavbar/>
         {children}
-        <GlobalNavbar />
       </body>
     </html>
   );
