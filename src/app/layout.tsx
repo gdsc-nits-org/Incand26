@@ -2,8 +2,13 @@ import "~/styles/globals.css";
 import "~/styles/landing.css";
 import { type Metadata } from "next";
 import localfont from "next/font/local";
+import GlobalNavbar from "~/components/GlobalNavbar";
+import { Toaster } from "sonner";
+// Import the new wrapper instead of the button directly
+import GlobalMusicPlayer from "~/components/GlobalMusicPlayer"; 
 
 export const metadata: Metadata = {
+  // ... (keep your existing metadata)
   title: {
     default: "Incandescence 2026 | NIT Silchar",
     template: "%s | Incandescence 2026",
@@ -38,6 +43,7 @@ export const metadata: Metadata = {
   },
 
   icons: [{ rel: "icon", url: "/favicon.ico" }],
+  // ...
 };
 
 const hitchcut = localfont({
@@ -50,8 +56,15 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={hitchcut.variable}>
-      <body className="relative">{children}</body>
+<html lang="en" className={hitchcut.variable}>
+        <body className="relative">
+        {/* Use the wrapper here. It handles the logic to hide itself on specific pages */}
+        <GlobalMusicPlayer />
+        
+        <Toaster />
+        {children}
+        <GlobalNavbar />
+      </body>
     </html>
-  );
+  );  
 }
