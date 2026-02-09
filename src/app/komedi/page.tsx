@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, type Transition } from "framer-motion";
 
@@ -22,7 +22,7 @@ const ARTISTS = [
   },
 ];
 
-const DAY_LABELS = ["KOMEDI KNIGHT"];
+const DAY_LABELS = ["KOMEDI KNIGHT", "DAY 3"];
 
 // --- VARIANTS ---
 const bgVariants = {
@@ -67,17 +67,15 @@ export default function KomediKnightPage() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
-  const handleNext = () => {
-    setDirection(1);
-    setCurrentIndex((prev) => (prev + 1) % ARTISTS.length);
-  };
+  // Auto-cycle through labels every 2 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDirection(1);
+      setCurrentIndex((prev) => (prev + 1) % DAY_LABELS.length);
+    }, 2000);
 
-  const handlePrevious = () => {
-    setDirection(-1);
-    setCurrentIndex(
-      (prev) => (prev - 1 + ARTISTS.length) % ARTISTS.length,
-    );
-  };
+    return () => clearInterval(interval);
+  }, []);
 
   // Safe checks
   const currentArtist = ARTISTS[currentIndex % ARTISTS.length];
@@ -169,21 +167,6 @@ export default function KomediKnightPage() {
             </AnimatePresence>
           </div>
 
-          {/* Navigation Buttons */}
-          <button
-            onClick={handlePrevious}
-            className="absolute bottom-[8%] left-[12%] z-[999] rounded-sm border-2 border-[#514114] bg-[#E69D16] px-6 py-2 text-[10px] font-bold text-black shadow-lg transition-colors hover:bg-[#ffb732] active:scale-95 lg:left-[20%] lg:px-8 lg:py-3 lg:text-xs xl:px-8 xl:py-4 xl:text-sm 2xl:bottom-[5%] 2xl:left-[18%] 2xl:px-16 2xl:py-5 2xl:text-base"
-          >
-            PREVIOUS
-          </button>
-
-          <button
-            onClick={handleNext}
-            className="absolute right-[12%] bottom-[8%] z-[999] rounded-sm border-2 border-[#514114] bg-[#E69D16] px-6 py-2 text-[10px] font-bold text-black shadow-lg transition-colors hover:bg-[#ffb732] active:scale-95 lg:right-[20%] lg:px-8 lg:py-3 lg:text-xs xl:px-8 xl:py-4 xl:text-sm 2xl:right-[18%] 2xl:bottom-[5%] 2xl:px-16 2xl:py-5 2xl:text-base"
-          >
-            NEXT
-          </button>
-
           <div className="absolute bottom-[8%] left-1/2 z-[999] -translate-x-1/2 rounded-sm border-2 border-black bg-[#E69D16] px-8 py-2 text-sm font-bold whitespace-nowrap text-black shadow-lg lg:px-12 lg:py-3 lg:text-lg xl:text-xl 2xl:bottom-[3%] 2xl:px-20 2xl:py-5 2xl:text-2xl">
             {currentDayLabel}
           </div>
@@ -257,26 +240,8 @@ export default function KomediKnightPage() {
             
             {/* Venue Info */}
             <div className="mt-4 flex flex-col gap-1 text-[#3E2D26]">
-                <p className="text-lg font-bold">Venue : To be announced soon</p>
-                <p className="text-base opacity-80">Other informations to be added</p>
+                <p className="text-lg font-bold">Venue : Sports Complex</p>
             </div>
-          </div>
-
-          {/* Mobile Navigation Buttons */}
-          <div className="mt-auto flex w-full max-w-2xl items-center justify-between pt-6 md:px-8">
-            <button
-              onClick={handlePrevious}
-              className="rounded-sm border border-black bg-[#E69D16] px-5 py-3 text-xs font-bold text-black transition-transform active:scale-95 md:px-8 md:py-4 md:text-xl"
-            >
-              PREVIOUS
-            </button>
-
-            <button
-              onClick={handleNext}
-              className="rounded-sm border border-black bg-[#E69D16] px-5 py-3 text-xs font-bold text-black transition-transform active:scale-95 md:px-8 md:py-4 md:text-xl"
-            >
-              NEXT
-            </button>
           </div>
         </div>
       </div>
