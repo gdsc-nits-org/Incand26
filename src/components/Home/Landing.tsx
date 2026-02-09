@@ -1,5 +1,8 @@
 "use client";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import Login from "../GoogleAuth";
+import Link from "next/link";
 
 // Define the shape of a trail segment
 interface TrailSegment {
@@ -102,8 +105,6 @@ export default function Landing() {
     "https://res.cloudinary.com/dwzakk4bw/image/upload/v1766546238/Incand_jomks5.webp";
   const comingSoon =
     "https://res.cloudinary.com/dwzakk4bw/image/upload/v1766546242/Component_70_ulqr1o.webp";
-  const decoration =
-    "https://res.cloudinary.com/dwzakk4bw/image/upload/v1766546239/Frame_11_w666cw.webp";
   const ripple =
     "https://res.cloudinary.com/dwzakk4bw/video/upload/v1766579546/4_1_sv8giu.mp4";
 
@@ -113,6 +114,77 @@ export default function Landing() {
       className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-cover bg-center"
       style={{ backgroundImage: `url('${bgImage}')` }}
     >
+      <Link
+        href="/events"
+        className="absolute bottom-[10vh] left-8 z-100 flex animate-[wiggle_2.5s_ease-in-out_infinite] cursor-pointer items-center justify-center overflow-hidden rounded-full border-3 border-black bg-[#6b1f1f] px-4 py-2 text-[0.125rem] tracking-widest text-[#fff2cc] shadow-lg hover:scale-105 lg:px-10 lg:py-4"
+      >
+        {/* LEFT END DESIGN */}
+        <div>
+          <img
+            src="https://res.cloudinary.com/dsaaxuphe/image/upload/v1766330315/Group_48096168_ufcdsb.webp"
+            alt=""
+            className="absolute top-[-0.125rem] left-[0.125rem] h-full rotate-180 opacity-90"
+          />
+        </div>
+
+        {/* TEXT */}
+        <span className="tracking-0.18em relative z-70 w-full text-lg">
+          Explore Events
+        </span>
+
+        {/* RIGHT END DESIGN */}
+        <div>
+          <img
+            src="https://res.cloudinary.com/dsaaxuphe/image/upload/v1766330315/Group_48096168_ufcdsb.webp"
+            alt=""
+            className="absolute top-[0.125rem] right-[-0.125rem] h-full"
+          />
+        </div>
+      </Link>
+      <div className="absolute top-[3vh] right-[2.5vw] flex cursor-pointer flex-col items-center gap-[4vh] sm:top-[7vh] sm:right-[3.5vw] md:top-[9vh] md:right-[4.5vw] lg:top-[10vh] lg:right-[5vw]">
+        <div className={`z-20`}>
+          <div
+            className={`relative my-[1vh] flex items-center gap-0 overflow-hidden rounded-full border-[0.3vw] border-black bg-[#751313] shadow-black transition-all duration-500 ease-out hover:scale-[1.15] hover:-rotate-6 sm:my-[1.2vh] sm:border-[0.25vw] sm:hover:scale-[1.2] md:my-[1.5vh] md:border-[0.2vw] md:hover:scale-[1.3]`}
+            style={{
+              boxShadow: "none",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.boxShadow =
+                "0 1vh 0 0 rgba(162, 93, 93), 0 0.95vh 0 0.15vw rgba(0, 0, 0)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.boxShadow = "none";
+            }}
+          >
+            {/* Left Decorative Element */}
+            <div className="relative mr-[-1vw] h-[8vw] w-[8vw] sm:mr-[-0.7vw] sm:h-[5vw] sm:w-[5vw] md:mr-[-0.5vw] md:h-[4vw] md:w-[4vw] lg:h-[3.5vw] lg:w-[3.5vw]">
+              <Image
+                src="/about/brochure.webp"
+                alt="Decoration"
+                fill
+                className="object-fill"
+              />
+            </div>
+
+            {/* Button Text Background */}
+            <div className="my-[1vh] flex items-center justify-center sm:my-[1.2vh] md:my-[1.5vh]">
+              <span className="font-hitchcut text-[3.5vw] font-bold tracking-wider text-[#f5e6c8] sm:text-[2vw] md:text-[1.5vw] lg:text-[1.25vw]">
+                <Login />
+              </span>
+            </div>
+
+            {/* Right Decorative Element (Rotated 180deg) */}
+            <div className="relative ml-[-1vw] h-[8vw] w-[8vw] rotate-180 sm:ml-[-0.7vw] sm:h-[5vw] sm:w-[5vw] md:ml-[-0.5vw] md:h-[4vw] md:w-[4vw] lg:h-[3.5vw] lg:w-[3.5vw]">
+              <Image
+                src="/about/brochure.webp"
+                alt="Decoration"
+                fill
+                className="object-fill"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
       <video
         autoPlay
         loop
@@ -126,7 +198,7 @@ export default function Landing() {
         <img
           src="/incandlogo.png"
           alt="Incandescence Logo"
-          className="pointer-events-none absolute top-16 left-1/2 z-50 h-40 w-40 -translate-x-1/2 lg:top-8 xl:h-44 xl:w-44"
+          className="pointer-events-none absolute top-16 left-1/2 z-50 h-44 w-44 -translate-x-1/2 lg:top-8 xl:h-52 xl:w-52"
         />
       </div>
 

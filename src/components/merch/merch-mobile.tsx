@@ -3,7 +3,12 @@
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
-import type { Theme } from "./merch-section";
+import { OptOut, type Theme } from "./merch-section";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "~/utils/firebase";
+import { toast } from "sonner";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 interface MerchProps {
   theme: Theme;
@@ -11,6 +16,8 @@ interface MerchProps {
   handleThemeSwitch: (t: "light" | "dark") => void;
   springTransition: object;
   popVariants: Variants;
+  hasOpted?: boolean;
+  onOptOutSuccess?: () => void;
 }
 
 export function MerchMobile({
@@ -19,9 +26,104 @@ export function MerchMobile({
   handleThemeSwitch,
   springTransition,
   popVariants,
+  hasOpted = true,
+  onOptOutSuccess,
 }: MerchProps) {
+  const [user] = useAuthState(auth);
+  const router = useRouter();
+  const [showConfirm, setShowConfirm] = useState(false);
+
+  const handleOptOutClick = () => {
+    toast.error("Opt-out is currently disabled.");
+    return;
+  };
+
+  const handleConfirmOptOut = async () => {
+    setShowConfirm(false);
+    if (!user) return;
+
+    toast.promise(
+      (async () => {
+        try {
+          await OptOut(user, router);
+          onOptOutSuccess?.();
+          router.refresh();
+        } catch (err) {
+          throw err;
+        }
+      })(),
+      {
+        loading: "Processing your request...",
+        success: "Successfully opted out!",
+        error: (err) => {
+          interface ApiErrorResponse {
+            msg: string;
+          }
+          if (axios.isAxiosError(err)) {
+            const data = err.response?.data as ApiErrorResponse | undefined;
+            return data?.msg ?? "Server error occurred";
+          }
+          return err instanceof Error
+            ? err.message
+            : "Could not complete opt-out";
+        },
+      },
+    );
+  };
+
   return (
     <div className="font-hitchcut fixed inset-0 z-20 flex h-full w-full flex-col justify-between overflow-hidden bg-transparent px-5 py-4">
+      {/* CONFIRMATION MODAL */}
+      <AnimatePresence>
+        {showConfirm && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative w-full max-w-sm overflow-hidden rounded-2xl border-2 p-6 text-center shadow-2xl"
+              style={{
+                backgroundColor: isLight ? "#fff" : "#1a1a1a",
+                borderColor: theme.textPrimary,
+              }}
+            >
+              <h3
+                className="font-hitchcut mb-4 text-2xl tracking-widest uppercase"
+                style={{ color: theme.textPrimary }}
+              >
+                Confirm Action
+              </h3>
+              <p
+                className="font-hitchcut mb-8 text-sm tracking-wider"
+                style={{ color: theme.textSecondary }}
+              >
+                Are you sure you want to opt out?
+              </p>
+
+              <div className="flex justify-center gap-4">
+                <button
+                  onClick={() => setShowConfirm(false)}
+                  className="font-hitchcut hover:bg-opacity-10 rounded-full border px-6 py-2 text-sm tracking-widest uppercase transition-colors"
+                  style={{
+                    borderColor: theme.textSecondary,
+                    color: theme.textSecondary,
+                  }}
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleConfirmOptOut}
+                  className="font-hitchcut rounded-full px-6 py-2 text-sm tracking-widest text-white uppercase transition-transform active:scale-95"
+                  style={{ backgroundColor: "#d00000" }}
+                >
+                  Opt Out
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
       {/* =========================================
           BACKGROUND LAYER 
          ========================================= */}
@@ -215,7 +317,7 @@ export function MerchMobile({
         </AnimatePresence>
 
         {/* --- T-SHIRT CONTAINER --- */}
-        <div className="relative z-10 flex aspect-[3/4] w-[85%] max-w-[300px] items-center justify-center">
+        <div className="relative z-10 mt-20 flex aspect-[3/4] w-[85%] max-w-[300px] items-center justify-center">
           <AnimatePresence mode="popLayout">
             {isLight ? (
               <motion.img
@@ -223,7 +325,7 @@ export function MerchMobile({
                 src={theme.shirtImage}
                 alt="Light Merch"
                 initial={{ opacity: 0, scale: 0.7, y: 15 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
+                animate={{ opacity: 1, scale: 1.2, y: 0 }}
                 exit={{ opacity: 0, scale: 0.7, y: -15 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
                 className="absolute inset-0 h-full w-full object-contain drop-shadow-2xl"
@@ -234,7 +336,7 @@ export function MerchMobile({
                 src={theme.shirtImage}
                 alt="Dark Merch"
                 initial={{ opacity: 0, scale: 0.6, y: 15 }}
-                animate={{ opacity: 1, scale: 0.8, y: 0 }}
+                animate={{ opacity: 1, scale: 1.2, y: 0 }}
                 exit={{ opacity: 0, scale: 0.6, y: -15 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
                 className="absolute inset-0 h-full w-full object-contain drop-shadow-2xl"
@@ -273,6 +375,8 @@ export function MerchMobile({
         <div className="flex w-full items-center justify-center gap-3">
           <AnimatePresence mode="wait">
             {/* BUY NOW */}
+            {/* 
+
             <motion.div
               key={`btn-buy-${theme.id}`}
               variants={popVariants}
@@ -289,7 +393,7 @@ export function MerchMobile({
                 iconHover="/merch/svg4.svg"
               />
             </motion.div>
-
+                     */}
             {/* OPT OUT */}
             <motion.div
               key={`btn-opt-${theme.id}`}
@@ -299,13 +403,22 @@ export function MerchMobile({
               exit="exit"
               transition={{ delay: 0.2 }}
             >
-              <MobileButton
-                text="OPT OUT"
-                textColor="#2A1B12"
-                bg="/merch/button_texture2.png"
-                iconDefault="/merch/svg1.svg"
-                iconHover="/merch/svg2.svg"
-              />
+              {hasOpted ? (
+                <MobileButton
+                  text="OPT OUT"
+                  textColor="#2A1B12"
+                  bg="/merch/button_texture2.png"
+                  iconDefault="/merch/svg1.svg"
+                  iconHover="/merch/svg2.svg"
+                  onClick={handleOptOutClick}
+                />
+              ) : (
+                <div className="flex h-[50px] w-full items-center justify-center rounded-full border-2 border-dashed border-gray-400 bg-gray-50/50">
+                  <span className="font-hitchcut px-3 pt-1 text-base tracking-widest text-gray-600">
+                    ALREADY OPTED OUT
+                  </span>
+                </div>
+              )}
             </motion.div>
           </AnimatePresence>
         </div>
@@ -319,7 +432,7 @@ export function MerchMobile({
               className={`flex h-14 w-14 items-center justify-center rounded-full transition-all duration-300 ${
                 isLight
                   ? "scale-110 border-[2px] border-black bg-white shadow-xl"
-                  : "scale-100 border-[2px] border-[#C39044] bg-black opacity-80"
+                  : "scale-100 border-[2px] border-[#C39044] bg-black"
               }`}
             >
               <img
@@ -333,7 +446,7 @@ export function MerchMobile({
               className={`flex h-14 w-14 items-center justify-center rounded-full transition-all duration-300 ${
                 !isLight
                   ? "scale-110 border-[2px] border-black bg-white shadow-xl"
-                  : "scale-100 border-[2px] border-[#DCA54E] bg-black opacity-80"
+                  : "scale-100 border-[2px] border-[#DCA54E] bg-black"
               }`}
             >
               <img
@@ -356,6 +469,7 @@ interface MobileButtonProps {
   bg: string;
   iconDefault: string;
   iconHover: string;
+  onClick?: () => void;
 }
 
 function MobileButton({
@@ -364,6 +478,7 @@ function MobileButton({
   bg,
   iconDefault,
   iconHover,
+  onClick,
 }: MobileButtonProps) {
   const [hover, setHover] = useState(false);
 
@@ -371,7 +486,8 @@ function MobileButton({
     <button
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      className="relative flex h-[50px] w-[160px] items-center justify-center overflow-hidden rounded-full shadow-lg transition-transform active:scale-95 md:w-[200px]"
+      onClick={onClick}
+      className="relative flex h-[50px] w-[260px] items-center justify-center overflow-hidden rounded-full shadow-lg transition-transform active:scale-95 md:w-[200px]"
       style={{
         backgroundImage: `url('${bg}')`,
         backgroundSize: "cover",
@@ -383,14 +499,14 @@ function MobileButton({
           <motion.img
             src={iconDefault}
             className="absolute h-full w-full object-contain"
-            animate={{ y: hover ? -30 : 0 }}
+            animate={{ y: hover ? -100 : 0 }}
             transition={{ duration: 0.2 }}
           />
           <motion.img
             src={iconHover}
             className="absolute h-full w-full object-contain"
-            initial={{ y: 30 }}
-            animate={{ y: hover ? 0 : 30 }}
+            initial={{ y: 100 }}
+            animate={{ y: hover ? 0 : 100 }}
             transition={{ duration: 0.2 }}
           />
         </div>

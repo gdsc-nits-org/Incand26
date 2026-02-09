@@ -4,6 +4,12 @@ import { useState, useEffect, useCallback } from "react";
 import { type Variants } from "framer-motion"; // FIX: Added import
 import { MerchMobile } from "./merch-mobile";
 import { MerchDesktop } from "./merch-desktop";
+import type { User } from "firebase/auth";
+import { env } from "~/env";
+import axios from "axios";
+import type { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "~/utils/firebase";
 
 // --- TYPES ---
 export interface Theme {
@@ -28,9 +34,9 @@ const THEMES: Record<"light" | "dark", Theme> = {
     textPrimary: "#2A1B12",
     textSecondary: "#8B2323",
     heading: "INCAND\nMERCH",
-    desc: "LOREM IPSUM\nKUCH KUCH\nTSHIRT KE \n BAARE MAE.",
-    price: "399/-",
-    shirtImage: "/merch/d3692dbcecc3ee28bbb6cb71bba972eed7c75499.png",
+    desc: "From lectures\n to late nights\n Incand fits\n everywhere.",
+    price: "450/-",
+    shirtImage: "/merch/incandmarch.png",
     japiImage: "/merch/a881a76b8a204d1e7a322115721f2ff57996f036.png",
   },
   dark: {
@@ -40,9 +46,9 @@ const THEMES: Record<"light" | "dark", Theme> = {
     textPrimary: "#E19314",
     textSecondary: "#FFFFFF",
     heading: "THUNDER\nMARCH",
-    desc: "LOREM IPSUM\nKUCH KUCH\nTSHIRT KE\n BAARE MAE.",
-    price: "399/-",
-    shirtImage: "/merch/36e3457304d265d12daff04034d952d55c27800a.png",
+    desc: "Drip that\n hits harder\n than the\n bass drops",
+    price: "450/-",
+    shirtImage: "/merch/thundermerch.png",
     japiImage: "/merch/a881a76b8a204d1e7a322115721f2ff57996f036.png",
   },
 };
@@ -66,8 +72,35 @@ const popVariants: Variants = {
 export function MerchSection() {
   const [activeTheme, setActiveTheme] = useState<"light" | "dark">("light");
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [hasOpted, setHasOpted] = useState(true);
+  const [user] = useAuthState(auth);
+
   const theme = THEMES[activeTheme];
   const isLight = activeTheme === "light";
+
+  // Fetch user's hasOpted status
+  useEffect(() => {
+    const fetchUserOptStatus = async () => {
+      if (!user) return;
+      try {
+        const token = await user.getIdToken();
+        const res = await axios.get<{ msg: { hasOpted: boolean } }>(
+          `${env.NEXT_PUBLIC_API_URL}/api/user/me`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        );
+        setHasOpted(res.data.msg.hasOpted);
+      } catch (error) {
+        console.error("Error fetching user opt status:", error);
+      }
+    };
+    void fetchUserOptStatus();
+  }, [user]);
 
   const handleThemeSwitch = useCallback(
     (newTheme: "light" | "dark") => {
@@ -79,6 +112,20 @@ export function MerchSection() {
     [activeTheme, isAnimating],
   );
 
+  // Handle Resize Logic to Determine Desktop vs Mobile
+  useEffect(() => {
+    setMounted(true);
+    const checkScreenSize = () => {
+      // 1024px is the standard Tailwind 'lg' breakpoint
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+
+    checkScreenSize(); // Initial check
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
+  // Handle Scroll Logic for Theme Switch
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
       if (isAnimating) return;
@@ -90,6 +137,9 @@ export function MerchSection() {
     return () => window.removeEventListener("wheel", handleWheel);
   }, [activeTheme, isAnimating, handleThemeSwitch]);
 
+  // Prevent Hydration Mismatch
+  if (!mounted) return null;
+
   return (
     <section
       className={`font-hitchcut fixed inset-0 z-50 h-full w-full overflow-hidden transition-colors duration-700 ease-in-out`}
@@ -100,27 +150,56 @@ export function MerchSection() {
         backgroundPosition: "center",
       }}
     >
-      {/* --- MOBILE & TABLET VIEW (Visible < lg) --- */}
-      <div className="relative z-10 block h-full w-full lg:hidden">
-        <MerchMobile
-          theme={theme}
-          isLight={isLight}
-          handleThemeSwitch={handleThemeSwitch}
-          springTransition={springTransition}
-          popVariants={popVariants}
-        />
-      </div>
-
-      {/* --- DESKTOP VIEW (Visible >= lg) --- */}
-      <div className="relative z-10 hidden h-full w-full items-center justify-center lg:flex">
-        <MerchDesktop
-          theme={theme}
-          isLight={isLight}
-          handleThemeSwitch={handleThemeSwitch}
-          springTransition={springTransition}
-          popVariants={popVariants}
-        />
-      </div>
+      {isDesktop ? (
+        /* --- DESKTOP VIEW (Visible >= lg) --- */
+        <div className="relative z-10 flex h-full w-full items-center justify-center">
+          <MerchDesktop
+            theme={theme}
+            isLight={isLight}
+            handleThemeSwitch={handleThemeSwitch}
+            springTransition={springTransition}
+            popVariants={popVariants}
+            hasOpted={hasOpted}
+            onOptOutSuccess={() => setHasOpted(false)}
+          />
+        </div>
+      ) : (
+        /* --- MOBILE & TABLET VIEW (Visible < lg) --- */
+        <div className="relative z-10 block h-full w-full">
+          <MerchMobile
+            theme={theme}
+            isLight={isLight}
+            handleThemeSwitch={handleThemeSwitch}
+            springTransition={springTransition}
+            popVariants={popVariants}
+            hasOpted={hasOpted}
+            onOptOutSuccess={() => setHasOpted(false)}
+          />
+        </div>
+      )}
     </section>
   );
+}
+
+export async function OptOut(user: User, router: AppRouterInstance) {
+  try {
+    const token = await user?.getIdToken();
+    const response = await axios.put(
+      `${env.NEXT_PUBLIC_API_URL}/api/merch/opt-out`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    );
+    return response;
+  } catch (err) {
+    if (axios.isAxiosError(err)) {
+      if (err.response?.status === 404) {
+        router.push("/signup");
+      }
+    }
+    throw err;
+  }
 }

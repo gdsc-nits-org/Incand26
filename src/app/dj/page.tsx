@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, type Transition } from "framer-motion";
 import MusicButton from "@/components/MusicButton"; 
@@ -85,30 +85,16 @@ const smoothTransition: Transition = {
 export default function CarpediemArtistPage() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
-  const [showVisualizer, setShowVisualizer] = useState(false);
 
   const handleNext = () => {
     setDirection(1); 
     setCurrentIndex((prev) => (prev + 1) % BACKGROUNDS.length);
-    triggerVisualizer();
   };
 
   const handlePrevious = () => {
     setDirection(-1);
     setCurrentIndex((prev) => (prev - 1 + BACKGROUNDS.length) % BACKGROUNDS.length);
-    triggerVisualizer();
   };
-
-  const triggerVisualizer = () => {
-    setTimeout(() => {
-      setShowVisualizer(true);
-      setTimeout(() => setShowVisualizer(false), 4000);
-    }, 600);
-  };
-
-  useEffect(() => {
-    triggerVisualizer();
-  }, []);
 
   const currentArtist = ARTISTS[currentIndex % ARTISTS.length];
   const currentBg = BACKGROUNDS[currentIndex % BACKGROUNDS.length];

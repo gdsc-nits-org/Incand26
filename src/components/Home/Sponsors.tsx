@@ -23,8 +23,8 @@ export default function Sponsors() {
           {/* DESKTOP LAYOUT */}
           <div className="hidden h-full grid-cols-2 items-center gap-12 md:grid">
             {/* TEXT */}
-            <div className="pr-8">
-              <h1 className="mb-8 text-7xl font-black text-amber-900 drop-shadow-2xl">
+            <div className="ml-8 pr-8">
+              <h1 className="mb-8 text-7xl font-black text-amber-900 drop-shadow-2xl sm:text-6xl lg:text-7xl">
                 PREVIOUS SPONSORS
               </h1>
               <p className="text-3xl leading-relaxed font-medium text-[#000000]">

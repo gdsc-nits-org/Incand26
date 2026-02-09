@@ -1,29 +1,6 @@
-// "use client";
-
-// import { useState } from "react";
-// import Link from "next/link";
-// import Loader from "~/components/Loader";
-
-// import HomeMerch from "~/components/Home/Merch";
-
-// export default function HomePage() {
-//   const [isLoading, setIsLoading] = useState(true);
-
-//   if (isLoading) {
-//     return <Loader onComplete={() => setIsLoading(false)} />;
-//   }
-
-//   return (
-//     <main>
-//       <HomeMerch />
-//     </main>
-//   );
-// }
-
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import Loader from "~/components/Loader";
 import HomeMerch from "~/components/Home/Merch";
 import Sponsors from "~/components/Home/Sponsors";
@@ -32,10 +9,13 @@ import { Footer } from "~/components/Home/Footer";
 import Landing from "~/components/Home/Landing";
 import AboutIncandResponsive from "~/components/Home/AboutIncandResponsive";
 import AboutNITSilchar from "~/components/Home/AboutNITSilchar";
+import TopNavbar from "~/components/TopNavbar";
+import NewLanding from "~/components/Home/newLanding";
 
 export default function HomePage() {
   const [loading, setLoading] = useState(true);
   const [revealHome, setRevealHome] = useState(false);
+
   return (
     <>
       <main
@@ -43,48 +23,33 @@ export default function HomePage() {
           revealHome ? "z-0 opacity-100" : "opacity-0"
         }`}
       >
-        {/* --- LANDING / HERO SECTION --- */}
         <section id="home" className="h-screen w-full snap-start">
-          <Landing />
+          <NewLanding />
         </section>
 
-        {/* --- ABOUT Incand SECTION --- */}
         <section id="about" className="h-screen w-full snap-start">
           <AboutIncandResponsive />
         </section>
 
-        {/* --- ABOUT NIT SILCHAR SECTION --- */}
         <section id="aboutNITSilchar" className="h-screen w-full snap-start">
           <AboutNITSilchar />
         </section>
 
-        {/* --- SPONSORS --- */}
-        <div id="sponsors" className="h-screen w-full snap-start">
+        <div id="sponsors" className="min-h-screen w-full snap-start">
           <Sponsors />
         </div>
 
-        {/* ---EVENTS ---
-        <section
-          id="events"
-          className="flex h-screen w-full snap-start flex-col items-center justify-center bg-[#e8dfc5] px-4 text-center"
-        >
-          <h1 className="font-hitchcut text-5xl font-black text-[#520000] drop-shadow-lg sm:text-6xl md:text-7xl lg:text-8xl">
-            EVENTS
-          </h1>
-        </section> */}
-        {/* --- HOME --- */}
         <section id="merch" className="h-screen w-full snap-start">
           <HomeMerch />
         </section>
 
-        {/* --- CONTACT --- */}
-        {/* Footer section */}
         <section id="footer" className="w-full snap-start">
           <Footer />
         </section>
 
-        {!loading && <TribalTrackbar />}
+        {!loading && <TopNavbar />}
       </main>
+
       {loading && (
         <Loader
           onTilesStart={() => setRevealHome(true)}

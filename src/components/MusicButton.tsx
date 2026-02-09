@@ -17,6 +17,7 @@ export default function MusicButton({ className, primary = false }: MusicButtonP
       {/* Only the Layout button renders the audio tag */}
       {primary && <audio id="bgm-audio" loop hidden />}
       
+      <audio id="bgm-audio" loop hidden />
       <button
         onClick={toggle}
         className={cn(
@@ -35,3 +36,4 @@ export default function MusicButton({ className, primary = false }: MusicButtonP
     </>
   );
 }
+

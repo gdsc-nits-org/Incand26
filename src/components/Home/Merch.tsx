@@ -11,12 +11,11 @@ export default function HomeMerch() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0]!.isIntersecting) {
-          setAnimate(true);
-          observer.disconnect();
+        if (entries[0]) {
+          setAnimate(entries[0].isIntersecting);
         }
       },
-      { threshold: 0.3 },
+      { threshold: 0.5 },
     );
 
     if (sectionRef.current) {
@@ -83,7 +82,7 @@ export default function HomeMerch() {
             />
           </div>
           <Link
-            href="/#"
+            href="/merch"
             className="relative top-[-1.25rem] flex animate-[wiggle_2.5s_ease-in-out_infinite] cursor-pointer items-center justify-center overflow-hidden rounded-full border-3 border-black bg-[#6b1f1f] px-4 py-2 text-[0.125rem] tracking-widest text-[#fff2cc] shadow-lg hover:scale-105 lg:px-10 lg:py-4"
           >
             {/* LEFT END DESIGN */}
@@ -97,7 +96,7 @@ export default function HomeMerch() {
 
             {/* TEXT */}
             <span className="tracking-0.18em relative z-70 w-full text-lg">
-              Coming Soon
+              Have a Look
             </span>
 
             {/* RIGHT END DESIGN */}

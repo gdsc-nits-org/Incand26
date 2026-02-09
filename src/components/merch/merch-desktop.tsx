@@ -9,14 +9,20 @@ import {
 } from "framer-motion";
 import { useState } from "react";
 import Link from "next/link";
-import type { Theme } from "./merch-section";
-
+import { OptOut, type Theme } from "./merch-section";
+import { toast } from "sonner";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "~/utils/firebase";
 interface MerchProps {
   theme: Theme;
   isLight: boolean;
   handleThemeSwitch: (t: "light" | "dark") => void;
   springTransition: object;
   popVariants: Variants;
+  hasOpted?: boolean;
+  onOptOutSuccess?: () => void;
 }
 
 export function MerchDesktop({
@@ -25,35 +31,130 @@ export function MerchDesktop({
   handleThemeSwitch,
   springTransition,
   popVariants,
+  hasOpted = true,
+  onOptOutSuccess,
 }: MerchProps) {
+  const [user] = useAuthState(auth);
+  const router = useRouter();
+  const [showConfirm, setShowConfirm] = useState(false);
+
+  const handleOptOutClick = () => {
+    toast.error("Opt-out is currently disabled.");
+    return;
+  };
+
+  const handleConfirmOptOut = async () => {
+    setShowConfirm(false);
+    if (!user) return;
+
+    toast.promise(
+      (async () => {
+        try {
+          await OptOut(user, router);
+          onOptOutSuccess?.();
+          router.refresh();
+        } catch (err) {
+          throw err;
+        }
+      })(),
+      {
+        loading: "Processing your request...",
+        success: "Successfully opted out!",
+        error: (err) => {
+          interface ApiErrorResponse {
+            msg: string;
+          }
+          if (axios.isAxiosError(err)) {
+            const data = err.response?.data as ApiErrorResponse | undefined;
+            return data?.msg ?? "Server error occurred";
+          }
+          return err instanceof Error
+            ? err.message
+            : "Could not complete opt-out";
+        },
+      },
+    );
+  };
+
   return (
     <>
-      {/* --- GHOST BACKGROUND TEXT (Desktop Position) --- */}
+      {/* CONFIRMATION MODAL */}
+      <AnimatePresence>
+        {showConfirm && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative w-full max-w-sm overflow-hidden rounded-2xl border-2 p-6 text-center shadow-2xl"
+              style={{
+                backgroundColor: isLight ? "#fff" : "#1a1a1a",
+                borderColor: theme.textPrimary,
+              }}
+            >
+              <h3
+                className="font-hitchcut mb-4 text-2xl tracking-widest uppercase"
+                style={{ color: theme.textPrimary }}
+              >
+                Confirm Action
+              </h3>
+              <p
+                className="font-hitchcut mb-8 text-sm tracking-wider"
+                style={{ color: theme.textSecondary }}
+              >
+                Are you sure you want to opt out?
+              </p>
+
+              <div className="flex justify-center gap-4">
+                <button
+                  onClick={() => setShowConfirm(false)}
+                  className="font-hitchcut hover:bg-opacity-10 rounded-full border px-6 py-2 text-sm tracking-widest uppercase transition-colors"
+                  style={{
+                    borderColor: theme.textSecondary,
+                    color: theme.textSecondary,
+                  }}
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleConfirmOptOut}
+                  className="font-hitchcut rounded-full px-6 py-2 text-sm tracking-widest text-white uppercase transition-transform active:scale-95"
+                  style={{ backgroundColor: "#d00000" }}
+                >
+                  Opt Out
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* --- GHOST BACKGROUND TEXT --- */}
       <div className="pointer-events-none absolute inset-0 z-0 flex flex-col items-center justify-center leading-[0.85] opacity-[0.08] select-none">
         <div className="flex items-center gap-4">
           <span
-            className="text-[13vw] 2xl:text-[14vw]"
+            className="text-[12vw] xl:text-[13vw] 2xl:text-[14vw]"
             style={{ color: isLight ? "#000" : "#fff" }}
           >
             INCAND
           </span>
-          <span className="text-[15vw] text-[#d16d1b]">20</span>
+          <span className="text-[14vw] text-[#d16d1b] xl:text-[15vw]">20</span>
         </div>
         <div className="flex items-center gap-4">
           <span
-            className="text-[11vw] 2xl:text-[12vw]"
+            className="text-[10vw] xl:text-[11vw] 2xl:text-[12vw]"
             style={{ color: isLight ? "#000" : "#fff" }}
           >
             ESCENCE
           </span>
-          <span className="text-[13vw] text-[#d16d1b]">26</span>
+          <span className="text-[12vw] text-[#d16d1b] xl:text-[13vw]">26</span>
         </div>
       </div>
 
-      {/* --- SIDE DECOR (Desktop) --- */}
-      <div className="pointer-events-none absolute inset-0 z-0 flex h-full justify-between px-4 xl:px-8">
+      {/* --- SIDE DECOR --- */}
+      <div className="pointer-events-none absolute inset-0 z-0 flex h-full justify-between px-4 xl:px-12">
         {/* Left Column */}
-        <div className="relative flex h-full w-16 flex-col items-center justify-between py-8 mix-blend-overlay min-[2200px]:w-64 xl:w-24 2xl:w-40">
+        <div className="relative flex h-full w-12 flex-col items-center justify-between py-12 mix-blend-overlay lg:w-16 xl:w-24 2xl:w-32">
           <AnimatePresence mode="wait">
             {Array.from({ length: 6 }).map((_, i) => (
               <motion.div
@@ -74,7 +175,7 @@ export function MerchDesktop({
           </AnimatePresence>
         </div>
         {/* Right Column */}
-        <div className="relative flex h-full w-16 flex-col items-center justify-between py-8 mix-blend-overlay min-[2200px]:w-64 xl:w-24 2xl:w-40">
+        <div className="relative flex h-full w-12 flex-col items-center justify-between py-12 mix-blend-overlay lg:w-16 xl:w-24 2xl:w-32">
           <AnimatePresence mode="wait">
             {Array.from({ length: 6 }).map((_, i) => (
               <motion.div
@@ -97,9 +198,10 @@ export function MerchDesktop({
       </div>
 
       <LayoutGroup>
-        <div className="font-hitchcut relative z-10 grid h-full max-h-[85vh] w-full max-w-[1600px] grid-cols-12 items-center gap-4 px-12 pb-24 min-[2200px]:max-w-[95%] min-[2200px]:gap-32 md:px-24 xl:gap-8">
-          {/* --- TOP LEFT ARROW (Desktop Position) - ANIMATED --- */}
-          <div className="absolute top-0 left-12 z-[60] min-[2200px]:top-24 min-[2200px]:left-24 min-[2200px]:scale-[3.8] lg:left-16 xl:left-24 2xl:scale-[2.36]">
+        {/* Main Grid */}
+        <div className="font-hitchcut relative z-10 grid h-full max-h-[85vh] w-full max-w-[1920px] grid-cols-12 items-center gap-2 px-8 pb-20 lg:gap-4 lg:px-16 xl:gap-8 xl:px-24 2xl:max-w-full 2xl:gap-12">
+          {/* --- TOP LEFT ARROW --- */}
+          <div className="2xl:-top:10 absolute top-6 left-8 z-[60] lg:top-10 lg:left-16 xl:top-0 xl:left-24">
             <AnimatePresence mode="wait">
               <motion.div
                 key={`arrow-${theme.id}`}
@@ -112,15 +214,16 @@ export function MerchDesktop({
                   <img
                     src="/merch/button-arrow.jpeg"
                     alt="Back"
-                    className="w-24 cursor-pointer object-contain transition-transform hover:scale-105 lg:w-28 xl:w-32"
+                    className="w-20 cursor-pointer object-contain transition-transform hover:scale-105 lg:w-24 xl:w-32 2xl:w-40"
                   />
                 </Link>
               </motion.div>
             </AnimatePresence>
           </div>
 
-          {/* === LEFT COLUMN === */}
-          <div className="col-span-4 flex h-full flex-col items-start justify-center pl-8 text-left xl:pl-16">
+          {/* === LEFT COLUMN (Price/Buttons) === */}
+          {/* Z-Index 30 ensures text stays above Japi pattern if it overlaps */}
+          <div className="relative z-30 col-span-4 flex h-full flex-col items-start justify-center pl-4 text-left lg:pl-8 xl:pl-16">
             {isLight ? (
               <>
                 <PriceElement
@@ -129,7 +232,11 @@ export function MerchDesktop({
                   springTransition={springTransition}
                 />
                 <AnimatePresence mode="wait">
-                  <ButtonsElement popVariants={popVariants} />
+                  <ButtonsElement
+                    popVariants={popVariants}
+                    onOptOutClick={handleOptOutClick}
+                    hasOpted={hasOpted}
+                  />
                 </AnimatePresence>
               </>
             ) : (
@@ -150,9 +257,10 @@ export function MerchDesktop({
           </div>
 
           {/* === CENTER IMAGE COLUMN === */}
-          <div className="perspective-1000 relative col-span-4 flex h-[60vh] w-full items-center justify-center min-[2200px]:h-[85vh] xl:h-[70vh] 2xl:h-[90vh]">
+          <div className="perspective-1000 relative col-span-4 flex h-[50vh] w-full items-center justify-center lg:h-[60vh] xl:h-[70vh] 2xl:h-[75vh]">
             <AnimatePresence mode="popLayout">
               {theme.japiImage && [
+                // Main Japi Pattern (Behind Shirt) - Z-Index 0
                 <motion.div
                   key={theme.id + "-japi-main"}
                   initial={{ rotate: -180, scale: 0.5, opacity: 0 }}
@@ -164,7 +272,7 @@ export function MerchDesktop({
                   }}
                   exit={{ rotate: 180, scale: 0.5, opacity: 0 }}
                   transition={{ type: "spring", damping: 20, stiffness: 40 }}
-                  className="absolute -top-[5%] left-[5%] z-0 flex aspect-square w-[85%] items-center justify-center min-[2200px]:w-[140%] 2xl:top-[15%] 2xl:w-[105%]"
+                  className="absolute -top-[5%] left-[5%] z-0 flex aspect-square w-[85%] items-center justify-center lg:w-[85%]"
                 >
                   <img
                     src={theme.japiImage}
@@ -172,6 +280,7 @@ export function MerchDesktop({
                     className="h-full w-full object-contain opacity-[0.92] drop-shadow-2xl"
                   />
                 </motion.div>,
+                // Small Japi Pattern - Z-Index 0
                 <motion.div
                   key={theme.id + "-japi-small"}
                   initial={{ rotate: -180, scale: 0.5, opacity: 0 }}
@@ -183,7 +292,7 @@ export function MerchDesktop({
                   }}
                   exit={{ rotate: 180, scale: 0.5, opacity: 0 }}
                   transition={{ type: "spring", damping: 20, stiffness: 40 }}
-                  className="absolute right-[15%] -bottom-[10%] z-0 flex aspect-square w-[65%] items-center justify-center min-[2200px]:w-[120%] 2xl:bottom-[20%] 2xl:w-[85%]"
+                  className="absolute right-[10%] -bottom-[10%] z-0 flex aspect-square w-[65%] items-center justify-center lg:right-[15%] lg:w-[65%]"
                 >
                   <img
                     src={theme.japiImage}
@@ -194,19 +303,20 @@ export function MerchDesktop({
               ]}
             </AnimatePresence>
 
+            {/* T-Shirt Image - Z-Index 40 (Highest priority) */}
             <motion.div
               layoutId="shirt-container"
-              className="relative z-20 flex h-[120%] w-full items-center justify-center drop-shadow-2xl min-[2200px]:w-[85%]"
+              className="relative z-40 mt-25 flex h-[115%] w-full items-center justify-center drop-shadow-2xl lg:h-[120%]"
               transition={springTransition}
             >
-              <AnimatePresence mode="wait">
+              <AnimatePresence mode="popLayout">
                 <motion.img
                   key={`desk-shirt-${isLight ? "l" : "d"}`}
                   src={theme.shirtImage}
                   initial={{ y: -20, opacity: 0, scale: isLight ? 0.9 : 0.7 }}
-                  animate={{ y: 0, opacity: 1, scale: isLight ? 1.1 : 0.9 }}
-                  exit={{ y: 20, opacity: 0, scale: 1.1 }}
-                  transition={{ duration: 0.3 }}
+                  animate={{ y: 0, opacity: 1.8, scale: isLight ? 1.1 : 1.1 }}
+                  exit={{ y: 20, opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.4 }}
                   className="absolute inset-0 h-full w-full object-contain"
                 />
               </AnimatePresence>
@@ -214,7 +324,8 @@ export function MerchDesktop({
           </div>
 
           {/* === RIGHT COLUMN === */}
-          <div className="col-span-4 flex h-full flex-col items-end justify-center pr-8 text-right xl:pr-16">
+          {/* Z-Index 30 ensures text stays above Japi pattern if it overlaps */}
+          <div className="relative z-30 col-span-4 flex h-full flex-col items-end justify-center pr-4 text-right lg:pr-8 xl:pr-16">
             {isLight ? (
               <>
                 <AnimatePresence mode="wait">
@@ -237,7 +348,11 @@ export function MerchDesktop({
                   springTransition={springTransition}
                 />
                 <AnimatePresence mode="wait">
-                  <ButtonsElement popVariants={popVariants} />
+                  <ButtonsElement
+                    popVariants={popVariants}
+                    onOptOutClick={handleOptOutClick}
+                    hasOpted={hasOpted}
+                  />
                 </AnimatePresence>
               </>
             )}
@@ -246,7 +361,7 @@ export function MerchDesktop({
       </LayoutGroup>
 
       {/* --- DESKTOP TOGGLE BAR --- */}
-      <div className="absolute bottom-10 z-50 flex w-full origin-bottom scale-100 items-center justify-center min-[2200px]:bottom-40 min-[2200px]:scale-[2.5] xl:bottom-12 xl:scale-110">
+      <div className="absolute bottom-8 z-50 flex w-full origin-bottom scale-110 items-center justify-center lg:bottom-10 lg:scale-125 xl:bottom-12 xl:scale-115 2xl:bottom-16 2xl:scale-140">
         <div className="absolute z-0 h-[14px] w-[344px] rounded-full border-2 border-[#DCA54E] bg-[#361E1E] shadow-lg" />
         <div className="relative z-10 flex gap-[78px]">
           <button
@@ -285,12 +400,13 @@ export function MerchDesktop({
 
 // --- DESKTOP SUB COMPONENTS ---
 
-// Helper type for sub-components
 interface SubComponentProps {
   theme?: Theme;
   isLight?: boolean;
   springTransition?: object;
   popVariants?: Variants;
+  onOptOutClick?: () => void;
+  hasOpted?: boolean;
 }
 
 function PriceElement({ theme, isLight, springTransition }: SubComponentProps) {
@@ -298,17 +414,17 @@ function PriceElement({ theme, isLight, springTransition }: SubComponentProps) {
   return (
     <motion.div
       layoutId="price-box"
-      className="font-hitchcut mb-6 xl:mb-8"
+      className="font-hitchcut mb-4 xl:mb-8"
       transition={springTransition}
     >
       <h3
-        className="mb-2 text-3xl tracking-widest uppercase min-[2200px]:text-7xl xl:text-2xl"
+        className="mb-2 text-2xl tracking-widest uppercase lg:text-3xl xl:text-3xl 2xl:text-5xl"
         style={{ color: isLight ? "#5B0D0D" : "#CE8212", fontWeight: 400 }}
       >
         Get it NOW !
       </h3>
       <h2
-        className="text-6xl leading-[0.8] font-black tracking-widest min-[2200px]:text-[13rem] xl:text-7xl"
+        className="text-5xl leading-[0.8] font-black tracking-widest lg:text-5xl xl:text-6xl 2xl:text-[7rem]"
         style={{ color: theme.textSecondary }}
       >
         {theme.price}
@@ -322,11 +438,11 @@ function DescElement({ theme, springTransition }: SubComponentProps) {
   return (
     <motion.div
       layoutId="desc-box"
-      className="font-hitchcut max-w-[320px] text-xl tracking-widest uppercase min-[2200px]:max-w-[800px] min-[2200px]:text-5xl xl:max-w-[450px] xl:text-2xl"
+      className="font-hitchcut max-w-[260px] text-lg tracking-widest uppercase lg:max-w-[350px] lg:text-xl xl:max-w-[400px] xl:text-xl 2xl:max-w-[600px] 2xl:text-3xl"
       style={{ color: theme.textSecondary }}
       transition={springTransition}
     >
-      <p className="leading-[1.1] font-normal whitespace-pre-line min-[2200px]:leading-[1.2]">
+      <p className="leading-[1.1] font-normal whitespace-pre-line">
         {theme.desc}
       </p>
     </motion.div>
@@ -341,10 +457,10 @@ function HeadingElement({ theme, popVariants }: SubComponentProps) {
       initial="hidden"
       animate="visible"
       exit="exit"
-      className="font-hitchcut mb-6 xl:mb-8"
+      className="font-hitchcut mb-4 xl:mb-8"
     >
       <h1
-        className="text-7xl leading-[0.85] uppercase min-[2200px]:text-[11rem] xl:text-7xl"
+        className="text-4xl leading-[0.85] uppercase lg:text-5xl xl:text-6xl 2xl:text-[6.6rem]"
         style={{ color: theme.textPrimary, fontWeight: 400 }}
       >
         {theme.heading.split(" ").map((word, i) => (
@@ -357,9 +473,14 @@ function HeadingElement({ theme, popVariants }: SubComponentProps) {
   );
 }
 
-function ButtonsElement({ popVariants }: SubComponentProps) {
+function ButtonsElement({
+  popVariants,
+  onOptOutClick,
+  hasOpted = true,
+}: SubComponentProps) {
   const [optOutHover, setOptOutHover] = useState(false);
-  const [buyNowHover, setBuyNowHover] = useState(false);
+
+  //const [buyNowHover, setBuyNowHover] = useState(false);
 
   return (
     <motion.div
@@ -367,46 +488,59 @@ function ButtonsElement({ popVariants }: SubComponentProps) {
       initial="hidden"
       animate="visible"
       exit="exit"
-      className="mt-8 flex w-[260px] flex-col gap-6 min-[2200px]:w-[600px] xl:w-[300px]"
+      className="mt-6 flex w-[240px] flex-col gap-4 lg:mt-8 lg:w-[280px] lg:gap-6 xl:w-[350px] 2xl:w-[400px]"
     >
-      {/* OPT OUT BUTTON */}
-      <button
-        onMouseEnter={() => setOptOutHover(true)}
-        onMouseLeave={() => setOptOutHover(false)}
-        className="group relative flex h-[60px] w-full items-center justify-center overflow-hidden rounded-full shadow-lg transition-all duration-200 hover:scale-105 min-[2200px]:h-[140px] xl:h-[70px]"
-        style={{
-          backgroundImage: "url('/merch/button_texture2.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="z-10 flex items-center gap-3">
-          <div className="relative h-7 w-7 overflow-hidden min-[2200px]:h-20 min-[2200px]:w-20 xl:h-9 xl:w-9">
-            <motion.img
-              src="/merch/svg1.svg"
-              className="absolute h-full w-full object-contain"
-              animate={{ y: optOutHover ? -35 : 0 }}
-              transition={{ duration: 0.2 }}
-            />
-            <motion.img
-              src="/merch/svg2.svg"
-              className="absolute h-full w-full object-contain"
-              initial={{ y: 35 }}
-              animate={{ y: optOutHover ? 0 : 35 }}
-              transition={{ duration: 0.2 }}
-            />
+      {hasOpted ? (
+        /* OPT OUT BUTTON */
+        <button
+          onMouseEnter={() => setOptOutHover(true)}
+          onMouseLeave={() => setOptOutHover(false)}
+          onClick={onOptOutClick}
+          className="group relative flex h-[60px] w-full items-center justify-center overflow-hidden rounded-full shadow-lg transition-all duration-200 hover:scale-105 lg:h-[70px] xl:h-[80px]"
+          style={{
+            backgroundImage: "url('/merch/button_texture2.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="z-10 flex items-center gap-3">
+            <div className="relative h-7 w-7 overflow-hidden lg:h-8 lg:w-8 xl:h-10 xl:w-10">
+              <motion.img
+                src="/merch/svg1.svg"
+                className="absolute h-full w-full object-contain"
+                animate={{ y: optOutHover ? -35 : 0 }}
+                transition={{ duration: 0.2 }}
+              />
+              <motion.img
+                src="/merch/svg2.svg"
+                className="absolute h-full w-full object-contain"
+                initial={{ y: 35 }}
+                animate={{ y: optOutHover ? 0 : 35 }}
+                transition={{ duration: 0.2 }}
+              />
+            </div>
+            <span className="font-hitchcut pt-1 text-2xl tracking-widest text-[#2A1B12] lg:text-3xl xl:text-4xl">
+              OPT OUT
+            </span>
           </div>
-          <span className="font-hitchcut pt-1 text-2xl tracking-widest text-[#2A1B12] min-[2200px]:text-6xl xl:text-3xl">
-            OPT OUT
+        </button>
+      ) : (
+        /* ALREADY OPTED OUT TEXT */
+        <div className="flex h-[60px] w-full items-center justify-center rounded-full border-2 border-dashed border-gray-400 bg-gray-50/50 lg:h-[70px] xl:h-[80px]">
+          <span className="font-hitchcut pt-1 text-xl tracking-widest text-gray-600 lg:text-xl xl:text-2xl">
+            ALREADY OPTED OUT
           </span>
         </div>
-      </button>
+      )}
 
       {/* BUY NOW BUTTON */}
+
+      {/* remove comment to get back the buy now
+
       <button
         onMouseEnter={() => setBuyNowHover(true)}
         onMouseLeave={() => setBuyNowHover(false)}
-        className="relative flex h-[60px] w-full items-center justify-center overflow-hidden rounded-full shadow-lg transition-all duration-200 hover:scale-105 min-[2200px]:h-[140px] xl:h-[70px]"
+        className="relative flex h-[60px] w-full items-center justify-center overflow-hidden rounded-full shadow-lg transition-all duration-200 hover:scale-105 lg:h-[70px] xl:h-[80px]"
         style={{
           backgroundImage: "url('/merch/button_texture1.png')",
           backgroundSize: "cover",
@@ -414,7 +548,7 @@ function ButtonsElement({ popVariants }: SubComponentProps) {
         }}
       >
         <div className="z-10 flex items-center gap-3">
-          <div className="relative h-7 w-7 overflow-hidden min-[2200px]:h-20 min-[2200px]:w-20 xl:h-9 xl:w-9">
+          <div className="relative h-7 w-7 overflow-hidden lg:h-8 lg:w-8 xl:h-10 xl:w-10">
             <motion.img
               src="/merch/svg3.svg"
               className="absolute h-full w-full object-contain"
@@ -429,11 +563,11 @@ function ButtonsElement({ popVariants }: SubComponentProps) {
               transition={{ duration: 0.2 }}
             />
           </div>
-          <span className="font-hitchcut pt-1 text-2xl tracking-widest text-[#F5EDD8] min-[2200px]:text-6xl xl:text-3xl">
+          <span className="font-hitchcut pt-1 text-2xl tracking-widest text-[#F5EDD8] lg:text-3xl xl:text-4xl">
             BUY NOW
           </span>
         </div>
-      </button>
+      </button>  */}
     </motion.div>
   );
 }
