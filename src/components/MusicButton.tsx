@@ -4,19 +4,11 @@ import { Play, Pause } from "lucide-react";
 import useGlobalBgm from "@/hooks/useGlobalBgm";
 import { cn } from "@/lib/utils";
 
-interface MusicButtonProps {
-  className?: string;
-  primary?: boolean; // New prop
-}
-
-export default function MusicButton({ className, primary = false }: MusicButtonProps) {
+export default function MusicButton({ className }: { className?: string }) {
   const { isPlaying, toggle } = useGlobalBgm("/bgm.mp3");
 
   return (
     <>
-      {/* Only the Layout button renders the audio tag */}
-      {primary && <audio id="bgm-audio" loop hidden />}
-      
       <audio id="bgm-audio" loop hidden />
       <button
         onClick={toggle}
@@ -36,4 +28,3 @@ export default function MusicButton({ className, primary = false }: MusicButtonP
     </>
   );
 }
-

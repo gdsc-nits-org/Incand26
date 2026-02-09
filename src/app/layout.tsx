@@ -54,5 +54,5 @@ export default function RootLayout({
     <html lang="en" className={hitchcut.variable}>
       <body className="relative">{children}</body>
     </html>
-  );  
+  );
 }

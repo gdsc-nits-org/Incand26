@@ -6,7 +6,7 @@ import TopNavbar from "@/components/TopNavbar";
 export default function GlobalNavbar() {
   const pathname = usePathname();
 
-  if (pathname === "/" ) {
+  if (pathname === "/") {
     return null;
   }
 
