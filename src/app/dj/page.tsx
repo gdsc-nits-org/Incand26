@@ -31,7 +31,7 @@ const ARTISTS = [
 ];
 
 // Day Labels
-const DAY_LABELS = ["DAY 0 NIRVANA", "DAY 2 CARPE DIEM", "DAY 3 CARPE DIEM"];
+const DAY_LABELS = ["DAY 0", "DAY 2 THUNDERMARCH", "DAY 3 CARPE DIEM"];
 
 const DANCER_PAIRS = [
   ["/CARPEDIEM/dancer1.png", "/CARPEDIEM/dancer2.png"],

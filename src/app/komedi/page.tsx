@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence, type Transition } from "framer-motion";
@@ -19,7 +19,7 @@ const ARTISTS = [
   },
 ];
 
-const DAY_LABELS = ["KOMEDI KNIGHT"];
+const DAY_LABELS = ["KOMEDI KNIGHT", "DAY 3"];
 
 // --- VARIANTS ---
 const bgVariants = {
