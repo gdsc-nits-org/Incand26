@@ -54,7 +54,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={hitchcut.variable}>
       <body className="relative">{children}</body>
-      <TopNavbar/>
+      <TopNavbar />
     </html>
   );
 }
