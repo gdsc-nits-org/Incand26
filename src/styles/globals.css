@@ -5,6 +5,7 @@
     var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-hitchcut: var(--font-hitchcut), sans-serif;
+  --font-oxanium: var(--font-oxanium), sans-serif;
 }
 
 html {
@@ -354,6 +355,12 @@ body {
 
 .animate-cloud-infinite-right {
   animation: cloud-infinite-right 40s linear infinite;
+}
+@font-face {
+  font-family: 'Rocket Thunder';
+  src: url('/fonts/RocketThunder-DEMO-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 /* Music Button Glow Animation */
