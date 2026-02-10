@@ -362,3 +362,431 @@ body {
   font-weight: normal;
   font-style: normal;
 }
+
+/* Music Button Glow Animation */
+@keyframes music-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+  }
+}
+
+.animate-music-glow {
+  animation: music-glow-pulse 3s infinite ease-in-out;
+}
+
+
+.text-outline {
+  color: white;
+  text-shadow:
+    -2px -2px 0 black,
+     2px -2px 0 black,
+    -2px  2px 0 black,
+     2px  2px 0 black,
+     0px  2px 0 black,
+     2px  0px 0 black,
+    -2px  0px 0 black,
+     0px -2px 0 black;
+}
+
+.text-outline-thick {
+  color: white;
+  text-shadow:
+    -3px -3px 0 black,
+     3px -3px 0 black,
+    -3px  3px 0 black,
+     3px  3px 0 black,
+     0px  3px 0 black,
+     3px  0px 0 black,
+    -3px  0px 0 black,
+     0px -3px 0 black;
+}
+
+
+/* ================= RIVER FLOW CORE ================= */
+
+
+/* Ribbon image */
+.ribbon-img {
+  
+  width: auto;
+  flex-shrink: 0;
+  
+}
+
+@keyframes ribbonFlowRight {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: -120vw;
+  }
+}
+
+.ribbon-flow-right {
+  height:70%;
+  animation: ribbonFlowRight 30s linear infinite;
+
+  
+  background-repeat: repeat-x;
+
+  
+  background-size: calc(800px + 20px) 100%;
+  background-position-y: center;
+
+  /* extra safety */
+  image-rendering: auto;
+}
+.ribbon-flow-right-ipad {
+  height:60%;
+  animation: ribbonFlowRight 30s linear infinite;
+
+  
+  background-repeat: repeat-x;
+
+  
+  background-size: calc(800px + 20px) 100%;
+  background-position-y: center;
+
+  /* extra safety */
+  image-rendering: auto;
+}
+
+
+@keyframes ribbonFlowBottom {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: 120vw;
+  }
+}
+
+.ribbon-flow-bottom {
+  height:90%;
+  animation: ribbonFlowBottom 30s linear infinite;
+}
+.ribbon-flow-bottom-ipad {
+  height:60%;
+  animation: ribbonFlowBottom 30s linear infinite;
+}
+
+
+
+
+
+.board-two-phase {
+  animation: boardSmoothTwoPhase 5s ease-in-out forwards;
+  transform-origin: center center;
+}
+@keyframes boardSmoothTwoPhase { 
+  /* ===== PHASE 1: FLOAT (0–3s) ===== */
+   0% { 
+    transform: translate(0, 0) scale(1); 
+  } 
+  20% { 
+    transform: translate(0, -30px) scale(1); 
+  } 
+  40% { 
+    transform: translate(0, 25px) scale(1); 
+  }
+   60% { 
+    transform: translate(0, -20px) scale(1); 
+  } 
+  /* ===== PHASE 2: SMOOTH EXIT (3–5s) ===== */ 
+  100% { 
+    transform: translate(-150px, -170px) scale(0.65); 
+  } 
+}
+
+@keyframes bannerTwoPhaseVertical {
+  
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  20% {
+    transform: translateY(-30px) scale(1);
+  }
+  40% {
+    transform: translateY(25px) scale(1);
+  }
+  60% {
+    transform: translateY(-35px) scale(1);
+  }
+
+  
+  100% {
+    transform: translateY(-95px) scale(0.7);
+  }
+}
+
+
+@keyframes bannerTwoPhaseVerticalBoard {
+  0% {
+    transform: translateY(calc(0px + var(--board-offset))) scale(1);
+  }
+
+  20% {
+    transform: translateY(calc(-30px + var(--board-offset))) scale(1);
+  }
+
+  40% {
+    transform: translateY(calc(25px + var(--board-offset))) scale(1);
+  }
+
+  60% {
+    transform: translateY(calc(-35px + var(--board-offset))) scale(1);
+  }
+
+  100% {
+    transform: translateY(calc(-95px + var(--board-offset))) scale(0.7);
+  }
+}
+
+
+.banner-two-phase-vertical {
+  animation: bannerTwoPhaseVertical 5s ease-in-out forwards;
+  transform-origin: center center;
+}
+.banner-two-phase-vertical-board {
+  animation: bannerTwoPhaseVerticalBoard 5s ease-in-out forwards;
+  transform-origin: center center;
+}
+
+/* Clockwise */
+.rotate-cw {
+  animation: rotateCW 14s linear infinite;
+  transform-origin: center center;
+}
+
+/* Anti-clockwise */
+.rotate-ccw {
+  animation: rotateCCW 14s linear infinite;
+  transform-origin: center center;
+}
+
+@keyframes rotateCW {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateCCW {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+
+/* .white-board {
+  transform: translateY(40px); 
+  animation: whiteBoardRise 2s ease-out forwards;
+  animation-delay: 9s;
+} */
+ .white-board {
+  transform: rotateZ(var(--r, 0deg));
+}
+
+/* BASE BOARD */
+.white-board {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes ipadBannerMove {
+  
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  20% {
+    transform: translate(0, -25px) scale(1) rotate(0deg);
+  }
+  40% {
+    transform: translate(0, 20px) scale(1) rotate(0deg);
+  }
+  60% {
+    transform: translate(0, -30px) scale(1) rotate(0deg);
+  }
+  80% {
+    transform: translate(0, 15px) scale(1) rotate(0deg);
+  }
+
+  
+  100% {
+    transform: 
+      translate(-18vw, -22vh)
+      scale(0.8)
+      rotate(-18deg); 
+  }
+}
+
+.ipad-banner-z {
+  position: relative;
+  z-index: 5; 
+}
+.ipad-banner-z {
+  animation: ipadBannerZJump 3s linear forwards;
+}
+
+.ipad-banner-anim {
+  animation: ipadBannerMove 3s ease-in-out forwards;
+  transform-origin: center center;
+}
+
+
+
+/* Controls stacking ABOVE ribbon & ring */
+@keyframes ipadBannerLayerJump {
+  0% {
+    z-index: 5;
+  }
+  70% {
+    z-index: 5;
+  }
+  95% {
+    z-index: 5; 
+  }
+  100% {
+    z-index: 40;
+  }
+}
+
+.ipad-banner-layer {
+  animation: ipadBannerLayerJump 3s linear forwards;
+}
+
+
+
+  
+ 
+
+
+.gallery-settle-ipad {
+  animation: gallerySettleInIpad 0.05s ease-out forwards;
+  animation-delay: 2.75s; 
+}
+
+@keyframes gallerySettleInIpad {
+  0% {
+    transform: translateY(0);
+  }
+  25%{
+    transform: translateY(-2%);
+  }
+  65%{
+    transform: translateY(-4%);
+  }
+  100% {
+    transform: translate(-3%,-7%);
+  }
+}
+
+
+@keyframes phoneBannerMove {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  20% {
+    transform: translate(0, -18px);
+  }
+  40% {
+    transform: translate(0, 14px);
+  }
+  60% {
+    transform: translate(0, -20px);
+  }
+  80% {
+    transform: translate(0, 10px);
+  }
+  100% {
+    transform: translate(-42vw, -20vh) scale(0.7) rotate(-14deg);
+  }
+}
+
+.gallery-settle {
+  animation: gallerySettleIn 0.05s ease-out forwards;
+  animation-delay: 2.75s; 
+}
+
+@keyframes gallerySettleIn {
+  0% {
+    transform: translateY(0);
+  }
+  25%{
+    transform: translateY(-4%);
+  }
+  65%{
+    transform: translateY(-7%);
+  }
+  100% {
+    transform: translateY(-11%);
+  }
+}
+
+.phone-banner-anim {
+  animation: phoneBannerMove 3s ease-in-out forwards;
+  transform-origin: center center;
+}
+
+
+@keyframes phoneBannerLayerJump {
+  0%, 80% {
+    z-index: 5;
+  }
+  100% {
+    z-index: 40;
+  }
+} 
+
+ .phone-banner-layer {
+  animation: phoneBannerLayerJump 3s linear forwards;
+} 
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-down {
+  animation: slide-down 0.8s ease-out forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+
+
+
+
+
+
+
