@@ -5,6 +5,7 @@
     var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-hitchcut: var(--font-hitchcut), sans-serif;
+  --font-oxanium: var(--font-oxanium), sans-serif;
 }
 
 html {
@@ -354,6 +355,12 @@ body {
 
 .animate-cloud-infinite-right {
   animation: cloud-infinite-right 40s linear infinite;
+}
+@font-face {
+  font-family: 'Rocket Thunder';
+  src: url('/fonts/RocketThunder-DEMO-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 /* Music Button Glow Animation */
@@ -746,7 +753,35 @@ body {
   animation: phoneBannerLayerJump 3s linear forwards;
 } 
 
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
+.animate-slide-down {
+  animation: slide-down 0.8s ease-out forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
 
 
 

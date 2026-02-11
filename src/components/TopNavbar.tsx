@@ -67,7 +67,7 @@ const TopNavbar: React.FC<TopNavbarProps> = ({ fromLayout = false }) => {
       {/* DESKTOP NAVBAR (Unchanged)                */}
       {/* ========================================= */}
       <div
-        className={`fixed top-6 left-1/2 z-50 hidden w-full -translate-x-1/2 justify-center transition-opacity duration-700 xl:flex ${
+        className={`fixed top-6 left-1/2 z-[1000000000000000] hidden w-full -translate-x-1/2 justify-center transition-opacity duration-700 xl:flex ${
           isLoaded ? "opacity-100" : "opacity-0"
         }`}
       >

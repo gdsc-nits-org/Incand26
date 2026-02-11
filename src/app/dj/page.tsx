@@ -1,0 +1,341 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import { motion, AnimatePresence, type Transition } from "framer-motion";
+import MusicButton from "@/components/MusicButton";
+
+// CONSTANTS
+const BACKGROUNDS = [
+  { desktop: "/CARPEDIEM/1.png" },
+  { desktop: "/CARPEDIEM/2.png" },
+  { desktop: "/CARPEDIEM/3.png" },
+];
+
+const ARTISTS = [
+  {
+    name: "DJ PAREK",
+    desktopGif: "/CARPEDIEM/parek_desk.gif",
+    mobileGif: "/CARPEDIEM/parek.gif",
+  },
+  {
+    name: "DJ TASHA",
+    desktopGif: "/CARPEDIEM/tasha_desk.gif",
+    mobileGif: "/CARPEDIEM/tasha.gif",
+  },
+  {
+    name: "DJ LOUN",
+    desktopGif: "/CARPEDIEM/lound_desk.gif",
+    mobileGif: "/CARPEDIEM/loun.gif",
+  },
+];
+
+// Day Labels
+const DAY_LABELS = ["DAY 0", "DAY 2 THUNDERMARCH", "DAY 3 CARPE DIEM"];
+
+const DANCER_PAIRS = [
+  ["/CARPEDIEM/dancer1.png", "/CARPEDIEM/dancer2.png"],
+  ["/CARPEDIEM/dancer3.png", "/CARPEDIEM/dancer4.png"],
+  ["/CARPEDIEM/dancer5.png", "/CARPEDIEM/dancer6.png"],
+];
+
+// --- VARIANTS ---
+const bgVariants = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+};
+
+// SHARED ANIMATION SETTINGS
+const slideVariants = {
+  enter: (direction: number) => ({
+    x: direction > 0 ? "100%" : "-100%",
+    rotate: direction > 0 ? 5 : -5,
+    opacity: 0,
+    scale: 0.9,
+  }),
+  center: {
+    zIndex: 1,
+    x: 0,
+    rotate: 0,
+    opacity: 1,
+    scale: 1,
+  },
+  exit: (direction: number) => ({
+    zIndex: 0,
+    x: direction < 0 ? "100%" : "-100%",
+    rotate: direction < 0 ? 5 : -5,
+    opacity: 0,
+    scale: 0.9,
+  }),
+};
+
+// Cinematic smooth transition
+const smoothTransition: Transition = {
+  x: { type: "tween", ease: "easeInOut", duration: 0.6 },
+  opacity: { duration: 0.6 },
+  scale: { duration: 0.6 },
+  rotate: { duration: 0.6 },
+};
+
+export default function CarpediemArtistPage() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
+
+  const handleNext = () => {
+    setDirection(1);
+    setCurrentIndex((prev) => (prev + 1) % BACKGROUNDS.length);
+  };
+
+  const handlePrevious = () => {
+    setDirection(-1);
+    setCurrentIndex(
+      (prev) => (prev - 1 + BACKGROUNDS.length) % BACKGROUNDS.length,
+    );
+  };
+
+  const currentArtist = ARTISTS[currentIndex % ARTISTS.length];
+  const currentBg = BACKGROUNDS[currentIndex % BACKGROUNDS.length];
+  const currentDancers = DANCER_PAIRS[currentIndex % DANCER_PAIRS.length];
+  const currentDayLabel = DAY_LABELS[currentIndex % DAY_LABELS.length];
+
+  // FIX: Added !currentDancers to the check so TypeScript knows it exists below
+  if (!currentArtist || !currentBg || !currentDancers) return null;
+
+  return (
+    <div className="font-hitchcut relative h-[100dvh] w-full overflow-hidden bg-black">
+      {/* =========================================
+          BACKGROUND LAYER
+         ========================================= */}
+      <div className="absolute inset-0 z-0">
+        <div className="relative block h-full w-full lg:hidden">
+          <Image
+            src="/CARPEDIEM/mobilebg.png"
+            alt="Static Background Mobile"
+            fill
+            className="object-cover"
+            style={{ objectPosition: "center top" }}
+            priority
+          />
+        </div>
+
+        <div className="relative hidden h-full w-full lg:block">
+          <AnimatePresence initial={false}>
+            <motion.div
+              key={currentIndex}
+              variants={bgVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={{ duration: 1.2, ease: "easeInOut" }}
+              className="absolute inset-0"
+            >
+              <Image
+                src={currentBg.desktop}
+                alt="Background Desktop"
+                fill
+                className="object-cover"
+                priority
+              />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
+
+      {/* Overlay Content */}
+      <div className="relative z-10 flex h-full w-full flex-col items-center p-4 md:p-6 lg:p-8">
+        {/* =========================================
+            DESKTOP LAYOUT
+           ========================================= */}
+        <div className="relative mt-auto mb-auto hidden h-[90vh] w-full max-w-[1400px] items-center justify-between px-4 lg:flex 2xl:max-w-[2400px]">
+          <div className="relative mx-auto h-[70%] w-[80%] overflow-visible lg:h-[75%] lg:w-[70%] xl:w-[65%] 2xl:h-[85%] 2xl:w-[80%]">
+            <AnimatePresence
+              initial={false}
+              custom={direction}
+              mode="popLayout"
+            >
+              <motion.div
+                key={currentArtist.name}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={smoothTransition}
+                className="absolute inset-0 flex h-full w-full items-end justify-center"
+              >
+                <div className="relative h-full w-full">
+                  <Image
+                    src={currentArtist.desktopGif}
+                    alt={currentArtist.name}
+                    fill
+                    unoptimized
+                    className="object-contain object-bottom drop-shadow-2xl"
+                    priority
+                  />
+                  <motion.div
+                    initial={{ y: 50, opacity: 0, scale: 0.9 }}
+                    animate={{ y: 0, opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ delay: 0.2, duration: 0.5 }}
+                    className="pointer-events-none absolute right-0 bottom-4 left-0 text-center lg:bottom-12 2xl:bottom-20"
+                  >
+                    <h2
+                      className="text-3xl font-normal tracking-wider text-white drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] lg:text-5xl xl:text-7xl 2xl:text-9xl"
+                      style={{
+                        textShadow: "0 0 10px rgba(255,255,255,0.5)",
+                        fontFamily: "Rocket Thunder, sans-serif",
+                      }}
+                    >
+                      {currentArtist.name}
+                    </h2>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          <button
+            onClick={handlePrevious}
+            className="absolute bottom-[8%] left-[12%] z-[999] rounded-sm border-2 border-[#514114] bg-[#E69D16] px-6 py-2 text-[10px] font-bold text-black shadow-lg transition-colors hover:bg-[#ffb732] active:scale-95 lg:left-[20%] lg:px-8 lg:py-3 lg:text-xs xl:px-8 xl:py-4 xl:text-sm 2xl:bottom-[5%] 2xl:left-[18%] 2xl:px-16 2xl:py-5 2xl:text-base"
+          >
+            PREVIOUS
+          </button>
+
+          <button
+            onClick={handleNext}
+            className="absolute right-[12%] bottom-[8%] z-[999] rounded-sm border-2 border-[#514114] bg-[#E69D16] px-6 py-2 text-[10px] font-bold text-black shadow-lg transition-colors hover:bg-[#ffb732] active:scale-95 lg:right-[20%] lg:px-8 lg:py-3 lg:text-xs xl:px-8 xl:py-4 xl:text-sm 2xl:right-[18%] 2xl:bottom-[5%] 2xl:px-16 2xl:py-5 2xl:text-base"
+          >
+            NEXT
+          </button>
+
+          <div className="absolute bottom-[8%] left-1/2 z-[999] -translate-x-1/2 rounded-sm border-2 border-black bg-[#E69D16] px-8 py-2 text-sm font-bold whitespace-nowrap text-black shadow-lg lg:px-12 lg:py-3 lg:text-lg xl:text-xl 2xl:bottom-[3%] 2xl:px-20 2xl:py-5 2xl:text-2xl">
+            {currentDayLabel}
+          </div>
+        </div>
+
+        {/* =========================================
+            MOBILE/TABLET VERTICAL LAYOUT 
+           ========================================= */}
+        <div className="flex h-full w-full flex-col items-center justify-evenly px-2 pt-8 pb-4 md:px-8 md:pt-16 md:pb-8 lg:hidden">
+          <div className="z-20 flex shrink-0 flex-row items-center justify-center">
+            <h1
+              className="text-5xl leading-none font-bold tracking-widest text-[#3E2D26] md:text-6xl"
+              style={{ fontFamily: "var(--font-hitchcut)" }}
+            >
+              INCAND
+            </h1>
+            <h1
+              className="ml-2 text-5xl leading-none font-bold tracking-widest text-[#D98605] md:text-6xl"
+              style={{ fontFamily: "var(--font-hitchcut)" }}
+            >
+              26
+            </h1>
+          </div>
+
+          {/* Mobile Image Container */}
+          <div className="relative z-10 mt-2 aspect-square h-[35vh] w-full max-w-[400px] shrink-0 md:h-[45vh]">
+            <AnimatePresence
+              initial={false}
+              custom={direction}
+              mode="popLayout"
+            >
+              <motion.div
+                key={currentArtist.name}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={smoothTransition}
+                className="absolute inset-0 h-full w-full overflow-hidden"
+              >
+                <Image
+                  src={currentArtist.mobileGif}
+                  alt={currentArtist.name}
+                  fill
+                  unoptimized
+                  className="object-cover object-top"
+                  priority
+                />
+
+                {/* Mobile Artist Name Overlay */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  className="pointer-events-none absolute right-0 bottom-8 left-0 z-20 text-center min-[400px]:bottom-12"
+                >
+                  <h2
+                    className="text-3xl text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] min-[400px]:text-4xl"
+                    style={{
+                      textShadow: "0 0 5px rgba(255,255,255,0.5)",
+                      fontFamily: "Rocket Thunder, sans-serif",
+                    }}
+                  >
+                    {currentArtist.name}
+                  </h2>
+                </motion.div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Mobile Day Label */}
+          <div className="z-20 -mt-10 shrink-0 border-2 border-[#3E2D26] bg-[#D98605] px-6 py-2 shadow-md min-[400px]:-mt-20 md:px-10">
+            <span className="text-base font-bold tracking-wide whitespace-nowrap text-[#3E2D26] md:text-xl">
+              {currentDayLabel}
+            </span>
+          </div>
+
+          <h2
+            className="mt-2 shrink-0 text-center text-5xl font-bold tracking-wide text-[#3E2D26] drop-shadow-sm md:text-7xl"
+            style={{ fontFamily: "var(--font-hitchcut)" }}
+          >
+            DJ NIGHT
+          </h2>
+
+          <div className="z-20 flex h-[12vh] w-full max-w-2xl items-center justify-between px-2 md:h-[15vh] md:px-12">
+            <div className="relative h-full w-[25%]">
+              <Image
+                src={currentDancers[0]!}
+                alt="Dancer Left"
+                fill
+                className="object-contain"
+              />
+            </div>
+
+            {/* Functional Music Button */}
+            <div className="flex aspect-square h-[60%] items-center justify-center">
+              <MusicButton className="h-full w-full border-2 border-[#5c4a40] bg-[#D98605]/10 hover:bg-[#D98605]/30" />
+            </div>
+
+            <div className="relative h-full w-[25%]">
+              <Image
+                src={currentDancers[1]!}
+                alt="Dancer Right"
+                fill
+                className="object-contain"
+              />
+            </div>
+          </div>
+
+          <div className="z-30 flex w-full max-w-2xl items-center justify-between md:px-8">
+            <button
+              onClick={handlePrevious}
+              className="rounded-sm border border-black bg-[#E69D16] px-5 py-3 text-xs font-bold text-black transition-transform active:scale-95 md:px-8 md:py-4 md:text-xl"
+            >
+              PREVIOUS
+            </button>
+
+            <button
+              onClick={handleNext}
+              className="rounded-sm border border-black bg-[#E69D16] px-5 py-3 text-xs font-bold text-black transition-transform active:scale-95 md:px-8 md:py-4 md:text-xl"
+            >
+              NEXT
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
