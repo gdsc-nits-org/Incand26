@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 // --- CONSTANTS ---
-const DAY_LABELS = ["KOMEDI KNIGHT"];
+const DAY_LABELS = ["JAVED ALI"];
 
 export default function KomediKnightPage() {
   const router = useRouter();
@@ -95,10 +95,10 @@ export default function KomediKnightPage() {
             PREVIOUS
           </button>
 
-          {/* Center Label */}
+          {/* Center Label
           <div className="absolute  bottom-[8%] left-1/2 z-[999] -translate-x-1/2 rounded-sm border-2 border-black bg-[#E69D16] px-8 py-2 text-sm font-bold whitespace-nowrap text-black shadow-lg lg:px-12 lg:py-3 lg:text-lg xl:text-xl 2xl:bottom-[3%] 2xl:px-20 2xl:py-5 2xl:text-2xl">
             {currentDayLabel}
-          </div>
+          </div> */}
 
           {/* Next Button */}
           <button
