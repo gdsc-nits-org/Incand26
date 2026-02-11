@@ -53,10 +53,10 @@ const Mask = () => {
               />
             </div>
           </Link>
-         <Link
-           href="/carpediem"
-           className="group relative order-first h-125 w-full cursor-pointer overflow-visible transition-all md:order-0 md:h-200 md:w-[45%]"
-         >
+          <Link
+            href="/carpediem"
+            className="group relative order-first h-125 w-full cursor-pointer overflow-visible transition-all md:order-0 md:h-200 md:w-[45%]"
+          >
             <div className="absolute top-4 left-1/2 z-0 -translate-x-1/2 opacity-100 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] md:top-20 md:translate-y-24 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
               <button className="font-hitchcut relative h-24 w-64 overflow-hidden font-bold text-[#4F2222]">
                 <Image
@@ -78,7 +78,7 @@ const Mask = () => {
               />
             </div>
           </Link>
-      
+
           <Link
             href="/thundermarch"
             className="group relative h-80 w-full cursor-pointer overflow-visible transition-all md:mt-64 md:h-90 md:w-[24%]"
