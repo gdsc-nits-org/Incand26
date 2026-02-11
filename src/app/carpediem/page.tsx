@@ -8,7 +8,7 @@ const DAY_LABELS = ["JAVED ALI"];
 
 export default function KomediKnightPage() {
   const router = useRouter();
-  
+
   // FIX 1: Removed unused 'setCurrentIndex' to satisfy the linter
   const [currentIndex] = useState(0);
 
@@ -43,7 +43,6 @@ export default function KomediKnightPage() {
 
   return (
     <div className="font-hitchcut relative h-[100dvh] w-full overflow-hidden bg-black">
-      
       {/* --- Audio Element --- */}
       <audio ref={audioRef} loop>
         <source src="/Tum-Tak.mp3" type="audio/mpeg" />
@@ -52,23 +51,18 @@ export default function KomediKnightPage() {
       {/* =========================================
           MUSIC TRIGGER AREA
          ========================================= */}
-      
+
       {/* Mobile Trigger */}
-      <div 
+      <div
         onClick={toggleMusic}
-        className="absolute z-20 block cursor-pointer bg-transparent
-                   w-28 h-28 top-[17%] right-[5%] 
-                   md:right-[13%] md:top-[15%] lg:top-[20%] lg:right-[13%]
-                   xl:hidden"
+        className="absolute top-[17%] right-[5%] z-20 block h-28 w-28 cursor-pointer bg-transparent md:top-[15%] md:right-[13%] lg:top-[20%] lg:right-[13%] xl:hidden"
         aria-label="Toggle Music"
       ></div>
 
       {/* Desktop Trigger */}
-      <div 
+      <div
         onClick={toggleMusic}
-        className="absolute z-20 hidden cursor-pointer bg-transparent
-                   w-44 h-44 top-[12%] right-[10%] 
-                   xl:block"
+        className="absolute top-[12%] right-[10%] z-20 hidden h-44 w-44 cursor-pointer bg-transparent xl:block"
         aria-label="Toggle Music"
       ></div>
 
@@ -93,9 +87,13 @@ export default function KomediKnightPage() {
               playsInline
               className="relative z-10 h-screen max-h-none w-full scale-110 scale-x-120 md:scale-125 md:scale-x-170 lg:scale-125 lg:scale-x-180"
             >
-              <source 
-                src={isPlaying ? "/CARPEDIEM/javedMobPlay.webm" : "/CARPEDIEM/javedMobPause.webm"} 
-                type="video/webm" 
+              <source
+                src={
+                  isPlaying
+                    ? "/CARPEDIEM/javedMobPlay.webm"
+                    : "/CARPEDIEM/javedMobPause.webm"
+                }
+                type="video/webm"
               />
             </video>
           </div>
@@ -117,9 +115,13 @@ export default function KomediKnightPage() {
               playsInline
               className="relative z-10 h-auto max-h-none w-full"
             >
-              <source 
-                src={isPlaying ? "/CARPEDIEM/javedDeskPlay.webm" : "/CARPEDIEM/javedDeskPause.webm"} 
-                type="video/webm" 
+              <source
+                src={
+                  isPlaying
+                    ? "/CARPEDIEM/javedDeskPlay.webm"
+                    : "/CARPEDIEM/javedDeskPause.webm"
+                }
+                type="video/webm"
               />
             </video>
           </div>

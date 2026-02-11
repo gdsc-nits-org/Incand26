@@ -3,7 +3,7 @@ import "~/styles/landing.css";
 import { type Metadata } from "next";
 import localfont from "next/font/local";
 import TopNavbar from "~/components/TopNavbar";
-import GlobalMusicButton from "~/components/GlobalMusicButton"; 
+import GlobalMusicButton from "~/components/GlobalMusicButton";
 
 export const metadata: Metadata = {
   title: {
@@ -55,7 +55,7 @@ export default function RootLayout({
       <body className="relative">
         <TopNavbar />
         {children}
-        <GlobalMusicButton className="fixed bottom-6 right-6 z-50" />
+        <GlobalMusicButton className="fixed right-6 bottom-6 z-50" />
       </body>
     </html>
   );

@@ -225,7 +225,7 @@ export default function CarpediemArtistPage() {
           </button>
 
           {/* === DESKTOP MUSIC BUTTON (Fixed Position) === */}
-          <CustomMusicButton className="fixed bottom-6 right-6 z-[1000]" />
+          <CustomMusicButton className="fixed right-6 bottom-6 z-[1000]" />
 
           <div className="absolute bottom-[8%] left-1/2 z-[999] -translate-x-1/2 rounded-sm border-2 border-black bg-[#E69D16] px-8 py-2 text-sm font-bold whitespace-nowrap text-black shadow-lg xl:px-12 xl:py-3 xl:text-xl 2xl:bottom-[3%] 2xl:px-20 2xl:py-5 2xl:text-2xl">
             {currentDayLabel}

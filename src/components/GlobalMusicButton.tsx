@@ -6,12 +6,16 @@ import useGlobalBgm from "@/hooks/useGlobalBgm";
 import { cn } from "@/lib/utils";
 
 // 2. Renamed the component to GlobalMusicButton
-export default function GlobalMusicButton({ className }: { className?: string }) {
+export default function GlobalMusicButton({
+  className,
+}: {
+  className?: string;
+}) {
   const pathname = usePathname();
   const { isPlaying, toggle } = useGlobalBgm("/bgm.mp3");
 
   // 3. Customize pages to hide the button here
-  const hiddenRoutes = ["/carpediem", "/dj"]; 
+  const hiddenRoutes = ["/carpediem", "/dj"];
 
   // If the current page is in the hidden list, return null (don't render anything)
   if (hiddenRoutes.includes(pathname)) {
