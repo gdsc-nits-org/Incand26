@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 // --- CONSTANTS ---
-const DAY_LABELS = ["KOMEDI KNIGHT"];
+const DAY_LABELS = ["JAVED ALI"];
 
 export default function KomediKnightPage() {
   const router = useRouter();
@@ -29,7 +29,7 @@ export default function KomediKnightPage() {
       <div className="absolute inset-0 z-0">
         
         {/* --- MOBILE & TABLET BACKGROUND (< lg) --- */}
-        <div className="relative block h-full w-full lg:hidden">
+        <div className="relative block h-full w-full xl:hidden">
           {/* 1. Static Image Background (Base Layer) */}
         
 
@@ -47,7 +47,7 @@ export default function KomediKnightPage() {
               muted
               playsInline
               // Changed: w-full h-auto ensures full width visibility without cropping
-              className="relative z-10 scale-480 w-full h-screen max-h-none"
+              className="relative z-10 scale-480 md:scale-320 md:scale-x-500 lg:scale-200 lg:scale-300 lg:scale-x-500 w-full h-screen max-h-none"
             >
               <source src="/CARPEDIEM/outputmob.webm" type="video/webm" />
             </video>
