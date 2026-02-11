@@ -3,9 +3,9 @@ import "~/styles/landing.css";
 import { type Metadata } from "next";
 import localfont from "next/font/local";
 import TopNavbar from "~/components/TopNavbar";
+import GlobalMusicButton from "~/components/GlobalMusicButton"; 
 
 export const metadata: Metadata = {
-  // ... (keep your existing metadata)
   title: {
     default: "Incandescence 2026 | NIT Silchar",
     template: "%s | Incandescence 2026",
@@ -38,7 +38,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
@@ -56,6 +55,7 @@ export default function RootLayout({
       <body className="relative">
         <TopNavbar />
         {children}
+        <GlobalMusicButton className="fixed bottom-6 right-6 z-50" />
       </body>
     </html>
   );
