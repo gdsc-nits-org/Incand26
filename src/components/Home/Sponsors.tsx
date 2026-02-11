@@ -1,7 +1,6 @@
 ﻿"use client";
 import React from "react";
 import InfiniteScroller from "~/components/InfiniteScroller";
-import GlobalScrollStyles from "~/components/GlobalScrollStyles_Sponsers";
 import sponsorsData from "../../../public/data/sponsors.json";
 
 export default function Sponsors() {
@@ -9,8 +8,6 @@ export default function Sponsors() {
 
   return (
     <>
-      <GlobalScrollStyles />
-      {/* ---  SPONSORS --- */}
       <section
         id="sponsors"
         className="relative min-h-screen w-full snap-start bg-cover bg-center bg-no-repeat md:h-screen md:overflow-hidden"
