@@ -53,7 +53,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={hitchcut.variable}>
       <body className="relative">
-        <TopNavbar />
+        <TopNavbar fromLayout={true} />
         {children}
         <GlobalMusicButton className="fixed right-6 bottom-6 z-50" />
       </body>
