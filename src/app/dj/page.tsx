@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, type Transition } from "framer-motion";
-import MusicButton from "@/components/MusicButton";
+import { Play, Pause } from "lucide-react";
 
 // CONSTANTS
 const BACKGROUNDS = [
@@ -15,18 +15,18 @@ const BACKGROUNDS = [
 const ARTISTS = [
   {
     name: "DJ PAREK",
-    desktopGif: "/CARPEDIEM/parek_desk.gif",
-    mobileGif: "/CARPEDIEM/parek.gif",
+    desktopGif: "/CARPEDIEM/parek.webm",
+    mobileGif: "/CARPEDIEM/parekMob.webm",
   },
   {
     name: "DJ TASHA",
-    desktopGif: "/CARPEDIEM/tasha_desk.gif",
-    mobileGif: "/CARPEDIEM/tasha.gif",
+    desktopGif: "/CARPEDIEM/tasha.webm",
+    mobileGif: "/CARPEDIEM/tashaMob.webm",
   },
   {
     name: "DJ LOUN",
-    desktopGif: "/CARPEDIEM/lound_desk.gif",
-    mobileGif: "/CARPEDIEM/loun.gif",
+    desktopGif: "/CARPEDIEM/loun.webm",
+    mobileGif: "/CARPEDIEM/lounMob.webm",
   },
 ];
 
@@ -78,6 +78,9 @@ const smoothTransition: Transition = {
   rotate: { duration: 0.6 },
 };
 
+// Helper to check if source is video
+const isVideo = (src: string) => src.endsWith(".webm") || src.endsWith(".mp4");
+
 export default function CarpediemArtistPage() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
@@ -99,7 +102,6 @@ export default function CarpediemArtistPage() {
   const currentDancers = DANCER_PAIRS[currentIndex % DANCER_PAIRS.length];
   const currentDayLabel = DAY_LABELS[currentIndex % DAY_LABELS.length];
 
-  // FIX: Added !currentDancers to the check so TypeScript knows it exists below
   if (!currentArtist || !currentBg || !currentDancers) return null;
 
   return (
@@ -108,7 +110,7 @@ export default function CarpediemArtistPage() {
           BACKGROUND LAYER
          ========================================= */}
       <div className="absolute inset-0 z-0">
-        <div className="relative block h-full w-full lg:hidden">
+        <div className="relative block h-full w-full xl:hidden">
           <Image
             src="/CARPEDIEM/mobilebg.png"
             alt="Static Background Mobile"
@@ -119,7 +121,7 @@ export default function CarpediemArtistPage() {
           />
         </div>
 
-        <div className="relative hidden h-full w-full lg:block">
+        <div className="relative hidden h-full w-full xl:block">
           <AnimatePresence initial={false}>
             <motion.div
               key={currentIndex}
@@ -143,12 +145,12 @@ export default function CarpediemArtistPage() {
       </div>
 
       {/* Overlay Content */}
-      <div className="relative z-10 flex h-full w-full flex-col items-center p-4 md:p-6 lg:p-8">
+      <div className="relative z-10 flex h-full w-full flex-col items-center p-4 md:p-6 xl:p-8">
         {/* =========================================
             DESKTOP LAYOUT
            ========================================= */}
-        <div className="relative mt-auto mb-auto hidden h-[90vh] w-full max-w-[1400px] items-center justify-between px-4 lg:flex 2xl:max-w-[2400px]">
-          <div className="relative mx-auto h-[70%] w-[80%] overflow-visible lg:h-[75%] lg:w-[70%] xl:w-[65%] 2xl:h-[85%] 2xl:w-[80%]">
+        <div className="relative mt-auto mb-auto hidden h-[90vh] w-full max-w-[1400px] items-center justify-between px-4 xl:flex 2xl:max-w-[2400px]">
+          <div className="relative mx-auto h-[70%] w-[80%] overflow-visible xl:h-[75%] xl:w-[65%] 2xl:h-[85%] 2xl:w-[80%]">
             <AnimatePresence
               initial={false}
               custom={direction}
@@ -165,23 +167,36 @@ export default function CarpediemArtistPage() {
                 className="absolute inset-0 flex h-full w-full items-end justify-center"
               >
                 <div className="relative h-full w-full">
-                  <Image
-                    src={currentArtist.desktopGif}
-                    alt={currentArtist.name}
-                    fill
-                    unoptimized
-                    className="object-contain object-bottom drop-shadow-2xl"
-                    priority
-                  />
+                  {/* --- Video/Image Render --- */}
+                  {isVideo(currentArtist.desktopGif) ? (
+                    <video
+                      src={currentArtist.desktopGif}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="absolute inset-0 h-full w-full object-contain object-bottom drop-shadow-2xl"
+                    />
+                  ) : (
+                    <Image
+                      src={currentArtist.desktopGif}
+                      alt={currentArtist.name}
+                      fill
+                      unoptimized
+                      className="object-contain object-bottom drop-shadow-2xl"
+                      priority
+                    />
+                  )}
+
                   <motion.div
                     initial={{ y: 50, opacity: 0, scale: 0.9 }}
                     animate={{ y: 0, opacity: 1, scale: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ delay: 0.2, duration: 0.5 }}
-                    className="pointer-events-none absolute right-0 bottom-4 left-0 text-center lg:bottom-12 2xl:bottom-20"
+                    className="pointer-events-none absolute right-0 bottom-4 left-0 text-center xl:bottom-12 2xl:bottom-20"
                   >
                     <h2
-                      className="text-3xl font-normal tracking-wider text-white drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] lg:text-5xl xl:text-7xl 2xl:text-9xl"
+                      className="text-3xl font-normal tracking-wider text-white drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] xl:text-5xl xl:text-7xl 2xl:text-9xl"
                       style={{
                         textShadow: "0 0 10px rgba(255,255,255,0.5)",
                         fontFamily: "Rocket Thunder, sans-serif",
@@ -197,19 +212,22 @@ export default function CarpediemArtistPage() {
 
           <button
             onClick={handlePrevious}
-            className="absolute bottom-[8%] left-[12%] z-[999] rounded-sm border-2 border-[#514114] bg-[#E69D16] px-6 py-2 text-[10px] font-bold text-black shadow-lg transition-colors hover:bg-[#ffb732] active:scale-95 lg:left-[20%] lg:px-8 lg:py-3 lg:text-xs xl:px-8 xl:py-4 xl:text-sm 2xl:bottom-[5%] 2xl:left-[18%] 2xl:px-16 2xl:py-5 2xl:text-base"
+            className="absolute bottom-[8%] left-[12%] z-[999] rounded-sm border-2 border-[#514114] bg-[#E69D16] px-6 py-2 text-[10px] font-bold text-black shadow-lg transition-colors hover:bg-[#ffb732] active:scale-95 xl:left-[20%] xl:px-8 xl:py-3 xl:text-sm 2xl:bottom-[5%] 2xl:left-[18%] 2xl:px-16 2xl:py-5 2xl:text-base"
           >
             PREVIOUS
           </button>
 
           <button
             onClick={handleNext}
-            className="absolute right-[12%] bottom-[8%] z-[999] rounded-sm border-2 border-[#514114] bg-[#E69D16] px-6 py-2 text-[10px] font-bold text-black shadow-lg transition-colors hover:bg-[#ffb732] active:scale-95 lg:right-[20%] lg:px-8 lg:py-3 lg:text-xs xl:px-8 xl:py-4 xl:text-sm 2xl:right-[18%] 2xl:bottom-[5%] 2xl:px-16 2xl:py-5 2xl:text-base"
+            className="absolute right-[12%] bottom-[8%] z-[999] rounded-sm border-2 border-[#514114] bg-[#E69D16] px-6 py-2 text-[10px] font-bold text-black shadow-lg transition-colors hover:bg-[#ffb732] active:scale-95 xl:right-[20%] xl:px-8 xl:py-3 xl:text-sm 2xl:right-[18%] 2xl:bottom-[5%] 2xl:px-16 2xl:py-5 2xl:text-base"
           >
             NEXT
           </button>
 
-          <div className="absolute bottom-[8%] left-1/2 z-[999] -translate-x-1/2 rounded-sm border-2 border-black bg-[#E69D16] px-8 py-2 text-sm font-bold whitespace-nowrap text-black shadow-lg lg:px-12 lg:py-3 lg:text-lg xl:text-xl 2xl:bottom-[3%] 2xl:px-20 2xl:py-5 2xl:text-2xl">
+          {/* === DESKTOP MUSIC BUTTON (Fixed Position) === */}
+          <CustomMusicButton className="fixed right-6 bottom-6 z-[1000]" />
+
+          <div className="absolute bottom-[8%] left-1/2 z-[999] -translate-x-1/2 rounded-sm border-2 border-black bg-[#E69D16] px-8 py-2 text-sm font-bold whitespace-nowrap text-black shadow-lg xl:px-12 xl:py-3 xl:text-xl 2xl:bottom-[3%] 2xl:px-20 2xl:py-5 2xl:text-2xl">
             {currentDayLabel}
           </div>
         </div>
@@ -217,7 +235,7 @@ export default function CarpediemArtistPage() {
         {/* =========================================
             MOBILE/TABLET VERTICAL LAYOUT 
            ========================================= */}
-        <div className="flex h-full w-full flex-col items-center justify-evenly px-2 pt-8 pb-4 md:px-8 md:pt-16 md:pb-8 lg:hidden">
+        <div className="flex h-full w-full flex-col items-center justify-evenly px-2 pt-8 pb-4 md:px-8 md:pt-16 md:pb-8 xl:hidden">
           <div className="z-20 flex shrink-0 flex-row items-center justify-center">
             <h1
               className="text-5xl leading-none font-bold tracking-widest text-[#3E2D26] md:text-6xl"
@@ -250,14 +268,26 @@ export default function CarpediemArtistPage() {
                 transition={smoothTransition}
                 className="absolute inset-0 h-full w-full overflow-hidden"
               >
-                <Image
-                  src={currentArtist.mobileGif}
-                  alt={currentArtist.name}
-                  fill
-                  unoptimized
-                  className="object-cover object-top"
-                  priority
-                />
+                {/* --- Conditional Video/Image Render Mobile --- */}
+                {isVideo(currentArtist.mobileGif) ? (
+                  <video
+                    src={currentArtist.mobileGif}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="absolute inset-0 h-full w-full object-cover object-top"
+                  />
+                ) : (
+                  <Image
+                    src={currentArtist.mobileGif}
+                    alt={currentArtist.name}
+                    fill
+                    unoptimized
+                    className="object-cover object-top"
+                    priority
+                  />
+                )}
 
                 {/* Mobile Artist Name Overlay */}
                 <motion.div
@@ -304,9 +334,9 @@ export default function CarpediemArtistPage() {
               />
             </div>
 
-            {/* Functional Music Button */}
+            {/* === MOBILE MUSIC BUTTON (Inline) === */}
             <div className="flex aspect-square h-[60%] items-center justify-center">
-              <MusicButton className="h-full w-full border-2 border-[#5c4a40] bg-[#D98605]/10 hover:bg-[#D98605]/30" />
+              <CustomMusicButton className="h-full w-full border-2 border-[#5c4a40] bg-[#D98605]/10 hover:bg-[#D98605]/30" />
             </div>
 
             <div className="relative h-full w-[25%]">
@@ -337,5 +367,51 @@ export default function CarpediemArtistPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+// === LOCAL COMPONENT FOR SPECIFIC MUSIC ===
+function CustomMusicButton({ className }: { className?: string }) {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const toggle = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        // FIX 1: Handle the Promise returned by play()
+        audioRef.current.play().catch((error) => {
+          console.error("Audio playback failed:", error);
+        });
+        setIsPlaying(true);
+      }
+    }
+  };
+
+  return (
+    <>
+      <audio
+        ref={audioRef}
+        src="/babailiano-afro-house-dj-iliano-remix-475171.mp3"
+        loop
+        hidden
+      />
+      <button
+        onClick={toggle}
+        // FIX 2: Use ?? (nullish coalescing) instead of || (logical OR)
+        className={`flex cursor-pointer items-center justify-center rounded-full border border-white/10 bg-black/50 p-3 backdrop-blur-md transition-all hover:bg-black/70 active:scale-95 ${
+          isPlaying ? "animate-pulse" : ""
+        } ${className ?? ""}`}
+        aria-label={isPlaying ? "Pause music" : "Play music"}
+      >
+        {isPlaying ? (
+          <Pause className="h-6 w-6 text-white" />
+        ) : (
+          <Play className="h-6 w-6 text-white" />
+        )}
+      </button>
+    </>
   );
 }

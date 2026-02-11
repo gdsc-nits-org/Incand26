@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 
 // --- CONSTANTS ---
@@ -8,7 +8,13 @@ const DAY_LABELS = ["JAVED ALI"];
 
 export default function KomediKnightPage() {
   const router = useRouter();
-  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // FIX 1: Removed unused 'setCurrentIndex' to satisfy the linter
+  const [currentIndex] = useState(0);
+
+  const [isPlaying, setIsPlaying] = useState(false);
+  // FIX 2: Explicit type for audio element
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const handleNext = () => {
     router.push("/komedi");
@@ -18,62 +24,105 @@ export default function KomediKnightPage() {
     router.push("./komedi");
   };
 
+  const toggleMusic = () => {
+    if (!audioRef.current) return;
+
+    if (isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      // FIX 3: .play() returns a Promise. We must catch errors to satisfy the "no-floating-promises" rule.
+      audioRef.current.play().catch((error) => {
+        console.error("Audio playback failed:", error);
+      });
+      setIsPlaying(true);
+    }
+  };
+
   const currentDayLabel = DAY_LABELS[currentIndex % DAY_LABELS.length];
 
   return (
     <div className="font-hitchcut relative h-[100dvh] w-full overflow-hidden bg-black">
-      
+      {/* --- Audio Element --- */}
+      <audio ref={audioRef} loop>
+        <source src="/Tum-Tak.mp3" type="audio/mpeg" />
+      </audio>
+
       {/* =========================================
-          BACKGROUND LAYER (IMAGES + VIDEOS) 
+          MUSIC TRIGGER AREA
+         ========================================= */}
+
+      {/* Mobile Trigger */}
+      <div
+        onClick={toggleMusic}
+        className="absolute top-[17%] right-[5%] z-20 block h-28 w-28 cursor-pointer bg-transparent md:top-[15%] md:right-[13%] lg:top-[20%] lg:right-[13%] xl:hidden"
+        aria-label="Toggle Music"
+      ></div>
+
+      {/* Desktop Trigger */}
+      <div
+        onClick={toggleMusic}
+        className="absolute top-[12%] right-[10%] z-20 hidden h-44 w-44 cursor-pointer bg-transparent xl:block"
+        aria-label="Toggle Music"
+      ></div>
+
+      {/* =========================================
+          BACKGROUND LAYER 
          ========================================= */}
       <div className="absolute inset-0 z-0">
-        
         {/* --- MOBILE & TABLET BACKGROUND (< lg) --- */}
-        <div className="relative block h-full w-full lg:hidden">
-          {/* 1. Static Image Background (Base Layer) */}
-        
-
-          {/* 2. Video/GIF Layer */}
-          {/* Flex container ensures the h-auto video is vertically centered */}
+        <div className="relative block h-full w-full xl:hidden">
           <div className="absolute inset-0 flex items-center justify-center">
-              <img 
-            src="/CARPEDIEM/mobilebg.png" 
-            alt="Background" 
-            className="absolute inset-0 h-full w-full object-cover"
-          />
+            {/* Note: Using <img> generates warnings but is valid. Use <Image /> for optimization if needed later. */}
+            <img
+              src="/CARPEDIEM/mobilebg.png"
+              alt="Background"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
             <video
+              key={isPlaying ? "mob-play" : "mob-pause"}
               autoPlay
               loop
               muted
               playsInline
-              // Changed: w-full h-auto ensures full width visibility without cropping
-              className="relative z-10 scale-480 w-full h-screen max-h-none"
+              className="relative z-10 h-screen max-h-none w-full scale-110 scale-x-120 md:scale-125 md:scale-x-170 lg:scale-125 lg:scale-x-180"
             >
-              <source src="/CARPEDIEM/outputmob.webm" type="video/webm" />
+              <source
+                src={
+                  isPlaying
+                    ? "/CARPEDIEM/javedMobPlay.webm"
+                    : "/CARPEDIEM/javedMobPause.webm"
+                }
+                type="video/webm"
+              />
             </video>
           </div>
         </div>
 
         {/* --- DESKTOP BACKGROUND (>= lg) --- */}
         <div className="relative hidden h-full w-full lg:block">
-          {/* 1. Static Image Background (Base Layer) */}
-          <img 
-            src="/CARPEDIEM/2.png" 
-            alt="Background" 
+          <img
+            src="/CARPEDIEM/2.png"
+            alt="Background"
             className="absolute inset-0 h-full w-full object-cover"
           />
-
-          {/* 2. Video/GIF Layer */}
           <div className="absolute inset-0 flex items-center justify-center">
             <video
+              key={isPlaying ? "desk-play" : "desk-pause"}
               autoPlay
               loop
               muted
               playsInline
-              // Changed: w-full h-auto ensures full width visibility without cropping
-              className="relative z-10 w-full h-auto max-h-none"
+              className="relative z-10 h-auto max-h-none w-full"
             >
-              <source src="/CARPEDIEM/output.webm" type="video/webm" />
+              <source
+                src={
+                  isPlaying
+                    ? "/CARPEDIEM/javedDeskPlay.webm"
+                    : "/CARPEDIEM/javedDeskPause.webm"
+                }
+                type="video/webm"
+              />
             </video>
           </div>
         </div>
@@ -83,11 +132,8 @@ export default function KomediKnightPage() {
           CONTENT OVERLAY
          ========================================= */}
       <div className="relative z-10 flex h-full w-full flex-col items-center p-4 md:p-6 lg:p-8">
-        
-        {/* --- DESKTOP LAYOUT (Large Screens Only) --- */}
+        {/* --- DESKTOP LAYOUT --- */}
         <div className="relative mt-auto mb-auto hidden h-[90vh] w-full max-w-[1400px] items-center justify-between px-4 lg:flex 2xl:max-w-[2400px]">
-          
-          {/* Previous Button */}
           <button
             onClick={handlePrevious}
             className="absolute bottom-[8%] left-[12%] z-[999] rounded-sm border-2 border-[#514114] bg-[#E69D16] px-6 py-2 text-[10px] font-bold text-black shadow-lg transition-colors hover:bg-[#ffb732] active:scale-95 lg:left-[20%] lg:px-8 lg:py-3 lg:text-xs xl:px-8 xl:py-4 xl:text-sm 2xl:bottom-[5%] 2xl:left-[18%] 2xl:px-16 2xl:py-5 2xl:text-base"
@@ -95,12 +141,6 @@ export default function KomediKnightPage() {
             PREVIOUS
           </button>
 
-          {/* Center Label
-          <div className="absolute  bottom-[8%] left-1/2 z-[999] -translate-x-1/2 rounded-sm border-2 border-black bg-[#E69D16] px-8 py-2 text-sm font-bold whitespace-nowrap text-black shadow-lg lg:px-12 lg:py-3 lg:text-lg xl:text-xl 2xl:bottom-[3%] 2xl:px-20 2xl:py-5 2xl:text-2xl">
-            {currentDayLabel}
-          </div> */}
-
-          {/* Next Button */}
           <button
             onClick={handleNext}
             className="absolute right-[12%] bottom-[8%] z-[999] rounded-sm border-2 border-[#514114] bg-[#E69D16] px-6 py-2 text-[10px] font-bold text-black shadow-lg transition-colors hover:bg-[#ffb732] active:scale-95 lg:right-[20%] lg:px-8 lg:py-3 lg:text-xs xl:px-8 xl:py-4 xl:text-sm 2xl:right-[18%] 2xl:bottom-[5%] 2xl:px-16 2xl:py-5 2xl:text-base"
@@ -109,17 +149,14 @@ export default function KomediKnightPage() {
           </button>
         </div>
 
-        {/* --- MOBILE & TABLET LAYOUT (Same as video breakpoint) --- */}
+        {/* --- MOBILE & TABLET LAYOUT --- */}
         <div className="flex h-full w-full flex-col items-center justify-end px-2 pb-8 lg:hidden">
-          
-          {/* Center Label - Mobile Position */}
-          <div className="hidden mb-8 border-2 border-[#3E2D26] bg-[#D98605] px-8 py-3 whitespace-nowrap shadow-md">
+          <div className="mb-8 hidden border-2 border-[#3E2D26] bg-[#D98605] px-8 py-3 whitespace-nowrap shadow-md">
             <span className="text-xl font-bold tracking-wide text-[#3E2D26]">
               {currentDayLabel}
             </span>
           </div>
 
-          {/* Mobile Buttons Container */}
           <div className="flex w-full max-w-2xl items-center justify-between">
             <button
               onClick={handlePrevious}
@@ -136,7 +173,6 @@ export default function KomediKnightPage() {
             </button>
           </div>
         </div>
-
       </div>
     </div>
   );
