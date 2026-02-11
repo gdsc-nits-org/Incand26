@@ -1,10 +1,11 @@
 import React from "react";
 import SponsorCard from "./SponsorCard";
 
-//the shape of the data
 interface Sponsor {
   name: string;
   logo: string;
+  // link: string;
+  partner?:string
 }
 
 interface InfiniteScrollerProps {
@@ -18,9 +19,6 @@ const InfiniteScroller: React.FC<InfiniteScrollerProps> = ({
 }) => {
   const isVertical = direction === "down" || direction === "up";
 
-  // duplicate the array for the infinite loop effect
-  const duplicatedSponsors = [...sponsors, ...sponsors];
-
   const animationClass = {
     down: "animate-scroll-down",
     up: "animate-scroll-up",
@@ -29,15 +27,23 @@ const InfiniteScroller: React.FC<InfiniteScrollerProps> = ({
   }[direction];
 
   return (
-    <div className="h-full w-full overflow-hidden">
+    /* Added "scroller-container" here to target it with our CSS */
+    <div className="scroller-container group/scroller relative h-full w-full overflow-hidden">
       <div
-        className={`flex ${isVertical ? "flex-col" : "flex-row"} ${animationClass} gap-6 md:gap-8`}
+        className={`
+          flex gap-6 md:gap-8 
+          ${isVertical ? "flex-col" : "flex-row w-max"} 
+          ${animationClass}
+        `}
       >
-        {duplicatedSponsors.map((sponsor, idx) => (
+        {/* We map twice to create the infinite loop */}
+        {[...sponsors, ...sponsors].map((sponsor, idx) => (
           <SponsorCard
             key={idx}
             logoUrl={sponsor.logo}
             name={sponsor.name}
+            partner={sponsor.partner}
+            // link={sponsor.link}
             className={
               isVertical ? "h-64 w-full md:h-80" : "h-36 w-36 md:h-48 md:w-48"
             }
