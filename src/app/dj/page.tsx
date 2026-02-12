@@ -105,11 +105,12 @@ export default function CarpediemArtistPage() {
   if (!currentArtist || !currentBg || !currentDancers) return null;
 
   return (
-    <div className="font-hitchcut relative h-[100dvh] w-full overflow-hidden bg-black">
+    <div className="font-hitchcut relative min-h-[100svh] w-full overflow-x-hidden overflow-y-auto bg-black">
       {/* =========================================
           BACKGROUND LAYER
          ========================================= */}
-      <div className="absolute inset-0 z-0">
+      {/* UPDATED: Changed absolute to fixed so background stays put while scrolling */}
+      <div className="fixed inset-0 z-0">
         <div className="relative block h-full w-full xl:hidden">
           <Image
             src="/CARPEDIEM/mobilebg.png"
@@ -145,7 +146,7 @@ export default function CarpediemArtistPage() {
       </div>
 
       {/* Overlay Content */}
-      <div className="relative z-10 flex h-full w-full flex-col items-center p-4 md:p-6 xl:p-8">
+      <div className="relative z-10 flex min-h-[100svh] w-full flex-col items-center p-4 md:p-6 xl:p-8">
         {/* =========================================
             DESKTOP LAYOUT
            ========================================= */}
@@ -381,7 +382,6 @@ function CustomMusicButton({ className }: { className?: string }) {
         audioRef.current.pause();
         setIsPlaying(false);
       } else {
-        // FIX 1: Handle the Promise returned by play()
         audioRef.current.play().catch((error) => {
           console.error("Audio playback failed:", error);
         });
@@ -400,7 +400,6 @@ function CustomMusicButton({ className }: { className?: string }) {
       />
       <button
         onClick={toggle}
-        // FIX 2: Use ?? (nullish coalescing) instead of || (logical OR)
         className={`flex cursor-pointer items-center justify-center rounded-full border border-white/10 bg-black/50 p-3 backdrop-blur-md transition-all hover:bg-black/70 active:scale-95 ${
           isPlaying ? "animate-pulse" : ""
         } ${className ?? ""}`}

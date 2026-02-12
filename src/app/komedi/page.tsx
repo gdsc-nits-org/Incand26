@@ -1,21 +1,21 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence, type Transition } from "framer-motion";
 
 // --- CONSTANTS & ASSETS ---
 
-// Desktop Background
+// Desktop Background (Still keeping these as Images based on your request, only changing Artist to Video)
 const BACKGROUNDS = [{ desktop: "/CARPEDIEM/bgmain.png" }];
 
-// Artist Data
+// Artist Data - UPDATED for WebM Videos
 const ARTISTS = [
   {
     name: "Aditya Kulshresth",
-    desktopGif: "/CARPEDIEM/kullu.gif",
-    mobileGif: "/CARPEDIEM/komedi_night_fg mobile.png",
+    desktopVideo: "/CARPEDIEM/kulluDesk.webm",
+    mobileVideo: "/CARPEDIEM/kulluMob.webm",
   },
 ];
 
@@ -62,8 +62,8 @@ const smoothTransition: Transition = {
 
 export default function KomediKnightPage() {
   const router = useRouter();
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
+  const [currentIndex] = useState(0); // Removed unused setCurrentIndex if only 1 artist, otherwise keep it
+  const [direction] = useState(0); // Removed setDirection
 
   const handleNavigation = () => {
     router.push("./carpediem");
@@ -77,14 +77,12 @@ export default function KomediKnightPage() {
   if (!currentArtist || !currentBg) return null;
 
   return (
-    <div className="font-hitchcut relative h-[100dvh] w-full overflow-hidden bg-black">
+    <div className="font-hitchcut relative min-h-[100svh] w-full overflow-x-hidden overflow-y-auto bg-black">
       {/* =========================================
           BACKGROUND LAYER
          ========================================= */}
-      <div className="absolute inset-0 z-0">
-        {/* Mobile/Tablet Background 
-            Visible up to 'xl' (approx 1280px) 
-        */}
+      <div className="fixed inset-0 z-0">
+        {/* Mobile/Tablet Background */}
         <div className="relative block h-full w-full xl:hidden">
           <Image
             src="/CARPEDIEM/mobilebg.png"
@@ -96,9 +94,7 @@ export default function KomediKnightPage() {
           />
         </div>
 
-        {/* Desktop Background 
-            Visible only on 'xl' (1280px) and larger 
-        */}
+        {/* Desktop Background */}
         <div className="relative hidden h-full w-full xl:block">
           <AnimatePresence initial={false}>
             <motion.div
@@ -123,10 +119,9 @@ export default function KomediKnightPage() {
       </div>
 
       {/* Overlay Content */}
-      <div className="relative z-10 flex h-full w-full flex-col items-center p-4 md:p-6 lg:p-8">
+      <div className="relative z-10 flex min-h-[100svh] w-full flex-col items-center p-4 md:p-6 lg:p-8">
         {/* =========================================
             DESKTOP LAYOUT (XL+)
-            Only visible on 1280px+ (Laptops/Desktops)
            ========================================= */}
         <div className="relative mt-auto mb-auto hidden h-[90vh] w-full max-w-[1400px] items-center justify-between px-4 xl:flex 2xl:max-w-[2400px]">
           {/* Main Visual Container */}
@@ -146,21 +141,27 @@ export default function KomediKnightPage() {
                 transition={smoothTransition}
                 className="absolute inset-0 flex h-full w-full items-end justify-center"
               >
+                {/* VIDEO ELEMENT REPLACEMENT */}
                 <div className="relative h-full w-full">
-                  <Image
-                    src={currentArtist.desktopGif}
-                    alt={currentArtist.name}
-                    fill
-                    unoptimized
-                    className="object-contain object-bottom drop-shadow-2xl"
-                    priority
-                  />
+                  <video
+                    key={currentArtist.desktopVideo} // Force re-render on change
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="h-full w-full object-contain object-bottom drop-shadow-2xl"
+                  >
+                    <source
+                      src={currentArtist.desktopVideo}
+                      type="video/webm"
+                    />
+                  </video>
                 </div>
               </motion.div>
             </AnimatePresence>
           </div>
 
-          {/* Navigation Buttons - Desktop Sizes */}
+          {/* Navigation Buttons */}
           <button
             onClick={handleNavigation}
             className="absolute bottom-[10%] left-[5%] z-[999] rounded-sm border-2 border-[#514114] bg-[#E69D16] px-8 py-3 text-sm font-bold text-black shadow-lg transition-colors hover:bg-[#ffb732] active:scale-95 xl:left-[15%] xl:px-8 xl:py-4 xl:text-base 2xl:bottom-[5%] 2xl:left-[18%] 2xl:px-16 2xl:py-5 2xl:text-xl"
@@ -183,10 +184,9 @@ export default function KomediKnightPage() {
 
         {/* =========================================
             MOBILE & TABLET LAYOUT (< XL)
-            Visible on Phones, iPads, and Small Laptops (<1280px)
            ========================================= */}
         <div className="flex h-full w-full flex-col items-center justify-start px-2 pt-8 pb-4 xl:hidden">
-          {/* Header - Scales for Tablet (md/lg) */}
+          {/* Header */}
           <div className="z-20 flex shrink-0 flex-row items-center justify-center">
             <h1
               className="text-5xl leading-none font-bold tracking-widest text-[#3E2D26] md:text-7xl lg:text-8xl"
@@ -202,7 +202,7 @@ export default function KomediKnightPage() {
             </h1>
           </div>
 
-          {/* Image Container - Scales for Tablet */}
+          {/* Visual Container */}
           <div className="relative z-10 mt-6 aspect-square h-[45vh] w-full max-w-[400px] shrink-0 border-4 border-[#3E2D26] bg-black/20 shadow-xl md:mt-12 md:h-[50vh] md:max-w-[500px] lg:h-[55vh] lg:max-w-[600px]">
             <AnimatePresence
               initial={false}
@@ -219,14 +219,17 @@ export default function KomediKnightPage() {
                 transition={smoothTransition}
                 className="absolute inset-0 h-full w-full overflow-hidden"
               >
-                <Image
-                  src={currentArtist.mobileGif}
-                  alt={currentArtist.name}
-                  fill
-                  unoptimized
-                  className="object-cover object-top"
-                  priority
-                />
+                {/* VIDEO ELEMENT REPLACEMENT */}
+                <video
+                  key={currentArtist.mobileVideo}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="h-full w-full object-cover object-top"
+                >
+                  <source src={currentArtist.mobileVideo} type="video/webm" />
+                </video>
               </motion.div>
             </AnimatePresence>
 
@@ -238,7 +241,7 @@ export default function KomediKnightPage() {
             </div>
           </div>
 
-          {/* Text Content - Scales for Tablet */}
+          {/* Text Content */}
           <div className="mt-10 flex w-full max-w-[400px] flex-col items-center text-center md:mt-16 md:max-w-[600px] lg:mt-20 lg:max-w-[700px]">
             <h2
               className="text-4xl font-bold tracking-wide text-[#3E2D26] md:text-6xl lg:text-7xl"
@@ -257,7 +260,7 @@ export default function KomediKnightPage() {
             </div>
           </div>
 
-          {/* Navigation Buttons - Scales for Tablet */}
+          {/* Navigation Buttons */}
           <div className="mt-auto flex w-full max-w-2xl items-center justify-between pt-6 md:px-12 md:pb-8 lg:max-w-4xl lg:px-16 lg:pb-12">
             <button
               onClick={handleNavigation}
