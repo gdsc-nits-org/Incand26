@@ -2,7 +2,8 @@ import "~/styles/globals.css";
 import "~/styles/landing.css";
 import { type Metadata } from "next";
 import localfont from "next/font/local";
-import MusicButton from "~/components/MusicButton";
+import TopNavbar from "~/components/TopNavbar";
+import GlobalMusicButton from "~/components/GlobalMusicButton";
 
 export const metadata: Metadata = {
   title: {
@@ -37,13 +38,7 @@ export const metadata: Metadata = {
       },
     ],
   },
-
-  icons: [
-    {
-      rel: "icon",
-      url: "https://res.cloudinary.com/dm74yd2j9/image/upload/v1766838091/colour_light_qjmcwd.svg",
-    },
-  ],
+  icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
 const hitchcut = localfont({
@@ -58,8 +53,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={hitchcut.variable}>
       <body className="relative">
-        <MusicButton className="fixed right-8 bottom-4 z-[100]" />
+        <TopNavbar fromLayout={true} />
         {children}
+        <GlobalMusicButton className="fixed right-6 bottom-6 z-50" />
       </body>
     </html>
   );

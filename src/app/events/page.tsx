@@ -1,7 +1,9 @@
 "use client";
 import React from "react";
-import Mask from "~/components/Events/Mask";
-import DayEvents from "~/components/Events/DayEvents";
+import dynamic from "next/dynamic";
+
+const Mask = dynamic(() => import("~/components/Events/Mask"));
+const DayEvents = dynamic(() => import("~/components/Events/DayEvents"));
 export default function Page() {
   return (
     <main className="relative block min-h-screen w-full overflow-x-hidden bg-[url('https://res.cloudinary.com/dig1vxljf/image/upload/v1768227886/test_2_bsqq4s.webp')] bg-cover bg-center">
