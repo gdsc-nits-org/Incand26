@@ -5,7 +5,7 @@ interface Sponsor {
   name: string;
   logo: string;
   link: string;
-  partner?:string
+  partner?: string;
 }
 
 interface InfiniteScrollerProps {
@@ -30,11 +30,7 @@ const InfiniteScroller: React.FC<InfiniteScrollerProps> = ({
     /* Added "scroller-container" here to target it with our CSS */
     <div className="scroller-container group/scroller relative h-full w-full overflow-hidden">
       <div
-        className={`
-          flex gap-6 md:gap-8 
-          ${isVertical ? "flex-col" : "flex-row w-max"} 
-          ${animationClass}
-        `}
+        className={`flex gap-6 md:gap-8 ${isVertical ? "flex-col" : "w-max flex-row"} ${animationClass} `}
       >
         {/* We map twice to create the infinite loop */}
         {[...sponsors, ...sponsors].map((sponsor, idx) => (
