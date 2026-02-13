@@ -22,7 +22,7 @@ export default function Sponsors() {
             {/* TEXT */}
             <div className="ml-8 pr-8">
               <h1 className="mb-8 text-7xl font-black text-amber-900 drop-shadow-2xl sm:text-6xl lg:text-7xl">
-                PREVIOUS SPONSORS
+                SPONSORS
               </h1>
               <p className="text-3xl leading-relaxed font-medium text-[#000000]">
                 We are proud to have been supported by renowned brands and
@@ -46,7 +46,7 @@ export default function Sponsors() {
           {/* MOBILE LAYOUT */}
           <div className="flex flex-col gap-8 px-4 py-12 pb-32 md:hidden">
             <h1 className="text-center text-5xl font-black text-[#520000]">
-              PREVIOUS SPONSORS
+              SPONSORS
             </h1>
             <p className="px-4 text-center text-xl text-[#000000]">
               We are proud to have been supported by renowned brands and
