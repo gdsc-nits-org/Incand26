@@ -5,7 +5,7 @@ interface SponsorCardProps {
   logoUrl: string;
   name: string;
   link?: string; // Added link prop (optional)
-  partner?:string;
+  partner?: string;
   className?: string;
 }
 
@@ -25,7 +25,9 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
 
   // If a link is provided, use an <a> tag, otherwise a <div>
   const Wrapper = link ? "a" : "div";
-  const wrapperProps = link ? { href: link, target: "_blank", rel: "noopener noreferrer" } : {};
+  const wrapperProps = link
+    ? { href: link, target: "_blank", rel: "noopener noreferrer" }
+    : {};
 
   return (
     <Wrapper
@@ -87,7 +89,7 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
         <p className="line-clamp-3 w-full text-center text-xs leading-tight font-bold tracking-widest break-words text-amber-900 uppercase drop-shadow-lg md:text-sm lg:text-xl">
           {name}
         </p>
-         <p className="mt-2 line-clamp-3 w-full text-center text-xs leading-tight font-bold tracking-widest break-words text-amber-900 uppercase drop-shadow-lg md:text-xs lg:text-lg">
+        <p className="mt-2 line-clamp-3 w-full text-center text-xs leading-tight font-bold tracking-widest break-words text-amber-900 uppercase drop-shadow-lg md:text-xs lg:text-lg">
           {partner}
         </p>
       </div>

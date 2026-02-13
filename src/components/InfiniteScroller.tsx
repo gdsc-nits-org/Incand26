@@ -4,8 +4,8 @@ import SponsorCard from "./SponsorCard";
 interface Sponsor {
   name: string;
   logo: string;
-  // link: string;
-  partner?:string
+  link: string;
+  partner?: string;
 }
 
 interface InfiniteScrollerProps {
@@ -30,11 +30,7 @@ const InfiniteScroller: React.FC<InfiniteScrollerProps> = ({
     /* Added "scroller-container" here to target it with our CSS */
     <div className="scroller-container group/scroller relative h-full w-full overflow-hidden">
       <div
-        className={`
-          flex gap-6 md:gap-8 
-          ${isVertical ? "flex-col" : "flex-row w-max"} 
-          ${animationClass}
-        `}
+        className={`flex gap-6 md:gap-8 ${isVertical ? "flex-col" : "w-max flex-row"} ${animationClass} `}
       >
         {/* We map twice to create the infinite loop */}
         {[...sponsors, ...sponsors].map((sponsor, idx) => (
@@ -43,7 +39,7 @@ const InfiniteScroller: React.FC<InfiniteScrollerProps> = ({
             logoUrl={sponsor.logo}
             name={sponsor.name}
             partner={sponsor.partner}
-            // link={sponsor.link}
+            link={sponsor.link}
             className={
               isVertical ? "h-64 w-full md:h-80" : "h-36 w-36 md:h-48 md:w-48"
             }

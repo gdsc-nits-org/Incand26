@@ -1,76 +1,90 @@
 {
   "column1": [
     {
-      "name": "QUONEQT",
+      "name": "QONEQT",
       "logo": "https://res.cloudinary.com/dmezugavw/image/upload/v1770844536/quoneqt_wtijda.webp",
-      "partner":"OFFICIAL COMMUNITY PARTNER"
+      "partner":"OFFICIAL COMMUNITY PARTNER",
+       "link":"https://qoneqt.com/"
     },
     {
       "name": "MYNTRA",
       "logo": "https://res.cloudinary.com/dmezugavw/image/upload/v1770844535/myntra-2_omzbqq.svg",
-      "partner": "TITLE SPONSOR"
+      "partner": "TITLE SPONSOR",
+      "link":"https://www.myntra.com/"
     },
     {
       "name": "COCA COLA",
       "logo": "https://res.cloudinary.com/dgechlqls/image/upload/v1766236343/Frame_1000006207_aeplge.webp",
-      "partner":"BEVERAGE PARTNER"
+      "partner":"BEVERAGE PARTNER",
+      "link":"https://www.coca-cola.com/in/en"
     },
     {
       "name": "POP TALES",
       "logo": "https://res.cloudinary.com/dmezugavw/image/upload/v1770844535/pop_pkqjax.png",
-      "partner":"OFFICIAL MERCHANDISE PARTNER"
+      "partner":"OFFICIAL MERCHANDISE PARTNER",
+      "link":"https://poptales.in/"
     },
     {
       "name": "JRNY ENTERTAINMENT",
       "logo": "https://res.cloudinary.com/dmezugavw/image/upload/v1770844535/jrny_tgxiys.webp",
-      "partner": "EVENT PARTNER"
+      "partner": "EVENT PARTNER",
+      "link": "https://jrnyentertainment.com/"
     },
     {
       "name": "PORTRONICS",
       "partner":"OFFICIAL GADGET PARTNER",
-      "logo": "https://res.cloudinary.com/dmezugavw/image/upload/v1770844547/portronics_rf8oav.jpg"
+      "logo": "https://res.cloudinary.com/dmezugavw/image/upload/v1770844547/portronics_rf8oav.jpg",
+      "link": "https://www.portronics.com/"
     },
     {
       "name": "GPLUS",
       "logo": "https://res.cloudinary.com/dgechlqls/image/upload/v1766236343/Group_1171279522_pvhsuj.webp",
-      "partner":"OFFICIAL CONNECTED BY PARTNER"
+      "partner":"OFFICIAL CONNECTED BY PARTNER",
+      "link": "https://www.guwahatiplus.com/"
     },
     {
       "name": "SPM IAS ACADEMY",
       "logo": "https://res.cloudinary.com/dmezugavw/image/upload/v1770844533/SPM-Logo-1-2048x455_azz5mb.webp",
-      "partner":"BRONZE SPONSOR"
+      "partner":"BRONZE SPONSOR",
+      "link" : "https://spmiasacademy.com/"
     }
   ],
   "column2": [
     {
       "name": "GO DESI",
       "logo": "https://res.cloudinary.com/dmezugavw/image/upload/v1770844533/desi_v6rolt.png",
-      "partner":"OFFICIAL SNACKING PARTNER"
+      "partner":"OFFICIAL SNACKING PARTNER",
+      "link": "https://godesi.in/"
     },
     {
       "name": "ANNEX MICE INDIA",
       "logo": "https://res.cloudinary.com/dmezugavw/image/upload/v1770844533/1767716100414_hxvq3w.jpg",
-      "partner":"TRAVEL PARTNER"
+      "partner":"TRAVEL PARTNER",
+      "link":"https://www.instagram.com/annexmiceindia/"
     },
     {
       "name": "JIOSAAVN",
       "logo": "https://res.cloudinary.com/dmezugavw/image/upload/v1770844530/jiosaavn-logo-icon_euuepr.png",
-      "partner":"OFFICIAL MUSIC STREAMING PARTNER"
+      "partner":"OFFICIAL MUSIC STREAMING PARTNER",
+      "link": "https://www.jiosaavn.com/"
     },
     {
       "name": "TIMES OF INDIA",
       "logo": "https://res.cloudinary.com/dmezugavw/image/upload/v1770844533/TOI_logo_jzvckb.webp",
-      "partner":"MEDIA PARTNER"
+      "partner":"MEDIA PARTNER",
+      "link": "https://timesofindia.indiatimes.com/"
     },
     {
       "name": "VENDING KART",
       "logo": "https://res.cloudinary.com/dmezugavw/image/upload/v1770844529/vk_rpn7pk.png",
-      "partner":"CO-TITLE SPONSOR"
+      "partner":"CO-TITLE SPONSOR",
+      "link": "http://www.vendingkart.com/"
     },
     {
       "name": "BARAK BULLETIN",
       "logo": "https://res.cloudinary.com/dmezugavw/image/upload/v1770844529/bb-logo_nbfto1.gif",
-      "partner":"OFFICIAL ASSOCIATE PARTNER"
+      "partner":"OFFICIAL ASSOCIATE PARTNER",
+      "link": "https://barakbulletin.com/"
     }
   ]
 }
